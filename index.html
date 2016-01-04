@@ -1,0 +1,268 @@
+<html lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>أسعار البنزين</title>
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"
+          crossorigin="anonymous"></script>
+</head>
+<body ng-app="fuelCalculator" ng-controller="MainCtrl as vm">
+  <header style="margin-bottom: 7em;">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" aria-expanded="false"
+                  data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/" title="الصفحة الرئيسية">
+            <!-- <span class="glyphicon glyphicon-home" aria-hidden="true"></span> -->
+          </a>
+          <ul class="nav navbar-nav navbar-left">
+            <div class="btn-group">
+              <button type="button" class="btn btn-danger navbar-btn"
+                      ng-class="{active: vm.isFuelType('95')}" ng-click="vm.setFuelType(95)">95</button>
+              <button type="button" class="btn btn-success navbar-btn"
+                      ng-class="{active: vm.isFuelType('91')}" ng-click="vm.setFuelType(91)">91</button>
+            </div>
+          </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="disabled"><a href="#/about">عن الموقع</a></li>
+            <li class="disabled"><a href="#/contact">راسلنا</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section>
+    <header class="page-header">
+      <nav class="container">
+        <ul class="nav nav-tabs nav-justified">
+          <li ng-class="{active: vm.mode === 'volume'}" ng-click="vm.mode = 'volume'"><a>كمية البنزين</a></li>
+          <li ng-class="{active: vm.mode === 'distance'}" ng-click="vm.mode = 'distance'"><a>المسافة</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="container" ng-show="vm.mode === 'distance'">
+      <form name="distanceForm">
+        <div class="col-xs-12" dir="rtl"><label for="litersForDistance">استهلاك المركبة</label></div>
+        <div class="col-xs-6">
+          <div class="form-group">
+            <div class="input-group" ng-class="{'has-error': distanceForm.distanceForLiters.$invalid}">
+              <div class="input-group-addon">كلم</div>
+              <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters" required
+                     id="distanceForLiters" class="form-control" dir="rtl"
+                     ng-model="vm.distanceForLiters" ng-init="vm.distanceForLiters = 10">
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="form-group">
+            <div class="input-group" ng-class="{'has-error': distanceForm.litersForDistance.$invalid}">
+              <div class="input-group-addon">لتر</div>
+              <input type="number" min="1" max="1000000000" step="1" name="litersForDistance" required
+                     id="litersForDistance" class="form-control" dir="rtl"
+                     ng-model="vm.litersForDistance" ng-init="vm.litersForDistance = 1">
+            </div>
+          </div>
+        </div>
+      </form>
+      <article class="col-xs-12" ng-show="distanceForm.$valid">
+        <div class="table-responsive">
+          <table class="table table-hover table-condensed table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center warning">الفرق</th>
+                <th class="text-center danger">التكلفة سابقاً</th>
+                <th class="text-center success">التكلفة حالياً</th>
+                <th class="text-center active">المسافة</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 5) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 5)) | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 5) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 5) | number:2"></td>
+                <td class="text-center active">5</td>
+              </tr>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 10) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 10)) | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 10) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 10) | number:2"></td>
+                <td class="text-center active">10</td>
+              </tr>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 50) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 50)) | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 50) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 50) | number:2"></td>
+                <td class="text-center active">50</td>
+              </tr>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 100) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 100)) | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 100) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 100) | number:2"></td>
+                <td class="text-center active">100</td>
+              </tr>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 300) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 300)) | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 300) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 300) | number:2"></td>
+                <td class="text-center active">300</td>
+              </tr>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 1000) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 1000)) | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, 1000) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, 1000) | number:2"></td>
+                <td class="text-center active">1000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="container" ng-show="vm.mode === 'volume'">
+      <form name="volumeForm">
+        <div class="form-group">
+          <div class="input-group" ng-class="{'has-error': volumeForm.volume.$invalid}">
+            <div class="input-group-addon">لتر</div>
+            <input type="number" min="1" max="1000000000" step="1" name="volume" required
+                   class="form-control" dir="rtl" ng-model="vm.volume">
+            <div class="input-group-addon">كمية الاستهلاك في اليوم</div>
+          </div>
+        </div>
+      </form>
+      <article ng-show="volumeForm.$valid">
+        <div class="table-responsive">
+          <table class="table table-hover table-condensed table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center warning">الفرق</th>
+                <th class="text-center danger">التكلفة سابقاً</th>
+                <th class="text-center success">التكلفة حالياً</th>
+                <th class="text-center active">المدة</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByVolume('old', vm.volume) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) | number:2"></td>
+                <td class="text-center active">يوم</td>
+              </tr>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 7 | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByVolume('old', vm.volume) * 7 | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 7 | number:2"></td>
+                <td class="text-center active">اسبوع</td>
+              </tr>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 30 | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByVolume('old', vm.volume) * 30 | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 30 | number:2"></td>
+                <td class="text-center active">شهر</td>
+              </tr>
+              <tr>
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 360 | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByVolume('old', vm.volume) * 360 | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 360 | number:2"></td>
+                <td class="text-center active">سنة</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </section>
+
+  <hr>
+
+  <footer>
+    <p class="text-center lead" dir="rtl">
+      &copy;
+      2016
+      عبدالله الأنصاري
+    <p>
+  </footer>
+
+  <script>
+    angular.module('fuelCalculator', []).controller('MainCtrl', function ($window)
+    {
+      this.volume = 1
+      this.mode = 'distance'
+
+      function getLiterPrice (priceType, fuelType)
+      {
+        if (priceType === 'new') { return fuelType === '91' ? 0.75 : 0.90 }
+        else                     { return fuelType === '91' ? 0.45 : 0.60 }
+      }
+
+      function calculateByVolume (priceType, fuelType, volume) { return volume * getLiterPrice(priceType, fuelType) }
+
+      function getFuelType ()
+      {
+        return $window.localStorage.getItem('fuelType') || '91'
+      }
+
+      function calculateByDistance (priceType, fuelType, distanceForLiters, litersForDistance, distance)
+      {
+        var literPerKilometer = litersForDistance / distanceForLiters
+        var volume = literPerKilometer * distance
+
+        return calculateByVolume(priceType, fuelType, volume)
+      }
+
+      this.isFuelType = function (fuelType)
+      {
+        return getFuelType() === fuelType
+      }
+
+      this.setFuelType = function (fuelType)
+      {
+        $window.localStorage.setItem('fuelType', fuelType)
+      }
+
+      this.calculateByVolume = function (priceType, volume)
+      { return calculateByVolume(priceType, getFuelType(), volume) }
+
+      this.calculateByDistance = function (priceType, distanceForLiters, litersForDistance, distance)
+      { return calculateByDistance(priceType, getFuelType(), distanceForLiters, litersForDistance, distance) }
+    })
+  </script>
+</body>
+</html>
