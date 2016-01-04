@@ -39,11 +39,12 @@ gulp.task('server:reload', function ()
     .pipe(connect.reload())
 })
 
-gulp.task('deploy', function ()
-{
-  return gulp.src('./dist/**/*')
-    .pipe(ghPages({origin: 'github', force: true}))
-})
+// gulp.task('deploy', function ()
+// {
+//   let remoteUrl = 'https://github.com/Ahimta/fuel-consumption-calculator.git'
+//   return gulp.src('./dist/**/*')
+//     .pipe(ghPages())
+// })
 
 gulp.task('watch', ['server:connect'], function()
 {
