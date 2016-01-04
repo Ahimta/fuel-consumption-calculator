@@ -3,6 +3,7 @@
 let gulp = require('gulp'),
     changed = require('gulp-changed'),
     connect = require('gulp-connect'),
+    ghPages = require('gulp-gh-pages'),
     htmlmin = require('gulp-htmlmin'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify')
@@ -21,7 +22,8 @@ gulp.task('build:html', () =>
     .pipe(gulp.dest('./dist'))
 })
 
-gulp.task('server:connect', function() {
+gulp.task('server:connect', function ()
+{
   connect.server({
     livereload: true,
     fallback: 'index.html',
@@ -30,14 +32,22 @@ gulp.task('server:connect', function() {
   })
 })
 
-gulp.task('server:reload', function() {
+gulp.task('server:reload', function ()
+{
   return gulp.src('index.{html,js}')
     .pipe(changed('index.{html,js}'))
     .pipe(connect.reload())
 })
 
-gulp.task('watch', ['server:connect'], function() {
-  gulp.watch(['index.{html,js}'], ['server:reload']);
-});
+gulp.task('deploy', function ()
+{
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages({origin: 'github', force: true}))
+})
+
+gulp.task('watch', ['server:connect'], function()
+{
+  gulp.watch(['index.{html,js}'], ['server:reload'])
+})
 
 gulp.task('build', ['build:js', 'build:html'])
