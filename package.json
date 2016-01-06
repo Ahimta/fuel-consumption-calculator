@@ -1,6 +1,6 @@
 {
   "name": "fuel-calculator",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "description": "Fuel Consumption Calculator",
   "main": "index.js",
   "scripts": {
