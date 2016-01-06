@@ -66,7 +66,7 @@
 
     <section class="container" ng-show="vm.mode === 'distance'">
       <form name="distanceForm">
-        <div class="col-xs-12" dir="rtl"><label for="distanceForLiters">استهلاك المركبة</label></div>
+        <div class="col-xs-12" dir="rtl"><label for="distanceForLiters">معدل استهلاك الوقود</label></div>
         <div class="col-xs-6">
           <div class="form-group">
             <div class="input-group" ng-class="{'has-error': distanceForm.litersForDistance.$invalid}">
@@ -85,6 +85,9 @@
                      id="distanceForLiters" class="form-control" dir="rtl"
                      ng-model="vm.distanceForLiters" ng-init="vm.distanceForLiters = 10">
             </div>
+            <span dir="rtl" class="help-block">
+              <a target="_blank" href="https://www.sls.gov.sa/Pages/ar/Consumer/UsedVehicles.aspx">كفاءة الطاقة للسيارات</a>
+            </span>
           </div>
         </div>
       </form>
