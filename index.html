@@ -98,8 +98,32 @@
               <div class="input-group-addon">كلم</div>
               <input type="number" min="1" max="1000000000" step="1" name="distance" required
                      id="distance" class="form-control" dir="rtl"
-                     ng-model="vm.distance" ng-init="vm.distance = 1">
-              <div class="input-group-addon">المسافة</div>
+                     ng-model="vm.distance" ng-init="vm.distance = 12">
+              <div class="input-group-addon">المسافة المقطوعة في اليوم</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group" ng-class="{'has-error': distanceForm.days.$invalid}">
+              <div class="input-group-addon">يوم</div>
+              <input type="number" min="1" max="1000000000" step="1" name="days" required
+                     class="form-control" dir="rtl"
+                     ng-model="vm.days" ng-init="vm.days = 5">
+              <div class="input-group-addon">عدد الأيام</div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <form name="tankForm">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group" ng-class="{'has-error': tankForm.tankVolume.$invalid}">
+              <div class="input-group-addon">لتر</div>
+              <input type="number" min="1" max="1000000000" step="1" name="tankVolume" required
+                     class="form-control" dir="rtl"
+                     ng-model="vm.tankVolume" ng-init="vm.tankVolume = 64">
+              <div class="input-group-addon">حجم التانكي</div>
             </div>
           </div>
         </div>
