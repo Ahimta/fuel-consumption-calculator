@@ -128,6 +128,30 @@
           </div>
         </div>
       </form>
+      <article class="col-xs-12" ng-show="tankForm.$valid && consumptionForm.$valid">
+        <div class="table-responsive">
+          <table class="table table-hover table-condensed table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center warning">الفرق</th>
+                <th class="text-center danger">التكلفة سابقاً</th>
+                <th class="text-center success">التكلفة حالياً</th>
+                <th class="text-center active">المسافة</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-init="vm.tankDistance = (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)">
+                <td class="text-center warning"
+                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume))) | number:2">
+                </td>
+                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)) | number:2"></td>
+                <td class="text-center active" ng-bind="(vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
       <article class="col-xs-12" ng-show="distanceForm.$valid && consumptionForm.$valid">
         <div class="table-responsive">
           <table class="table table-hover table-condensed table-bordered">
