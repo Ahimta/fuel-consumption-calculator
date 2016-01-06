@@ -140,7 +140,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-init="vm.tankDistance = (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)">
+              <tr>
                 <td class="text-center warning"
                     ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume))) | number:2">
                 </td>
@@ -172,7 +172,7 @@
                 <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * vm.days) | number:2"></td>
                 <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * vm.days) | number:2"></td>
                 <td class="text-center active" ng-bind="vm.distance * vm.days"></td>
-                <td class="text-center active" dir="rtl">{{ vm.days }} أيام</td>
+                <td class="text-center active" dir="rtl">{{ vm.days }} يوم</td>
               </tr>
                 <tr>
                   <td class="text-center warning"
