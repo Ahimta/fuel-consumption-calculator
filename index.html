@@ -65,11 +65,11 @@
     </header>
 
     <section class="container" ng-show="vm.mode === 'distance'">
-      <form name="distanceForm">
+      <form name="consumptionForm">
         <div class="col-xs-12" dir="rtl"><label for="distanceForLiters">معدل استهلاك الوقود</label></div>
         <div class="col-xs-6">
           <div class="form-group">
-            <div class="input-group" ng-class="{'has-error': distanceForm.litersForDistance.$invalid}">
+            <div class="input-group" ng-class="{'has-error': consumptionForm.litersForDistance.$invalid}">
               <div class="input-group-addon">لتر</div>
               <input type="number" min="1" max="1000000000" step="1" name="litersForDistance" required
                      id="litersForDistance" class="form-control" dir="rtl"
@@ -79,7 +79,7 @@
         </div>
         <div class="col-xs-6">
           <div class="form-group">
-            <div class="input-group" ng-class="{'has-error': distanceForm.distanceForLiters.$invalid}">
+            <div class="input-group" ng-class="{'has-error': consumptionForm.distanceForLiters.$invalid}">
               <div class="input-group-addon">كلم</div>
               <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters" required
                      id="distanceForLiters" class="form-control" dir="rtl"
@@ -90,6 +90,8 @@
             </span>
           </div>
         </div>
+      </form>
+      <form name="distanceForm">
         <div class="col-xs-12">
           <div class="form-group">
             <div class="input-group" ng-class="{'has-error': distanceForm.distance.$invalid}">
@@ -102,7 +104,7 @@
           </div>
         </div>
       </form>
-      <article class="col-xs-12" ng-show="distanceForm.$valid">
+      <article class="col-xs-12" ng-show="distanceForm.$valid && consumptionForm.$valid">
         <div class="table-responsive">
           <table class="table table-hover table-condensed table-bordered">
             <thead>
