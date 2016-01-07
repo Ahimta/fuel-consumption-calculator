@@ -6,13 +6,23 @@ let gulp = require('gulp'),
     ghPages = require('gulp-gh-pages'),
     htmlmin = require('gulp-htmlmin'),
     rename = require('gulp-rename'),
-    uglify = require('gulp-uglify')
+    uglify = require('gulp-uglify'),
+    usemin = require('gulp-usemin')
 
-gulp.task('build:js', () =>
+gulp.task('usemin', () =>
 {
-  return gulp.src('index.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist'))
+  return gulp.src('app/index.html')
+    .pipe(usemin({
+      html: [htmlmin({collapseWhitespace: true, removeComments: true})],
+      js: [uglify()]
+    }))
+    .pipe(gulp.dest('dist/'))
+})
+
+gulp.task('build:views', () =>
+{
+  return gulp.src('app/views/*.html')
+    .pipe(gulp.dest('dist/views'))
 })
 
 gulp.task('build:html', () =>
