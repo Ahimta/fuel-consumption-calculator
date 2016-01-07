@@ -26,16 +26,17 @@ gulp.task('server:connect', function ()
 {
   connect.server({
     livereload: true,
-    fallback: 'index.html',
+    fallback: 'app/index.html',
     host: 'localhost',
-    port: 8080
+    port: 8080,
+    root: 'app/'
   })
 })
 
 gulp.task('server:reload', function ()
 {
-  return gulp.src('index.{html,js}')
-    .pipe(changed('index.{html,js}'))
+  return gulp.src('app/{index.html,views/*.html,scripts/*.js}')
+    .pipe(changed('app/{index.html,views/*.html,scripts/*.js}'))
     .pipe(connect.reload())
 })
 
@@ -48,7 +49,7 @@ gulp.task('server:reload', function ()
 
 gulp.task('watch', ['server:connect'], function()
 {
-  gulp.watch(['index.{html,js}'], ['server:reload'])
+  gulp.watch(['app/{index.html,views/*.html,scripts/*.js}'], ['server:reload'])
 })
 
 gulp.task('build', ['build:js', 'build:html'])
