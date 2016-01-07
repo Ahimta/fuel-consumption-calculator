@@ -24,10 +24,5 @@ angular.module('fuelCalculator', ['ngRoute'])
       controller: 'CostCtrl',
       controllerAs: 'vm'
     })
-    .when('/', {
-      templateUrl: 'views/old.html',
-      controller: 'MainCtrl',
-      controllerAs: 'vm'
-    })
-    .otherwise({redirectTo: '/'})
+    .otherwise({redirectTo: '/fuel-volume'})
 }])
