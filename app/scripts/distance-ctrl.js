@@ -2,7 +2,6 @@
 
 angular.module('fuelCalculator').controller('DistanceCtrl', ['fuelService', function (fuelService)
 {
-
   this.calculateDistance = fuelService.calculateDistance
 
   this.calculateByDistance = function (priceType, distanceForLiters, litersForDistance, distance)

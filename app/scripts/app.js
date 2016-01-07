@@ -1,3 +1,5 @@
+'use script'
+
 angular.module('fuelCalculator', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider)
 {

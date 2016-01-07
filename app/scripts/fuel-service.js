@@ -1,5 +1,6 @@
-angular.module('fuelCalculator')
-.service('fuelService', ['$window', function ($window)
+'use strict'
+
+angular.module('fuelCalculator').service('fuelService', ['$window', function ($window)
 {
   function calculateDistance (distanceForLiters, litersForDistance, volume)
   {
