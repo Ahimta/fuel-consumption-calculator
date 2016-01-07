@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('fuelCalculator', []).controller('MainCtrl', ['$window', function ($window)
+angular.module('fuelCalculator').controller('MainCtrl', ['$window', function ($window)
 {
   this.volume = 1
   this.mode = 'distance'
