@@ -47,6 +47,7 @@
             <th class="text-center danger">التكلفة سابقاً</th>
             <th class="text-center success">التكلفة حالياً</th>
             <th class="text-center active">المسافة</th>
+            <th class="text-center active">مرات التعبئة</th>
           </tr>
         </thead>
         <tbody>
@@ -57,6 +58,43 @@
             <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) | number:2"></td>
             <td class="text-center active" ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume) | number:0"></td>
+            <td class="text-center active">1</td>
+          </tr>
+          <tr>
+            <td class="text-center warning"
+                ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume))) * 2 | number:2">
+            </td>
+            <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) * 2 | number:2"></td>
+            <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) * 2 | number:2"></td>
+            <td class="text-center active" ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume) * 2 | number:0"></td>
+            <td class="text-center active">2</td>
+          </tr>
+          <tr>
+            <td class="text-center warning"
+                ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume))) * 3 | number:2">
+            </td>
+            <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) * 3 | number:2"></td>
+            <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) * 3 | number:2"></td>
+            <td class="text-center active" ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume) * 3 | number:0"></td>
+            <td class="text-center active">3</td>
+          </tr>
+          <tr>
+            <td class="text-center warning"
+                ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume))) * 4 | number:2">
+            </td>
+            <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) * 4 | number:2"></td>
+            <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) * 4 | number:2"></td>
+            <td class="text-center active" ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume) * 4 | number:0"></td>
+            <td class="text-center active">4</td>
+          </tr>
+          <tr>
+            <td class="text-center warning"
+                ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume))) * 5 | number:2">
+            </td>
+            <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) * 5 | number:2"></td>
+            <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) * 5 | number:2"></td>
+            <td class="text-center active" ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume) * 5 | number:0"></td>
+            <td class="text-center active">5</td>
           </tr>
         </tbody>
       </table>
