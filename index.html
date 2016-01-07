@@ -131,11 +131,11 @@
             <tbody>
               <tr>
                 <td class="text-center warning"
-                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume))) | number:2">
+                    ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume))) | number:2">
                 </td>
-                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)) | number:2"></td>
-                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, (vm.distanceForLiters / vm.litersForDistance * vm.tankVolume)) | number:2"></td>
-                <td class="text-center active" ng-bind="(vm.distanceForLiters / vm.litersForDistance * vm.tankVolume) | number:0"></td>
+                <td class="text-center danger" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) | number:2"></td>
+                <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)) | number:2"></td>
+                <td class="text-center active" ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume) | number:0"></td>
               </tr>
             </tbody>
           </table>
