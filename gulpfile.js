@@ -21,10 +21,8 @@ gulp.task('manifest', () =>
       exclude: 'app.manifest',
       cache: [
         'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
-        'https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
-        'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js',
-        'https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js'
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js'
       ],
       hash: true
      }))
