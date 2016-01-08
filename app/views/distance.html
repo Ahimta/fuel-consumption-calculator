@@ -1,23 +1,13 @@
 <section class="container">
-  <form name="consumptionForm">
-    <div class="col-xs-12" dir="rtl"><label for="distanceForLiters">معدل استهلاك الوقود</label></div>
-    <div class="col-xs-6">
-      <div class="form-group">
-        <div class="input-group" ng-class="{'has-error': consumptionForm.litersForDistance.$invalid}">
-          <div class="input-group-addon">لتر</div>
-          <input type="number" min="1" max="1000000000" step="1" name="litersForDistance" required
-                 id="litersForDistance" class="form-control" dir="rtl"
-                 ng-model="vm.litersForDistance" ng-init="vm.litersForDistance = 1">
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6">
+  <form name="consumptionForm" ng-init="vm.litersForDistance = 1">
+    <div class="col-xs-12">
       <div class="form-group">
         <div class="input-group" ng-class="{'has-error': consumptionForm.distanceForLiters.$invalid}">
-          <div class="input-group-addon">كلم</div>
+          <div class="input-group-addon">كيلو/لتر</div>
           <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters" required
                  id="distanceForLiters" class="form-control" dir="rtl"
                  ng-model="vm.distanceForLiters" ng-init="vm.distanceForLiters = 10">
+          <div class="input-group-addon">معدل الاستهلاك</div>
         </div>
         <span dir="rtl" class="help-block">
           <a target="_blank" href="https://www.sls.gov.sa/Pages/ar/Consumer/UsedVehicles.aspx">كفاءة الطاقة للسيارات</a>
@@ -29,7 +19,7 @@
     <div class="col-xs-12">
       <div class="form-group">
         <div class="input-group" ng-class="{'has-error': distanceForm.distance.$invalid}">
-          <div class="input-group-addon">كلم</div>
+          <div class="input-group-addon">كيلو</div>
           <input type="number" min="1" max="1000000000" step="1" name="distance" required
                  id="distance" class="form-control" dir="rtl"
                  ng-model="vm.distance" ng-init="vm.distance = 12">
