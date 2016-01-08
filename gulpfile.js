@@ -1,6 +1,7 @@
 'use strict'
 
 let gulp = require('gulp'),
+    manifest = require('gulp-manifest'),
     changed = require('gulp-changed'),
     connect = require('gulp-connect'),
     ghPages = require('gulp-gh-pages'),
@@ -8,6 +9,25 @@ let gulp = require('gulp'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
     usemin = require('gulp-usemin')
+
+gulp.task('manifest', () =>
+{
+  gulp.src(['dist/index.html', 'dist/views/*.html', 'dist/scripts.js'])
+    .pipe(manifest({
+      preferOnline: false,
+      filename: 'app.manifest',
+      exclude: 'app.manifest',
+      cache: [
+        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
+        'https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css',
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js',
+        'https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js'
+      ],
+      hash: true
+     }))
+    .pipe(gulp.dest('dist/'))
+})
 
 gulp.task('usemin', () =>
 {
