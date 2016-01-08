@@ -10,6 +10,8 @@ let gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     usemin = require('gulp-usemin')
 
+let runSequence = require('run-sequence')
+
 gulp.task('manifest', () =>
 {
   gulp.src(['dist/index.html', 'dist/views/*.html', 'dist/scripts.js'])
@@ -39,15 +41,9 @@ gulp.task('usemin', () =>
     .pipe(gulp.dest('dist/'))
 })
 
-gulp.task('build:views', () =>
+gulp.task('copy', () =>
 {
   return gulp.src('app/views/*.html')
-    .pipe(gulp.dest('dist/views'))
-})
-
-gulp.task('build:html', () =>
-{
-  return gulp.src('dist/views/*.html')
     .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
     .pipe(gulp.dest('dist/views'))
 })
@@ -82,4 +78,7 @@ gulp.task('watch', ['server:connect'], function()
   gulp.watch(['app/{index.html,views/*.html,scripts/*.js}'], ['server:reload'])
 })
 
-gulp.task('build', ['build:js', 'build:html'])
+gulp.task('dist', (callback) =>
+{
+  runSequence(['copy', 'usemin'], 'manifest', callback)
+})
