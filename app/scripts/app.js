@@ -24,5 +24,5 @@ angular.module('fuelCalculator', ['ngRoute'])
       controller: 'CostCtrl',
       controllerAs: 'vm'
     })
-    .otherwise({redirectTo: '/fuel-volume'})
+    .otherwise({redirectTo: '/distance'})
 }])
