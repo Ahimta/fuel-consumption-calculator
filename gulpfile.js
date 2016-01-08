@@ -27,9 +27,9 @@ gulp.task('build:views', () =>
 
 gulp.task('build:html', () =>
 {
-  return gulp.src('index.html')
+  return gulp.src('dist/views/*.html')
     .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest('dist/views'))
 })
 
 gulp.task('server:connect', function ()
