@@ -17,7 +17,7 @@ angular.module('fuelCalculator').controller('CostCtrl', ['fuelService', function
     var volume = calculateLitersByPrice(fuelType, price)
     var distance = volume * distanceForLiters / litersForDistance
 
-    return distance
+    return Math.round(distance)
   }
 
   function calculateByDistance (priceType, distanceForLiters, litersForDistance, distance)

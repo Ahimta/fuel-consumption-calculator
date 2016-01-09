@@ -1,4 +1,4 @@
-'use script'
+'use strict'
 
 angular.module('fuelCalculator', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider)
