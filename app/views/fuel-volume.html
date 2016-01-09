@@ -22,32 +22,32 @@
         </thead>
         <tbody>
           <tr>
-            <td class="text-center danger"
-                ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) | number:2">
+            <td class="text-center danger">
+              <b ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) | number:2"></b>
             </td>
             <td class="text-center warning" ng-bind="vm.calculateByVolume('old', vm.volume) | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) | number:2"></td>
             <td class="text-center active">يوم</td>
           </tr>
           <tr>
-            <td class="text-center danger"
-                ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 7 | number:2">
+            <td class="text-center danger">
+              <b ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 7 | number:2"></b>
             </td>
             <td class="text-center warning" ng-bind="vm.calculateByVolume('old', vm.volume) * 7 | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 7 | number:2"></td>
             <td class="text-center active">اسبوع</td>
           </tr>
           <tr>
-            <td class="text-center danger"
-                ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 30 | number:2">
+            <td class="text-center danger">
+              <b ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 30 | number:2"></b>
             </td>
             <td class="text-center warning" ng-bind="vm.calculateByVolume('old', vm.volume) * 30 | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 30 | number:2"></td>
             <td class="text-center active">شهر</td>
           </tr>
           <tr>
-            <td class="text-center danger"
-                ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 360 | number:2">
+            <td class="text-center danger">
+              <b ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 360 | number:2"></b>
             </td>
             <td class="text-center warning" ng-bind="vm.calculateByVolume('old', vm.volume) * 360 | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 360 | number:2"></td>
