@@ -13,14 +13,13 @@ let gulp = require('gulp'),
 
 let runSequence = require('run-sequence')
 
-gulp.task('favicons', => ()
+gulp.task('favicons', () =>
 {
     gulp.src('app/images/favicon.png').pipe(favicons({
         appName: 'Fuel Consumption Calculator',
         appDescription: 'Fuel consumption calculator, currently only for Saudia Arabia',
         developerName: 'Abdullah Alansari',
         developerURL: 'https://github.com/Ahimta',
-        background: "#020307",
         path: 'favicons/',
         url: 'https://ahimta.github.io/fuel-consumption-calculator',
         display: 'standalone',
@@ -30,7 +29,7 @@ gulp.task('favicons', => ()
         online: false,
         html: 'dist/index.html',
         replace: true
-    })).pipe(gulp.dest('dist/'))
+    })).pipe(gulp.dest('dist/favicons'))
 })
 
 gulp.task('manifest', () =>
