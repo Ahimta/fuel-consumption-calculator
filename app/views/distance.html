@@ -42,39 +42,79 @@
         </thead>
         <tbody>
             <tr>
-              <td class="text-center danger">
+              <td class="text-center danger" dir="rtl">
                 <b ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance)) | number:2"></b>
+                <span style="font-size: 0.6em">ريال</span>
               </td>
-              <td class="text-center warning" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance) | number:2"></td>
-              <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) | number:2"></td>
-              <td class="text-center active" ng-bind="vm.distance | number:0"></td>
+              <td class="text-center warning" dir="rtl">
+                <span ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance) | number:2"></span>
+                <span style="font-size: 0.6em">ريال</span>
+              </td>
+              <td class="text-center success" dir="rtl">
+                <span ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) | number:2"></span>
+                <span style="font-size: 0.6em">ريال</span>
+              </td>
+              <td class="text-center active" dir="rtl">
+                <span ng-bind="vm.distance | number:0"></span>
+                <span style="font-size: 0.6em">كم</span>
+              </td>
               <th class="text-center active">يوم</th>
             </tr>
           <tr>
-            <td class="text-center danger">
-              <b ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 7) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 7)) | number:2"></b>
+            <td class="text-center danger" dir="rtl">
+              <b ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance)) * 7 | number:2"></b>
+              <span style="font-size: 0.6em">ريال</span>
             </td>
-            <td class="text-center warning" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 7) | number:2"></td>
-            <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 7) | number:2"></td>
-            <td class="text-center active" ng-bind="vm.distance * 7 | number:0"></td>
+            <td class="text-center warning" dir="rtl">
+              <span ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance) * 7 | number:2"></span>
+              <span style="font-size: 0.6em">ريال</span>
+            </td>
+            <td class="text-center success" dir="rtl">
+              <span ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) * 7 | number:2"></span>
+              <span style="font-size: 0.6em">ريال</span>
+            </td>
+            <td class="text-center active" dir="rtl">
+              <span ng-bind="vm.distance * 7 | number:0"></span>
+              <span style="font-size: 0.6em">كم</span>
+            </td>
             <th class="text-center active">اسبوع</th>
           </tr>
           <tr>
-            <td class="text-center danger">
-              <b ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 30) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 30)) | number:2"></b>
+            <td class="text-center danger" dir="rtl">
+              <b ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance)) * 30 | number:2"></b>
+              <span style="font-size: 0.6em">ريال</span>
             </td>
-            <td class="text-center warning" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 30) | number:2"></td>
-            <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 30) | number:2"></td>
-            <td class="text-center active" ng-bind="vm.distance * 30 | number:0"></td>
+            <td class="text-center warning" dir="rtl">
+              <span ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance) * 30 | number:2"></span>
+              <span style="font-size: 0.6em">ريال</span>
+            </td>
+            <td class="text-center success" dir="rtl">
+              <span ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) * 30 | number:2"></span>
+              <span style="font-size: 0.6em">ريال</span>
+            </td>
+            <td class="text-center active" dir="rtl">
+              <span ng-bind="vm.distance * 30 | number:0"></span>
+              <span style="font-size: 0.6em">كم</span>
+            </td>
             <th class="text-center active">شهر</th>
           </tr>
           <tr>
-            <td class="text-center danger">
-              <b ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 360) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 360)) | number:2"></b>
+            <td class="text-center danger" dir="rtl">
+              <b ng-bind="(vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) - vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance)) * 360 | number:2"></b>
+              <span style="font-size: 0.6em">ريال</span>
             </td>
-            <td class="text-center warning" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 360) | number:2"></td>
-            <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 360) | number:2"></td>
-            <td class="text-center active" ng-bind="vm.distance * 360 | number:0"></td>
+            <td class="text-center warning" dir="rtl">
+              <span ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance) * 360 | number:2"></span>
+              <span style="font-size: 0.6em">ريال</span>
+            </td>
+            <td class="text-center success" dir="rtl">
+              <span ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) * 360 | number:2"></span>
+              <span style="font-size: 0.6em">ريال</span>
+            </td>
+            <td class="text-center active" dir="rtl">
+              <span ng-bind="vm.distance * 360 | number:0"></span>
+              <span style="font-size: 0.6em">كم</span>
+            </td>
             <th class="text-center active">سنة</th>
           </tr>
         </tbody>
