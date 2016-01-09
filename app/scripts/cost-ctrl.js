@@ -4,6 +4,9 @@ angular.module('fuelCalculator').controller('CostCtrl', ['fuelService', function
 {
   var vm = this
 
+  this.distanceForLiters = fuelService.getConsumption()
+  this.setConsumption = fuelService.setConsumption
+
   function calculateLitersByPrice (fuelType, price)
   {
     var pricePerLiter = fuelService.getLiterPrice('new', fuelType)

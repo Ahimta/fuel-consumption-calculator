@@ -21,6 +21,16 @@ angular.module('fuelCalculator').service('fuelService', ['$window', function ($w
 
   function calculateByVolume (priceType, fuelType, volume) { return volume * getLiterPrice(priceType, fuelType) }
 
+  function getConsumption ()
+  {
+    return parseFloat($window.localStorage.getItem('consumption')) || 10
+  }
+
+  function setConsumption (consumption)
+  {
+    $window.localStorage.setItem('consumption', parseFloat(consumption) || 10)
+  }
+
   function getFuelType ()
   {
     return $window.localStorage.getItem('fuelType') || '91'
@@ -41,4 +51,7 @@ angular.module('fuelCalculator').service('fuelService', ['$window', function ($w
   this.getLiterPrice = getLiterPrice
   this.getFuelType = getFuelType
   this.roundPrice = roundPrice
+
+  this.getConsumption = getConsumption
+  this.setConsumption = setConsumption
 }])
