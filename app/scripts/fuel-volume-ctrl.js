@@ -2,6 +2,16 @@
 
 angular.module('fuelCalculator').controller('FuelVolumeCtrl', ['fuelService', function (fuelService)
 {
-  this.calculateByVolume = function (priceType, volume)
-  { return fuelService.calculateByVolume(priceType, fuelService.getFuelType(), volume) }
+  var vm = this
+
+  this.calculatePrice = function (priceType)
+  { return fuelService.calculateByVolume(priceType, fuelService.getFuelType(), vm.volume) }
+
+  this.calculatePriceDifference = function ()
+  {
+    var oldPrice = vm.calculatePrice('old')
+    var newPrice = vm.calculatePrice('new')
+
+    return newPrice - oldPrice
+  }
 }])

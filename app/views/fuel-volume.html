@@ -23,60 +23,60 @@
         <tbody>
           <tr>
             <td class="text-center danger" dir="rtl">
-              <b ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) | number:2"></b>
+              <b ng-bind="vm.calculatePriceDifference() | number:2"></b>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center warning" dir="rtl">
-              <span ng-bind="vm.calculateByVolume('old', vm.volume) | number:2"></span>
+              <span ng-bind="vm.calculatePrice('old') | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center success" dir="rtl">
-              <span ng-bind="vm.calculateByVolume('new', vm.volume) | number:2"></span>
+              <span ng-bind="vm.calculatePrice('new') | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <th class="text-center active">يوم</th>
           </tr>
           <tr>
             <td class="text-center danger" dir="rtl">
-              <b ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 7 | number:2"></b>
+              <b ng-bind="vm.calculatePriceDifference() * 7 | number:2"></b>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center warning" dir="rtl">
-              <span ng-bind="vm.calculateByVolume('old', vm.volume) * 7 | number:2"></span>
+              <span ng-bind="vm.calculatePrice('old') * 7 | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center success" dir="rtl">
-              <span ng-bind="vm.calculateByVolume('new', vm.volume) * 7 | number:2"></span>
+              <span ng-bind="vm.calculatePrice('new') * 7 | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <th class="text-center active">اسبوع</th>
           </tr>
           <tr>
             <td class="text-center danger" dir="rtl">
-              <b ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 30 | number:2"></b>
+              <b ng-bind="vm.calculatePriceDifference() * 30 | number:2"></b>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center warning" dir="rtl">
-              <span ng-bind="vm.calculateByVolume('old', vm.volume) * 30 | number:2"></span>
+              <span ng-bind="vm.calculatePrice('old') * 30 | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center success" dir="rtl">
-              <span ng-bind="vm.calculateByVolume('new', vm.volume) * 30 | number:2"></span>
+              <span ng-bind="vm.calculatePrice('new') * 30 | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <th class="text-center active">شهر</th>
           </tr>
           <tr>
             <td class="text-center danger" dir="rtl">
-              <b ng-bind="(vm.calculateByVolume('new', vm.volume) - vm.calculateByVolume('old', vm.volume)) * 360 | number:2"></b>
+              <b ng-bind="vm.calculatePriceDifference() * 360 | number:2"></b>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center warning" dir="rtl">
-              <span ng-bind="vm.calculateByVolume('old', vm.volume) * 360 | number:2"></span>
+              <span ng-bind="vm.calculatePrice('old') * 360 | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center success" dir="rtl">
-              <span ng-bind="vm.calculateByVolume('new', vm.volume) * 360 | number:2"></span>
+              <span ng-bind="vm.calculatePrice('new') * 360 | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <th class="text-center active">سنة</th>
