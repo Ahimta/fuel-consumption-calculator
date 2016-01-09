@@ -27,7 +27,7 @@
             </td>
             <td class="text-center warning" ng-bind="vm.calculateByVolume('old', vm.volume) | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) | number:2"></td>
-            <td class="text-center active">يوم</td>
+            <th class="text-center active">يوم</th>
           </tr>
           <tr>
             <td class="text-center danger">
@@ -35,7 +35,7 @@
             </td>
             <td class="text-center warning" ng-bind="vm.calculateByVolume('old', vm.volume) * 7 | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 7 | number:2"></td>
-            <td class="text-center active">اسبوع</td>
+            <th class="text-center active">اسبوع</th>
           </tr>
           <tr>
             <td class="text-center danger">
@@ -43,7 +43,7 @@
             </td>
             <td class="text-center warning" ng-bind="vm.calculateByVolume('old', vm.volume) * 30 | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 30 | number:2"></td>
-            <td class="text-center active">شهر</td>
+            <th class="text-center active">شهر</th>
           </tr>
           <tr>
             <td class="text-center danger">
@@ -51,7 +51,7 @@
             </td>
             <td class="text-center warning" ng-bind="vm.calculateByVolume('old', vm.volume) * 360 | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByVolume('new', vm.volume) * 360 | number:2"></td>
-            <td class="text-center active">سنة</td>
+            <th class="text-center active">سنة</th>
           </tr>
         </tbody>
       </table>

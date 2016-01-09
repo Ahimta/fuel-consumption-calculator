@@ -48,7 +48,7 @@
               <td class="text-center warning" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance) | number:2"></td>
               <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance) | number:2"></td>
               <td class="text-center active" ng-bind="vm.distance | number:0"></td>
-              <td class="text-center active">يوم</td>
+              <th class="text-center active">يوم</th>
             </tr>
           <tr>
             <td class="text-center danger">
@@ -57,7 +57,7 @@
             <td class="text-center warning" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 7) | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 7) | number:2"></td>
             <td class="text-center active" ng-bind="vm.distance * 7 | number:0"></td>
-            <td class="text-center active">اسبوع</td>
+            <th class="text-center active">اسبوع</th>
           </tr>
           <tr>
             <td class="text-center danger">
@@ -66,7 +66,7 @@
             <td class="text-center warning" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 30) | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 30) | number:2"></td>
             <td class="text-center active" ng-bind="vm.distance * 30 | number:0"></td>
-            <td class="text-center active">شهر</td>
+            <th class="text-center active">شهر</th>
           </tr>
           <tr>
             <td class="text-center danger">
@@ -75,7 +75,7 @@
             <td class="text-center warning" ng-bind="vm.calculateByDistance('old', vm.distanceForLiters, vm.litersForDistance, vm.distance * 360) | number:2"></td>
             <td class="text-center success" ng-bind="vm.calculateByDistance('new', vm.distanceForLiters, vm.litersForDistance, vm.distance * 360) | number:2"></td>
             <td class="text-center active" ng-bind="vm.distance * 360 | number:0"></td>
-            <td class="text-center active">سنة</td>
+            <th class="text-center active">سنة</th>
           </tr>
         </tbody>
       </table>
