@@ -1,6 +1,7 @@
 'use strict'
 
 let gulp = require('gulp'),
+    favicons = require('gulp-favicons'),
     manifest = require('gulp-manifest'),
     changed = require('gulp-changed'),
     connect = require('gulp-connect'),
@@ -12,9 +13,29 @@ let gulp = require('gulp'),
 
 let runSequence = require('run-sequence')
 
+gulp.task('favicons', => ()
+{
+    gulp.src('app/images/favicon.png').pipe(favicons({
+        appName: 'Fuel Consumption Calculator',
+        appDescription: 'Fuel consumption calculator, currently only for Saudia Arabia',
+        developerName: 'Abdullah Alansari',
+        developerURL: 'https://github.com/Ahimta',
+        background: "#020307",
+        path: 'favicons/',
+        url: 'https://ahimta.github.io/fuel-consumption-calculator',
+        display: 'standalone',
+        orientation: 'portrait',
+        version: '0.0.1-alpha',
+        logging: false,
+        online: false,
+        html: 'dist/index.html',
+        replace: true
+    })).pipe(gulp.dest('dist/'))
+})
+
 gulp.task('manifest', () =>
 {
-  gulp.src(['dist/index.html', 'dist/views/*.html', 'dist/scripts.js'])
+  gulp.src(['dist/index.html', 'dist/views/*.html', 'dist/scripts.js', 'dist/favicons/*'])
     .pipe(manifest({
       preferOnline: false,
       filename: 'app.manifest',
@@ -78,5 +99,5 @@ gulp.task('watch', ['server:connect'], function()
 
 gulp.task('dist', (callback) =>
 {
-  runSequence(['copy', 'usemin'], 'manifest', callback)
+  runSequence(['copy', 'usemin'], 'favicons', 'manifest', callback)
 })
