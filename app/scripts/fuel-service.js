@@ -2,6 +2,18 @@
 
 angular.module('fuelCalculator').service('fuelService', ['$window', function ($window)
 {
+  var DAY = 'يوم'
+  var WEEK = 'اسبوع'
+  var MONTH = 'شهر'
+  var YEAR = 'سنة'
+
+  var PERIOD_TABLE = [[DAY, 1], [WEEK, 7], [MONTH, 30], [YEAR, 360]]
+
+  function getPeriodTable ()
+  {
+    return PERIOD_TABLE
+  }
+
   function roundPrice (price, fractionSize)
   {
     if (price < 1)  { return price            }
@@ -48,6 +60,7 @@ angular.module('fuelCalculator').service('fuelService', ['$window', function ($w
   this.calculateByVolume = calculateByVolume
   this.calculateDistance = calculateDistance
 
+  this.getPeriodTable = getPeriodTable
   this.getLiterPrice = getLiterPrice
   this.getFuelType = getFuelType
   this.roundPrice = roundPrice
