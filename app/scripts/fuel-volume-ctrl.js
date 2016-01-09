@@ -4,6 +4,8 @@ angular.module('fuelCalculator').controller('FuelVolumeCtrl', ['fuelService', fu
 {
   var vm = this
 
+  this.periodTable = fuelService.getPeriodTable()
+
   this.calculatePrice = function (priceType)
   { return fuelService.calculateByVolume(priceType, fuelService.getFuelType(), vm.volume) }
 
