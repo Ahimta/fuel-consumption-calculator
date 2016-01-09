@@ -1,7 +1,15 @@
 'use strict'
 
-angular.module('fuelCalculator').service('fuelService', ['$window', function ($window)
+angular.module('fuelCalculator').service('fuelService', ['$filter', '$window', function ($filter, $window)
 {
+  var numberFilter = $filter('number')
+
+  function roundPrice (price, fractionSize)
+  {
+    if (price < 1)  { return numberFilter(price, fractionSize) }
+    else            { return Math.ceil(price)                  }
+  }
+
   function calculateDistance (distanceForLiters, litersForDistance, volume)
   {
     return distanceForLiters / litersForDistance * volume
@@ -31,6 +39,8 @@ angular.module('fuelCalculator').service('fuelService', ['$window', function ($w
   this.calculateByDistance = calculateByDistance
   this.calculateByVolume = calculateByVolume
   this.calculateDistance = calculateDistance
+
   this.getLiterPrice = getLiterPrice
   this.getFuelType = getFuelType
+  this.roundPrice = roundPrice
 }])

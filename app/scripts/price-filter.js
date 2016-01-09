@@ -1,12 +1,6 @@
 'use strict'
 
-angular.module('fuelCalculator').filter('fcPrice', ['$filter', function ($filter)
+angular.module('fuelCalculator').filter('fcPrice', ['fuelService', function (fuelService)
 {
-  var numberFilter = $filter('number')
-
-  return function (number, fractionSize)
-  {
-    if (number < 1) { return numberFilter(number, fractionSize) }
-    else            { return Math.ceil(number)                  }
-  }
+  return fuelService.roundPrice
 }])
