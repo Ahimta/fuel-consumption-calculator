@@ -42,7 +42,9 @@ gulp.task('manifest', () =>
       cache: [
         'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
-        'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js'
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js',
+        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
+        'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'
       ],
       hash: true
      }))
