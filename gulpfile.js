@@ -15,7 +15,8 @@ let runSequence = require('run-sequence')
 
 gulp.task('favicons', () =>
 {
-    gulp.src('app/images/favicon.png').pipe(favicons({
+    gulp.src('app/images/favicon.png')
+      .pipe(favicons({
         appName: 'Fuel Consumption Calculator',
         appDescription: 'Fuel consumption calculator, currently only for Saudia Arabia',
         developerName: 'Abdullah Alansari',
@@ -29,7 +30,8 @@ gulp.task('favicons', () =>
         online: false,
         html: 'dist/index.html',
         replace: true
-    })).pipe(gulp.dest('dist/favicons'))
+      }))
+      .pipe(gulp.dest('dist/favicons'))
 })
 
 gulp.task('manifest', () =>
@@ -53,7 +55,7 @@ gulp.task('manifest', () =>
 
 gulp.task('usemin', () =>
 {
-  return gulp.src('app/index.html')
+  gulp.src('app/index.html')
     .pipe(usemin({
       html: [htmlmin({collapseWhitespace: true, removeComments: true})],
       js: [uglify()]
@@ -63,12 +65,12 @@ gulp.task('usemin', () =>
 
 gulp.task('copy', () =>
 {
-  return gulp.src('app/views/*.html')
+  gulp.src('app/views/*.html')
     .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
     .pipe(gulp.dest('dist/views'))
 })
 
-gulp.task('server:connect', function ()
+gulp.task('server:connect', () =>
 {
   connect.server({
     livereload: true,
@@ -79,9 +81,9 @@ gulp.task('server:connect', function ()
   })
 })
 
-gulp.task('server:reload', function ()
+gulp.task('server:reload', () =>
 {
-  return gulp.src('app/{index.html,views/*.html,scripts/*.js}')
+  gulp.src('app/{index.html,views/*.html,scripts/*.js}')
     .pipe(changed('app/{index.html,views/*.html,scripts/*.js}'))
     .pipe(connect.reload())
 })
@@ -93,7 +95,7 @@ gulp.task('server:reload', function ()
 //     .pipe(ghPages())
 // })
 
-gulp.task('watch', ['server:connect'], function()
+gulp.task('watch', ['server:connect'], () =>
 {
   gulp.watch(['app/{index.html,views/*.html,scripts/*.js}'], ['server:reload'])
 })
