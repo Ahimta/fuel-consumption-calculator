@@ -20,9 +20,10 @@
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
 </head>
-<body ng-app="fuelCalculator" ng-controller="MainCtrl as main">
+<body ng-app="fuelCalculator">
+
   <header style="margin-bottom: 7em;">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavbarCtrl as navbar">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" aria-expanded="false"
@@ -38,9 +39,9 @@
           <ul class="nav navbar-nav navbar-left">
             <div class="btn-group">
               <button type="button" class="btn btn-danger navbar-btn"
-                      ng-class="{active: main.isFuelType('95')}" ng-click="main.setFuelType(95)">95</button>
+                      ng-class="{active: navbar.isFuelType('95')}" ng-click="navbar.setFuelType(95)">95</button>
               <button type="button" class="btn btn-success navbar-btn"
-                      ng-class="{active: main.isFuelType('91')}" ng-click="main.setFuelType(91)">91</button>
+                      ng-class="{active: navbar.isFuelType('91')}" ng-click="navbar.setFuelType(91)">91</button>
             </div>
           </ul>
         </div>
@@ -56,12 +57,12 @@
   </header>
 
   <section class="page-header">
-    <nav class="container">
+    <nav class="container" ng-controller="TabsCtrl as tabs">
       <ul class="nav nav-tabs nav-justified">
-        <li ng-class="{active: main.isCurrentPath('/fuel-volume')}"><a href="#/fuel-volume">كمية البنزين</a></li>
-        <li ng-class="{active: main.isCurrentPath('/tank-volume')}"><a href="#/tank-volume">حجم التانكي</a></li>
-        <li ng-class="{active: main.isCurrentPath('/distance')}"><a href="#/distance">المسافة</a></li>
-        <li ng-class="{active: main.isCurrentPath('/cost')}"><a href="#/cost">التكلفة</a></li>
+        <li ng-class="{active: tabs.isCurrentPath('/fuel-volume')}"><a href="#/fuel-volume">كمية البنزين</a></li>
+        <li ng-class="{active: tabs.isCurrentPath('/tank-volume')}"><a href="#/tank-volume">حجم التانكي</a></li>
+        <li ng-class="{active: tabs.isCurrentPath('/distance')}"><a href="#/distance">المسافة</a></li>
+        <li ng-class="{active: tabs.isCurrentPath('/cost')}"><a href="#/cost">التكلفة</a></li>
       </ul>
     </nav>
   </section>
@@ -85,11 +86,12 @@
   <script src='scripts/app.js'></script>
   <script src='scripts/settings-service.js'></script>
   <script src='scripts/fuel-service.js'></script>
-  <script src='scripts/index.js'></script>
   <script src='scripts/fuel-volume-ctrl.js'></script>
   <script src='scripts/tank-volume-ctrl.js'></script>
   <script src='scripts/distance-ctrl.js'></script>
   <script src='scripts/cost-ctrl.js'></script>
+  <script src='scripts/navbar-ctrl.js'></script>
+  <script src='scripts/tabs-ctrl.js'></script>
   <!-- endbuild -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
