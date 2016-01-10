@@ -14,12 +14,6 @@ angular.module('fuelCalculator').service('fuelService', function ()
     return PERIOD_TABLE
   }
 
-  function roundPrice (price, fractionSize)
-  {
-    if (price < 1)  { return price            }
-    else            { return Math.ceil(price) }
-  }
-
   function calculateDistance (distanceForLiters, litersForDistance, volume)
   {
     return Math.round(distanceForLiters / litersForDistance * volume)
@@ -47,5 +41,4 @@ angular.module('fuelCalculator').service('fuelService', function ()
 
   this.getPeriodTable = getPeriodTable
   this.getLiterPrice = getLiterPrice
-  this.roundPrice = roundPrice
 })
