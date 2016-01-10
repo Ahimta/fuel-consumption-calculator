@@ -41,81 +41,24 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-              <td class="text-center danger" dir="rtl">
-                <b ng-bind="vm.calculatePriceDifference(vm.distanceForLiters, vm.litersForDistance, vm.cost) | number:2"></b>
-                <span style="font-size: 0.6em">ريال</span>
-              </td>
-              <td class="text-center warning" dir="rtl">
-                <span ng-bind="vm.calculatePrice('old', vm.distanceForLiters, vm.litersForDistance, vm.cost) | number:2"></span>
-                <span style="font-size: 0.6em">ريال</span>
-              </td>
-              <td class="text-center success" dir="rtl">
-                <span ng-bind="vm.calculatePrice('new', vm.distanceForLiters, vm.litersForDistance, vm.cost) | number:2"></span>
-                <span style="font-size: 0.6em">ريال</span>
-              </td>
-              <td class="text-center active" dir="rtl">
-                <span ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.cost) | number:0"></span>
-                <span style="font-size: 0.6em">كم</span>
-              </td>
-              <th class="text-center active">يوم</th>
-            </tr>
-          <tr>
+          <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
             <td class="text-center danger" dir="rtl">
-              <b ng-bind="vm.calculatePriceDifference(vm.distanceForLiters, vm.litersForDistance, vm.cost) * 7 | number:2"></b>
+              <b ng-bind="vm.calculatePriceDifference() * factor | number:2"></b>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center warning" dir="rtl">
-              <span ng-bind="vm.calculatePrice('old', vm.distanceForLiters, vm.litersForDistance, vm.cost) * 7 | number:2"></span>
+              <span ng-bind="vm.calculatePrice('old') * factor | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center success" dir="rtl">
-              <span ng-bind="vm.calculatePrice('new', vm.distanceForLiters, vm.litersForDistance, vm.cost) * 7 | number:2"></span>
+              <span ng-bind="vm.calculatePrice('new') * factor | number:2"></span>
               <span style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center active" dir="rtl">
-              <span ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.cost) * 7 | number:0"></span>
+              <span ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.cost) * factor | number:0"></span>
               <span style="font-size: 0.6em">كم</span>
             </td>
-            <th class="text-center active">اسبوع</th>
-          </tr>
-          <tr>
-            <td class="text-center danger" dir="rtl">
-              <b ng-bind="vm.calculatePriceDifference(vm.distanceForLiters, vm.litersForDistance, vm.cost) * 30 | number:2"></b>
-              <span style="font-size: 0.6em">ريال</span>
-            </td>
-            <td class="text-center warning" dir="rtl">
-              <span ng-bind="vm.calculatePrice('old', vm.distanceForLiters, vm.litersForDistance, vm.cost) * 30 | number:2"></span>
-              <span style="font-size: 0.6em">ريال</span>
-            </td>
-            <td class="text-center success" dir="rtl">
-              <span ng-bind="vm.calculatePrice('new', vm.distanceForLiters, vm.litersForDistance, vm.cost) * 30 | number:2"></span>
-              <span style="font-size: 0.6em">ريال</span>
-            </td>
-            <td class="text-center active" dir="rtl">
-              <span ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.cost) * 30 | number:0"></span>
-              <span style="font-size: 0.6em">كم</span>
-            </td>
-            <th class="text-center active">شهر</th>
-          </tr>
-          <tr>
-            <td class="text-center danger" dir="rtl">
-              <b ng-bind="vm.calculatePriceDifference(vm.distanceForLiters, vm.litersForDistance, vm.cost) * 360 | number:2"></b>
-              <span style="font-size: 0.6em">ريال</span>
-            </td>
-            <td class="text-center warning" dir="rtl">
-              <span ng-bind="vm.calculatePrice('old', vm.distanceForLiters, vm.litersForDistance, vm.cost) * 360 | number:2"></span>
-              <span style="font-size: 0.6em">ريال</span>
-            </td>
-            <td class="text-center success" dir="rtl">
-              <span ng-bind="vm.calculatePrice('new', vm.distanceForLiters, vm.litersForDistance, vm.cost) * 360 | number:2"></span>
-              <span style="font-size: 0.6em">ريال</span>
-            </td>
-            <td class="text-center active" dir="rtl">
-              <span ng-bind="vm.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.cost) * 360 | number:0"></span>
-              <span style="font-size: 0.6em">كم</span>
-            </td>
-            <th class="text-center active">سنة</th>
+            <th class="text-center active" ng-bind="period"></th>
           </tr>
         </tbody>
       </table>

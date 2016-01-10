@@ -6,6 +6,7 @@ angular.module('fuelCalculator').controller('CostCtrl', ['fuelService', function
 
   this.distanceForLiters = fuelService.getConsumption()
   this.setConsumption = fuelService.setConsumption
+  this.periodTable = fuelService.getPeriodTable()
 
   function calculateLitersByPrice (fuelType, price)
   {
@@ -26,21 +27,21 @@ angular.module('fuelCalculator').controller('CostCtrl', ['fuelService', function
   function calculateByDistance (priceType, distanceForLiters, litersForDistance, distance)
   { return fuelService.calculateByDistance(priceType, fuelService.getFuelType(), distanceForLiters, litersForDistance, distance) }
 
-  this.calculateDistance = function (distanceForLiters, litersForDistance, price)
+  this.calculateDistance = function ()
   {
-    return calculateDistanceByPrice(fuelService.getFuelType(), distanceForLiters, litersForDistance, price)
+    return calculateDistanceByPrice(fuelService.getFuelType(), vm.distanceForLiters, vm.litersForDistance, vm.cost)
   }
 
-  this.calculatePrice = function (priceType, distanceForLiters, litersForDistance, price)
+  this.calculatePrice = function (priceType)
   {
-    var distance = calculateDistanceByPrice(fuelService.getFuelType(), distanceForLiters, litersForDistance, price)
-    return calculateByDistance(priceType, distanceForLiters, litersForDistance, distance)
+    var distance = calculateDistanceByPrice(fuelService.getFuelType(), vm.distanceForLiters, vm.litersForDistance, vm.cost)
+    return calculateByDistance(priceType, vm.distanceForLiters, vm.litersForDistance, distance)
   }
 
-  this.calculatePriceDifference = function (distanceForLiters, litersForDistance, price)
+  this.calculatePriceDifference = function ()
   {
-    var oldPrice = vm.calculatePrice('old', distanceForLiters, litersForDistance, price)
-    var newPrice = vm.calculatePrice('new', distanceForLiters, litersForDistance, price)
+    var oldPrice = vm.calculatePrice('old')
+    var newPrice = vm.calculatePrice('new')
 
     return newPrice - oldPrice
   }
