@@ -24,15 +24,15 @@
           <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
             <td class="text-center danger" dir="rtl">
               <b ng-bind="vm.calculatePriceDifference() * factor | number:2"></b>
-              <span style="font-size: 0.6em">ريال</span>
+              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center warning" dir="rtl">
               <span ng-bind="vm.calculatePrice('old') * factor | number:2"></span>
-              <span style="font-size: 0.6em">ريال</span>
+              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center success" dir="rtl">
               <span ng-bind="vm.calculatePrice('new') * factor | number:2"></span>
-              <span style="font-size: 0.6em">ريال</span>
+              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
             </td>
             <th class="text-center active" ng-bind="period"></th>
           </tr>

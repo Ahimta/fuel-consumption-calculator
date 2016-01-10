@@ -44,19 +44,19 @@
           <tr ng-repeat="times in [1, 2, 3, 4, 5]">
             <td class="text-center danger" dir="rtl">
               <b ng-bind="vm.calculatePriceDifference() * times | number:2"></b>
-              <span style="font-size: 0.6em">ريال</span>
+              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center warning" dir="rtl">
               <span ng-bind="vm.calculatePrice('old') * times | number:2"></span>
-              <span style="font-size: 0.6em">ريال</span>
+              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center success" dir="rtl">
               <span ng-bind="vm.calculatePrice('new') * times | number:2"></span>
-              <span style="font-size: 0.6em">ريال</span>
+              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
             </td>
             <td class="text-center active" dir="rtl">
               <span ng-bind="vm.calculateDistance() * times | number:0"></span>
-              <span style="font-size: 0.6em">كم</span>
+              <span class="hidden-xs" style="font-size: 0.6em">كم</span>
             </td>
             <th class="text-center active" ng-bind="times"></th>
           </tr>
