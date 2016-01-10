@@ -36,12 +36,17 @@ gulp.task('favicons', () =>
 
 gulp.task('manifest', () =>
 {
-  gulp.src(['dist/index.html', 'dist/views/*.html', 'dist/scripts.js', 'dist/favicons/*'])
+  gulp.src(['dist/*.html', 'dist/*.js'])
     .pipe(manifest({
       preferOnline: false,
       filename: 'app.manifest',
       exclude: 'app.manifest',
       cache: [
+        'views/cost.html',
+        'views/distance.html',
+        'views/fuel-volume.html',
+        'views/tank-volume.html',
+        'favicons/favicon.ico',
         'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js',
@@ -102,5 +107,5 @@ gulp.task('watch', ['server:connect'], () =>
 
 gulp.task('dist', (callback) =>
 {
-  runSequence(['copy', 'usemin'], 'favicons', 'manifest', callback)
+  runSequence(['copy', 'usemin'], ['favicons', 'manifest'], callback)
 })
