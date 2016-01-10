@@ -53,8 +53,8 @@ angular.module('fuelCalculator').service('fuelService', function ()
 
   this.calculateByDistance = calculateByDistance
   this.calculateByVolume = calculateByVolume
-  this.calculateDistance = calculateDistanceByVolume
 
+  this.calculateDistanceByVolume = calculateDistanceByVolume
   this.calculateDistanceByPrice = calculateDistanceByPrice
   this.calculateLitersByPrice = calculateLitersByPrice
 

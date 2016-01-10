@@ -10,7 +10,7 @@ angular.module('fuelCalculator')
 
   this.calculateDistance = function ()
   {
-    return fuelService.calculateDistance(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)
+    return fuelService.calculateDistanceByVolume(vm.distanceForLiters, vm.litersForDistance, vm.tankVolume)
   }
 
   this.calculatePrice = function (priceType)
