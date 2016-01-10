@@ -5,6 +5,7 @@ angular.module('fuelCalculator')
 {
   var vm = this
 
+  this.volume = 1
   this.periodTable = fuelService.getPeriodTable()
 
   this.calculatePrice = function (priceType)

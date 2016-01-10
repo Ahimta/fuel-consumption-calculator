@@ -3,13 +3,12 @@
     <div class="input-group" ng-class="{'has-error': tankForm.tankVolume.$invalid}">
       <div class="input-group-addon">لتر</div>
       <input type="number" min="1" max="1000000000" step="1" name="tankVolume" required
-             class="form-control" dir="rtl"
-             ng-model="vm.tankVolume" ng-init="vm.tankVolume = 64">
+             class="form-control" dir="rtl" ng-model="vm.tankVolume">
       <div class="input-group-addon">حجم التانكي</div>
     </div>
   </div>
 </form>
-<form name="consumptionForm" ng-init="vm.litersForDistance = 1">
+<form name="consumptionForm">
   <div class="form-group">
     <div class="input-group" ng-class="{'has-error': consumptionForm.distanceForLiters.$invalid}">
       <div class="input-group-addon">كيلو/لتر</div>

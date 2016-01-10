@@ -5,6 +5,9 @@ angular.module('fuelCalculator')
 {
   var vm = this
 
+  this.litersForDistance = 1
+  this.tankVolume = 32
+
   this.distanceForLiters = settingsService.consumption()
   this.setConsumption = settingsService.consumption
 
