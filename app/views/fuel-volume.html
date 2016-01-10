@@ -1,43 +1,41 @@
-<section class="container">
-  <form name="volumeForm">
-    <div class="form-group">
-      <div class="input-group" ng-class="{'has-error': volumeForm.volume.$invalid}">
-        <div class="input-group-addon">لتر</div>
-        <input type="number" min="1" max="1000000000" step="1" name="volume" required
-               class="form-control" dir="rtl" ng-model="vm.volume" ng-init="vm.volume = 1">
-        <div class="input-group-addon">كمية الاستهلاك في اليوم</div>
-      </div>
+<form name="volumeForm">
+  <div class="form-group">
+    <div class="input-group" ng-class="{'has-error': volumeForm.volume.$invalid}">
+      <div class="input-group-addon">لتر</div>
+      <input type="number" min="1" max="1000000000" step="1" name="volume" required
+             class="form-control" dir="rtl" ng-model="vm.volume" ng-init="vm.volume = 1">
+      <div class="input-group-addon">كمية الاستهلاك في اليوم</div>
     </div>
-  </form>
-  <article ng-show="volumeForm.$valid">
-    <div class="table-responsive">
-      <table class="table table-hover table-condensed table-bordered">
-        <thead>
-          <tr>
-            <th class="text-center danger">الفرق</th>
-            <th class="text-center warning">التكلفة سابقاً</th>
-            <th class="text-center success">التكلفة حالياً</th>
-            <th class="text-center active">المدة</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
-            <td class="text-center danger" dir="rtl">
-              <b ng-bind="vm.calculatePriceDifference() * factor | number:2"></b>
-              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
-            </td>
-            <td class="text-center warning" dir="rtl">
-              <span ng-bind="vm.calculatePrice('old') * factor | number:2"></span>
-              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
-            </td>
-            <td class="text-center success" dir="rtl">
-              <span ng-bind="vm.calculatePrice('new') * factor | number:2"></span>
-              <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
-            </td>
-            <th class="text-center active" ng-bind="period"></th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </article>
-</section>
+  </div>
+</form>
+<article ng-show="volumeForm.$valid">
+  <div class="table-responsive">
+    <table class="table table-hover table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center danger">الفرق</th>
+          <th class="text-center warning">التكلفة سابقاً</th>
+          <th class="text-center success">التكلفة حالياً</th>
+          <th class="text-center active">المدة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
+          <td class="text-center danger" dir="rtl">
+            <b ng-bind="vm.calculatePriceDifference() * factor | number:2"></b>
+            <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
+          </td>
+          <td class="text-center warning" dir="rtl">
+            <span ng-bind="vm.calculatePrice('old') * factor | number:2"></span>
+            <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
+          </td>
+          <td class="text-center success" dir="rtl">
+            <span ng-bind="vm.calculatePrice('new') * factor | number:2"></span>
+            <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
+          </td>
+          <th class="text-center active" ng-bind="period"></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</article>
