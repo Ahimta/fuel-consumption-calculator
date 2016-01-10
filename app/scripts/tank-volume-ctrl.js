@@ -1,11 +1,12 @@
 'use strict'
 
-angular.module('fuelCalculator').controller('TankVolumeCtrl', ['fuelService', function (fuelService)
+angular.module('fuelCalculator')
+.controller('TankVolumeCtrl', ['fuelService', 'settingsService', function (fuelService, settingsService)
 {
   var vm = this
 
-  this.distanceForLiters = fuelService.getConsumption()
-  this.setConsumption = fuelService.setConsumption
+  this.distanceForLiters = settingsService.consumption()
+  this.setConsumption = settingsService.consumption
 
   this.calculateDistance = function ()
   {
@@ -15,7 +16,7 @@ angular.module('fuelCalculator').controller('TankVolumeCtrl', ['fuelService', fu
   this.calculatePrice = function (priceType)
   {
     var distance = vm.calculateDistance()
-    var fuelType = fuelService.getFuelType()
+    var fuelType = settingsService.fuelType()
 
     return fuelService.calculateByDistance(priceType, fuelType, vm.distanceForLiters, vm.litersForDistance, distance)
   }

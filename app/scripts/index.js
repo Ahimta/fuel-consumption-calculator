@@ -1,8 +1,10 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.controller('MainCtrl', ['$window', '$location', 'fuelService', function ($window, $location, fuelService)
+.controller('MainCtrl', ['$location', 'settingsService', function ($location, settingsService)
 {
+  this.setFuelType = settingsService.fuelType
+
   this.isCurrentPath = function (path)
   {
     return path === $location.path()
@@ -10,11 +12,6 @@ angular.module('fuelCalculator')
 
   this.isFuelType = function (fuelType)
   {
-    return fuelService.getFuelType() === fuelType
-  }
-
-  this.setFuelType = function (fuelType)
-  {
-    $window.localStorage.setItem('fuelType', fuelType)
+    return settingsService.fuelType() === fuelType
   }
 }])
