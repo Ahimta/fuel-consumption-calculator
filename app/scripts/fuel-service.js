@@ -33,7 +33,6 @@ angular.module('fuelCalculator').service('fuelService', function ()
     return volume
   }
 
-  // FIXME
   function calculateDistanceByPrice (fuelType, distanceForLiters, litersForDistance, price)
   {
     var volume = calculateLitersByPrice(fuelType, price)
