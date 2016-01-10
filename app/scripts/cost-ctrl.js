@@ -24,9 +24,6 @@ angular.module('fuelCalculator').controller('CostCtrl', ['fuelService', function
     return Math.round(distance)
   }
 
-  function calculateByDistance (priceType, distanceForLiters, litersForDistance, distance)
-  { return fuelService.calculateByDistance(priceType, fuelService.getFuelType(), distanceForLiters, litersForDistance, distance) }
-
   this.calculateDistance = function ()
   {
     return calculateDistanceByPrice(fuelService.getFuelType(), vm.distanceForLiters, vm.litersForDistance, vm.cost)
@@ -34,8 +31,10 @@ angular.module('fuelCalculator').controller('CostCtrl', ['fuelService', function
 
   this.calculatePrice = function (priceType)
   {
-    var distance = calculateDistanceByPrice(fuelService.getFuelType(), vm.distanceForLiters, vm.litersForDistance, vm.cost)
-    return calculateByDistance(priceType, vm.distanceForLiters, vm.litersForDistance, distance)
+    var fuelType = fuelService.getFuelType()
+    var distance = calculateDistanceByPrice(fuelType, vm.distanceForLiters, vm.litersForDistance, vm.cost)
+
+    return fuelService.calculateByDistance(priceType, fuelType, vm.distanceForLiters, vm.litersForDistance, distance)
   }
 
   this.calculatePriceDifference = function ()
