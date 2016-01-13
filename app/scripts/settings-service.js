@@ -10,7 +10,7 @@ angular.module('fuelCalculator').service('settingsService', ['$window', function
 
   this.consumption = function (value)
   {
-    if (value) { $window.localStorage.setItem('consumption', parseFloat(value) || 10) }
-    else       { return parseFloat($window.localStorage.getItem('consumption')) || 10 }
+    if (value) { $window.localStorage.setItem('consumption', parseFloat(value) || 8) }
+    else       { return parseFloat($window.localStorage.getItem('consumption')) || 8 }
   }
 }])
