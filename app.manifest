@@ -1,6 +1,8 @@
 CACHE MANIFEST
 
 CACHE:
+index.html
+scripts.js
 views/cost.html
 views/distance.html
 views/fuel-volume.html
@@ -11,10 +13,8 @@ https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js
 https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js
 https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
 https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
-index.html
-scripts.js
 
 NETWORK:
 *
 
-# hash: 9a52a0716f02a42de02a3d4787604e5f21979bb3a01a09a2f02716c17beef11a
+# hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
