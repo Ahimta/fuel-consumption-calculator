@@ -56,6 +56,15 @@
     </nav>
   </header>
 
+  <section class="container" ng-controller="AlertsCtrl as alerts" ng-hide="alerts.alertsRead()">
+    <div class="alert alert-success alert-dismissible" role="alert" dir="rtl">
+      <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close" ng-click="alerts.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <span>الموقع يعمل بدون انترنت</span>
+    </div>
+  </section>
+
   <section class="page-header">
     <nav class="container" ng-controller="TabsCtrl as tabs">
       <ul class="nav nav-tabs nav-justified">
@@ -92,6 +101,7 @@
   <script src='scripts/cost-ctrl.js'></script>
   <script src='scripts/navbar-ctrl.js'></script>
   <script src='scripts/tabs-ctrl.js'></script>
+  <script src='scripts/alerts-ctrl.js'></script>
   <!-- endbuild -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
