@@ -36,12 +36,14 @@ gulp.task('favicons', () =>
 
 gulp.task('manifest', () =>
 {
-  gulp.src(['dist/*.html', 'dist/*.js'])
+  gulp.src([])
     .pipe(manifest({
       preferOnline: false,
       filename: 'app.manifest',
       exclude: 'app.manifest',
       cache: [
+        'index.html',
+        'scripts.js',
         'views/cost.html',
         'views/distance.html',
         'views/fuel-volume.html',
