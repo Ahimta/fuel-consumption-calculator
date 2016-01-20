@@ -41,7 +41,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
-          <td class="text-center danger" dir="rtl">
+          <td class="text-center danger" dir="rtl" style="border-right: 0">
             <b ng-bind="vm.calculatePriceDifference() * factor | number:2"></b>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
