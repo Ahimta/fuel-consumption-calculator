@@ -4,7 +4,27 @@
       <div class="input-group-addon">كيلو</div>
       <input type="number" min="1" max="1000000000" step="1" name="distance" required
              id="distance" class="form-control" dir="rtl" ng-model="vm.distance">
-      <div class="input-group-addon">المسافة المقطوعة في اليوم</div>
+      <div class="input-group-btn">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="caret"></span>
+         المسافة المقطوعة في
+         <span ng-bind="vm.periodMenu.getVisualSelectedPeriod()"></span>
+       </button>
+       <ul class="dropdown-menu dropdown-menu-right">
+         <li ng-class="{active: vm.periodMenu.isPeriodSelected('day')}" ng-click="vm.periodMenu.selectPeriod('day')">
+           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة في اليوم</a>
+         </li>
+         <li ng-class="{active: vm.periodMenu.isPeriodSelected('week')}" ng-click="vm.periodMenu.selectPeriod('week')">
+           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة في الاسبوع</a>
+         </li>
+         <li ng-class="{active: vm.periodMenu.isPeriodSelected('month')}" ng-click="vm.periodMenu.selectPeriod('month')">
+           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة في الشهر</a>
+         </li>
+         <li ng-class="{active: vm.periodMenu.isPeriodSelected('year')}" ng-click="vm.periodMenu.selectPeriod('year')">
+           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة في السنة</a>
+         </li>
+       </ul>
+      </div>
     </div>
   </div>
 </form>
@@ -49,7 +69,7 @@
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center active" dir="rtl">
-            <span ng-bind="vm.distance * factor | number:0"></span>
+            <span ng-bind="vm.calculateDistance(factor) | number:0"></span>
             <span class="hidden-xs" style="font-size: 0.6em">كم</span>
           </td>
           <th class="text-center active" ng-bind="period"></th>

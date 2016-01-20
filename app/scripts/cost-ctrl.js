@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.controller('CostCtrl', ['fuelService', 'settingsService', function (fuelService, settingsService)
+.controller('CostCtrl', ['fuelService', 'periodService', 'settingsService', function (fuelService, periodService, settingsService)
 {
   var vm = this
 
@@ -11,16 +11,19 @@ angular.module('fuelCalculator')
   this.distanceForLiters = settingsService.consumption()
   this.setConsumption = settingsService.consumption
   this.periodTable = fuelService.getPeriodTable()
+  this.periodMenu = periodService.getPeriodMenu()
 
   this.calculateDistance = function ()
   {
-    return fuelService.calculateDistanceByPrice(settingsService.fuelType(), vm.distanceForLiters, vm.litersForDistance, vm.cost)
+    var costPerDay = vm.periodMenu.getValuePerDay(vm.cost)
+    return fuelService.calculateDistanceByPrice(settingsService.fuelType(), vm.distanceForLiters, vm.litersForDistance, costPerDay)
   }
 
   this.calculatePrice = function (priceType)
   {
+    var costPerDay = vm.periodMenu.getValuePerDay(vm.cost)
     var fuelType = settingsService.fuelType()
-    var distance = fuelService.calculateDistanceByPrice(fuelType, vm.distanceForLiters, vm.litersForDistance, vm.cost)
+    var distance = fuelService.calculateDistanceByPrice(fuelType, vm.distanceForLiters, vm.litersForDistance, costPerDay)
 
     return fuelService.calculateByDistance(priceType, fuelType, vm.distanceForLiters, vm.litersForDistance, distance)
   }
