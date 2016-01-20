@@ -1,5 +1,33 @@
 <form name="tankForm">
   <div class="form-group">
+    <div class="input-group" ng-class="{'has-error': tankForm.fillTimes.$invalid}">
+      <div class="input-group-addon">مرة</div>
+      <input type="number" min="1" max="1000000000" step="1" name="fillTimes" required
+             class="form-control" dir="rtl" ng-model="vm.fillTimes">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          مرات التعبئة في
+          <span ng-bind="vm.periodMenu.getVisualSelectedPeriod()"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li ng-class="{active: vm.periodMenu.isPeriodSelected('day')}" ng-click="vm.periodMenu.selectPeriod('day')">
+            <a ng-click="$event.preventDefault()" href="#">مرات التعبئة في اليوم</a>
+          </li>
+          <li ng-class="{active: vm.periodMenu.isPeriodSelected('week')}" ng-click="vm.periodMenu.selectPeriod('week')">
+            <a ng-click="$event.preventDefault()" href="#">مرات التعبئة في الاسبوع</a>
+          </li>
+          <li ng-class="{active: vm.periodMenu.isPeriodSelected('month')}" ng-click="vm.periodMenu.selectPeriod('month')">
+            <a ng-click="$event.preventDefault()" href="#">مرات التعبئة في الشهر</a>
+          </li>
+          <li ng-class="{active: vm.periodMenu.isPeriodSelected('year')}" ng-click="vm.periodMenu.selectPeriod('year')">
+            <a ng-click="$event.preventDefault()" href="#">مرات التعبئة في السنة</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
     <div class="input-group" ng-class="{'has-error': tankForm.tankVolume.$invalid}">
       <div class="input-group-addon">لتر</div>
       <input type="number" min="1" max="1000000000" step="1" name="tankVolume" required
@@ -31,28 +59,28 @@
           <th class="text-center warning">التكلفة سابقاً</th>
           <th class="text-center success">التكلفة حالياً</th>
           <th class="text-center active">المسافة</th>
-          <th class="text-center active" dir="rtl"># التعبئة</th>
+          <th class="text-center active">المدة</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="times in [1, 2, 3, 4, 5]">
+        <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
           <td class="text-center danger" dir="rtl">
-            <b ng-bind="vm.calculatePriceDifference() * times | number:2"></b>
+            <b ng-bind="vm.calculatePriceDifference() * factor | number:2"></b>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center warning" dir="rtl">
-            <span ng-bind="vm.calculatePrice('old') * times | number:2"></span>
+            <span ng-bind="vm.calculatePrice('old') * factor | number:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center success" dir="rtl">
-            <span ng-bind="vm.calculatePrice('new') * times | number:2"></span>
+            <span ng-bind="vm.calculatePrice('new') * factor | number:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center active" dir="rtl">
-            <span ng-bind="vm.calculateDistance() * times | number:0"></span>
+            <span ng-bind="vm.calculateDistance() * factor | number:0"></span>
             <span class="hidden-xs" style="font-size: 0.6em">كم</span>
           </td>
-          <th class="text-center active" ng-bind="times"></th>
+          <th class="text-center active" ng-bind="period"></th>
         </tr>
       </tbody>
     </table>
