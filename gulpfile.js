@@ -36,7 +36,7 @@ gulp.task('favicons', () =>
 
 gulp.task('manifest', () =>
 {
-  gulp.src([])
+  gulp.src(['dist/index.html', 'dist/scripts.html', 'dist/views/*.html'])
     .pipe(manifest({
       preferOnline: false,
       filename: 'app.manifest',
