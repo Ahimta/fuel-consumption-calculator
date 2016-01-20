@@ -26,3 +26,16 @@ angular.module('fuelCalculator', ['ngRoute'])
     })
     .otherwise({redirectTo: '/distance'})
 }])
+.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window)
+{
+  var previousPath = null
+
+  $rootScope.$on('$routeChangeSuccess', function (event, currentRoute, previousRoute)
+  {
+    var currentPath = $location.path()
+
+    if ($window.ga && currentPath !== previousPath) { $window.ga('send', 'pageview', {page: currentPath}) }
+
+    previousPath = currentPath
+  })
+}])
