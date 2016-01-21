@@ -27,7 +27,8 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" aria-expanded="false"
-                  data-toggle="collapse" data-target="#navbar">
+                  data-toggle="collapse" data-target="#navbar"
+                  onclick="ga('send', 'event', 'Navigation', 'click', 'Navbar Toggle')">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -47,9 +48,20 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a target="_blank" href="https://twitter.com/intent/tweet?via=ahymta&url=https%3A//ahimta.github.io/fuel-consumption-calculator/">راسلنا</a></li>
-            <li class="disabled"><a href="#/water" dir="rtl">أسعار المياه (قريباً)</a></li>
-            <li class="active"><a href="#/" dir="rtl">أسعار البنزين</a></li>
+            <li>
+              <a target="_blank" onclick="ga('send', 'event', 'Navigation', 'click', 'Contact us')"
+                 href="https://twitter.com/intent/tweet?via=ahymta&url=https%3A//ahimta.github.io/fuel-consumption-calculator/">راسلنا</a>
+            </li>
+            <li class="disabled">
+              <a href="#/water" dir="rtl" onclick="ga('send', 'event', 'Navigation', 'click', 'Water Prices (soon)')">
+                أسعار المياه (قريباً)
+              </a>
+            </li>
+            <li class="active">
+              <a href="#/" dir="rtl" onclick="ga('send', 'event', 'Navigation', 'click', 'Gasoline Prices')">
+                أسعار البنزين
+              </a>
+            </li>
           </ul>
         </div>
       </div>

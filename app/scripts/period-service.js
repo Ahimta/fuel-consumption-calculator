@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('fuelCalculator').service('periodService', [function ()
+angular.module('fuelCalculator').service('periodService', ['$window', function ($window)
 {
     var DAY = 'اليوم'
     var WEEK = 'الاسبوع'
@@ -17,7 +17,12 @@ angular.module('fuelCalculator').service('periodService', [function ()
       return {
         getVisualSelectedPeriod: function () { return VISUAL_PERIODS[selectedPeriod] },
         isPeriodSelected: function (period) { return period === selectedPeriod },
-        selectPeriod: function (period) { selectedPeriod = period },
+        selectPeriod: function (period)
+        {
+          var currentSelectedPeriod = selectedPeriod
+          selectedPeriod = period
+          if ($window.ga) { $window.ga('send', 'event', 'Period', 'change', (currentSelectedPeriod + '->' + period)) }
+        },
 
         getValuePerDay: function (valuePerPeriod) { return valuePerPeriod / PERIODS_FACTORS[selectedPeriod] }
       }
