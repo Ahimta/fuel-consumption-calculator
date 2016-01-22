@@ -51,6 +51,12 @@ angular.module('fuelCalculator').service('fuelService', function ()
     return calculateByVolume(priceType, fuelType, volume)
   }
 
+  this.roundPrice = function (price)
+  {
+    if (price < 10) { return price             }
+    else            { return Math.round(price) }
+  }
+
   this.calculateByDistance = calculateByDistance
   this.calculateByVolume = calculateByVolume
 

@@ -13,26 +13,26 @@ angular.module('fuelCalculator')
   this.periodTable = fuelService.getPeriodTable()
   this.periodMenu = periodService.getPeriodMenu()
 
-  this.calculateDistance = function ()
+  this.calculateDistance = function (factor)
   {
-    var costPerDay = vm.periodMenu.getValuePerDay(vm.cost)
+    var costPerDay = vm.periodMenu.getValuePerDay(vm.cost) * factor
     return fuelService.calculateDistanceByPrice(settingsService.fuelType(), vm.distanceForLiters, vm.litersForDistance, costPerDay)
   }
 
-  this.calculatePrice = function (priceType)
+  this.calculatePrice = function (priceType, factor)
   {
-    var costPerDay = vm.periodMenu.getValuePerDay(vm.cost)
+    var costPerDay = vm.periodMenu.getValuePerDay(vm.cost) * factor
     var fuelType = settingsService.fuelType()
     var distance = fuelService.calculateDistanceByPrice(fuelType, vm.distanceForLiters, vm.litersForDistance, costPerDay)
 
     return fuelService.calculateByDistance(priceType, fuelType, vm.distanceForLiters, vm.litersForDistance, distance)
   }
 
-  this.calculatePriceDifference = function ()
+  this.calculatePriceDifference = function (factor)
   {
-    var oldPrice = vm.calculatePrice('old')
-    var newPrice = vm.calculatePrice('new')
+    var oldPrice = vm.calculatePrice('old', factor)
+    var newPrice = vm.calculatePrice('new', factor)
 
-    return newPrice - oldPrice
+    return fuelService.roundPrice(newPrice) - fuelService.roundPrice(oldPrice)
   }
 }])
