@@ -1,24 +1,28 @@
-# Fuel Consumption Calculator
+# Fuel Consumption Calculator #
 
-## Definitions
-- Volume is Natural
-- Distance is Natural
+## Common ##
+## Data Definitions
 - NewPrice is Number
 - OldPrice is Number
 - PriceDifference is Number
-- Consumption is (Distance, Volume)
-- FuelType is one of:
-  * "91"
-  * "95"
-- PriceType is one of:
-  * "old"
-  * "new"
+- Price is NewPrice|OldPrice
 - Period is one of:
   * "day"
   * "week"
   * "month"
   * "year"
 
-## Usecases
-- (FuelType Volume)               -> (listof (Period, NewPrice, OldPrice, PriceDifference))
-- (FuelType Consumption Distance) -> (NewPrice, OldPrice, PriceDifference)
+## Gasoline ##
+### Data Definitions ###
+- Consumption is (Distance, Volume)
+- Distance is Number
+- Volume is Number
+- FuelType is one of:
+  * "91"
+  * "95"
+
+### Usecases ###
+- (FuelType Volume)                 -> (listof (Period, NewPrice, OldPrice, PriceDifference))
+- (FuelType Consumption Distance)   -> (listof (Period, Distance, NewPrice, OldPrice, PriceDifference))
+- (FuelType Consumption TankVolume) -> (listof (Period, Distance, NewPrice, OldPrice, PriceDifference))
+- (FuelType Consumption Price)      -> (listof (Period, Distance, NewPrice, OldPrice, PriceDifference))
