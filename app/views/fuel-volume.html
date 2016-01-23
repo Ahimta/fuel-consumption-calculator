@@ -8,19 +8,19 @@
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="caret"></span>
           كمية الاستهلاك في
-          <span ng-bind="vm.periodMenu.getVisualSelectedPeriod()"></span>
+          <span ng-bind="vm.periodMenu.getSelectedLabel()"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li ng-class="{active: vm.periodMenu.isPeriodSelected('day')}" ng-click="vm.periodMenu.selectPeriod('day')">
+          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('day')}" ng-click="vm.periodMenu.select('day')">
             <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك في اليوم</a>
           </li>
-          <li ng-class="{active: vm.periodMenu.isPeriodSelected('week')}" ng-click="vm.periodMenu.selectPeriod('week')">
+          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('week')}" ng-click="vm.periodMenu.select('week')">
             <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك في الاسبوع</a>
           </li>
-          <li ng-class="{active: vm.periodMenu.isPeriodSelected('month')}" ng-click="vm.periodMenu.selectPeriod('month')">
+          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('month')}" ng-click="vm.periodMenu.select('month')">
             <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك في الشهر</a>
           </li>
-          <li ng-class="{active: vm.periodMenu.isPeriodSelected('year')}" ng-click="vm.periodMenu.selectPeriod('year')">
+          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('year')}" ng-click="vm.periodMenu.select('year')">
             <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك في السنة</a>
           </li>
         </ul>

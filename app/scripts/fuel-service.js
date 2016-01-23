@@ -2,17 +2,6 @@
 
 angular.module('fuelCalculator').service('fuelService', function ()
 {
-  var DAY = 'يوم'
-  var WEEK = 'اسبوع'
-  var MONTH = 'شهر'
-  var YEAR = 'سنة'
-
-  var PERIOD_TABLE = [[DAY, 1], [WEEK, 7], [MONTH, 30], [YEAR, 360]]
-
-  function getPeriodTable ()
-  {
-    return PERIOD_TABLE
-  }
 
   function calculateDistanceByVolume (distanceForLiters, litersForDistance, volume)
   {
@@ -25,17 +14,17 @@ angular.module('fuelCalculator').service('fuelService', function ()
     else                     { return fuelType === '91' ? 0.45 : 0.60 }
   }
 
-  function calculateLitersByPrice (fuelType, price)
+  function calculateLitersByPrice (priceType, fuelType, price)
   {
-    var pricePerLiter = getLiterPrice('new', fuelType)
+    var pricePerLiter = getLiterPrice(priceType, fuelType)
     var volume = price / pricePerLiter
 
     return volume
   }
 
-  function calculateDistanceByPrice (fuelType, distanceForLiters, litersForDistance, price)
+  function calculateDistanceByPrice (priceType, fuelType, distanceForLiters, litersForDistance, price)
   {
-    var volume = calculateLitersByPrice(fuelType, price)
+    var volume = calculateLitersByPrice(priceType, fuelType, price)
     var distance = volume * distanceForLiters / litersForDistance
 
     return distance
@@ -62,8 +51,6 @@ angular.module('fuelCalculator').service('fuelService', function ()
 
   this.calculateDistanceByVolume = calculateDistanceByVolume
   this.calculateDistanceByPrice = calculateDistanceByPrice
-  this.calculateLitersByPrice = calculateLitersByPrice
 
-  this.getPeriodTable = getPeriodTable
   this.getLiterPrice = getLiterPrice
 })

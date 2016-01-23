@@ -2,29 +2,22 @@
 
 angular.module('fuelCalculator').service('periodService', ['$window', function ($window)
 {
-    var DAY = 'اليوم'
-    var WEEK = 'الاسبوع'
-    var MONTH = 'الشهر'
-    var YEAR = 'السنة'
+    var TABLE_DAY = 'يوم'
+    var TABLE_WEEK = 'اسبوع'
+    var TABLE_MONTH = 'شهر'
+    var TABLE_YEAR = 'سنة'
+    var PERIOD_TABLE = [[TABLE_DAY, 1], [TABLE_WEEK, 7], [TABLE_MONTH, 30], [TABLE_YEAR, 360]]
 
+    var FACTOR_DAY = 'اليوم'
+    var FACTOR_WEEK = 'الاسبوع'
+    var FACTOR_MONTH = 'الشهر'
+    var FACTOR_YEAR = 'السنة'
     var PERIODS_FACTORS = {day: 1, week: 7, month: 30, year: 360}
-    var VISUAL_PERIODS = {day: DAY, week: WEEK, month: MONTH, year: YEAR}
+    var VISUAL_PERIODS = {day: FACTOR_DAY, week: FACTOR_WEEK, month: FACTOR_MONTH, year: FACTOR_YEAR}
 
-    this.getPeriodMenu = function (initialPeriod)
-    {
-      var selectedPeriod = initialPeriod || 'day'
+    this.getVisualPeriod = function (period) { return VISUAL_PERIODS[period] }
 
-      return {
-        getVisualSelectedPeriod: function () { return VISUAL_PERIODS[selectedPeriod] },
-        isPeriodSelected: function (period) { return period === selectedPeriod },
-        selectPeriod: function (period)
-        {
-          var currentSelectedPeriod = selectedPeriod
-          selectedPeriod = period
-          if ($window.ga) { $window.ga('send', 'event', 'Period', 'change', (currentSelectedPeriod + '->' + period)) }
-        },
+    this.getValuePerDay = function (period, valuePerPeriod) { return valuePerPeriod / PERIODS_FACTORS[period] }
 
-        getValuePerDay: function (valuePerPeriod) { return valuePerPeriod / PERIODS_FACTORS[selectedPeriod] }
-      }
-    }
+    this.getPeriodTable = function () { return PERIOD_TABLE }
 }])
