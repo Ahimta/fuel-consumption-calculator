@@ -6,7 +6,7 @@ angular.module('fuelCalculator').filter('roundPrice', ['$filter', 'fuelService',
 
   return function (price, fractionSize)
   {
-    if (price < 10) { return numberFilter(price, fractionSize) }
-    else            { return fuelService.roundPrice(price)     }
+    if (price < 10) { return numberFilter(price, fractionSize)              }
+    else            { return numberFilter(fuelService.roundPrice(price), 0) }
   }
 }])
