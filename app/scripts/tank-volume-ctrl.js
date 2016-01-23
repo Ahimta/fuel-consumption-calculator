@@ -5,14 +5,16 @@ angular.module('fuelCalculator')
 {
   var vm = this
 
+  this.distanceForLiters = settingsService.consumption()
+  this.tankVolume = settingsService.tankVolume()
+
   this.litersForDistance = 1
-  this.tankVolume = 64
   this.fillTimes = 1
 
   this.periodTable = periodService.getPeriodTable()
   this.periodMenu = menuService.getPeriodMenu('week')
 
-  this.distanceForLiters = settingsService.consumption()
+  this.updateTankVolume = settingsService.tankVolume
   this.setConsumption = settingsService.consumption
 
   this.calculateDistance = function (factor)

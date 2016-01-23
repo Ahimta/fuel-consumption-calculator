@@ -31,7 +31,7 @@
     <div class="input-group" ng-class="{'has-error': tankForm.tankVolume.$invalid}">
       <div class="input-group-addon">لتر</div>
       <input type="number" min="1" max="1000000000" step="1" name="tankVolume" required
-             class="form-control" dir="rtl" ng-model="vm.tankVolume">
+             class="form-control" dir="rtl" ng-model="vm.tankVolume" ng-change="vm.updateTankVolume(vm.tankVolume)">
       <div class="input-group-addon">حجم التانكي</div>
     </div>
   </div>
