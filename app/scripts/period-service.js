@@ -15,7 +15,7 @@ angular.module('fuelCalculator').service('periodService', ['$window', function (
     var PERIODS_FACTORS = {day: 1, week: 7, month: 30, year: 360}
     var VISUAL_PERIODS = {day: FACTOR_DAY, week: FACTOR_WEEK, month: FACTOR_MONTH, year: FACTOR_YEAR}
 
-    this.getVisualPeriod = function (period) { return VISUAL_PERIODS[period] }
+    this.getPeriodLabel = function (period) { return VISUAL_PERIODS[period] }
 
     this.getValuePerDay = function (period, valuePerPeriod) { return valuePerPeriod / PERIODS_FACTORS[period] }
 

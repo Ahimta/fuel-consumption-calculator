@@ -19,7 +19,7 @@ angular.module('fuelCalculator')
     }
   }
 
-  this.getPriceMenu = function (initialValue)
+  this.getPriceTypeMenu = function (initialValue)
   {
     var menuModel = getMenuModel('PriceType', initialValue || 'new')
 
@@ -32,7 +32,7 @@ angular.module('fuelCalculator')
   {
     var menuModel = getMenuModel('Period', initialValue || 'day')
 
-    menuModel.getSelectedLabel = function () { return periodService.getVisualPeriod(menuModel.getSelected()) }
+    menuModel.getSelectedLabel = function () { return periodService.getPeriodLabel(menuModel.getSelected()) }
 
     menuModel.getValuePerDay = function (valuePerPeriod)
     { return periodService.getValuePerDay(menuModel.getSelected(), valuePerPeriod) }

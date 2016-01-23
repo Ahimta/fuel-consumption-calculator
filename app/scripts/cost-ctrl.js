@@ -11,8 +11,9 @@ angular.module('fuelCalculator')
   this.distanceForLiters = settingsService.consumption()
   this.setConsumption = settingsService.consumption
   this.periodTable = periodService.getPeriodTable()
+
   this.periodMenu = menuService.getPeriodMenu()
-  this.priceMenu = menuService.getPriceMenu()
+  this.priceMenu = menuService.getPriceTypeMenu()
 
   this.calculateDistance = function (factor)
   {
