@@ -4,6 +4,7 @@ CACHE:
 index.html
 scripts.js
 views/cost.html
+views/comparison.html
 views/distance.html
 views/fuel-volume.html
 views/tank-volume.html
@@ -17,4 +18,4 @@ https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
 NETWORK:
 *
 
-# hash: 5356009f4d0334ae85ec1a0b2bd3d5dcd1e99ff7a9ff64d6b500b5068d7e6538
+# hash: 64680f96e2d4d7572df551940b31c28945d42e27b344a49c7c5af9308a7e70a0
