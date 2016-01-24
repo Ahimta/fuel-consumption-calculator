@@ -68,18 +68,19 @@
     </nav>
   </header>
 
-  <section class="container" ng-controller="AlertsCtrl as alerts" ng-hide="alerts.alertsRead()">
+  <aside class="container" ng-controller="AlertsCtrl as alerts" ng-hide="alerts.alertsRead()">
     <div class="alert alert-success alert-dismissible" role="alert" dir="rtl">
       <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close" ng-click="alerts.dismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
       <span>الموقع يعمل بدون انترنت</span>
     </div>
-  </section>
+  </aside>
 
   <section class="page-header">
     <nav class="container" ng-controller="TabsCtrl as tabs">
       <ul class="nav nav-tabs nav-justified">
+        <li ng-class="{active: tabs.isCurrentPath('/comparison')}"><a href="#/comparison">مقارنة الاستهلاك</a></li>
         <li ng-class="{active: tabs.isCurrentPath('/fuel-volume')}"><a href="#/fuel-volume">كمية البنزين</a></li>
         <li ng-class="{active: tabs.isCurrentPath('/tank-volume')}"><a href="#/tank-volume">حجم التانكي</a></li>
         <li ng-class="{active: tabs.isCurrentPath('/distance')}"><a href="#/distance">المسافة</a></li>
@@ -115,6 +116,7 @@
   <script src='scripts/tank-volume-ctrl.js'></script>
   <script src='scripts/distance-ctrl.js'></script>
   <script src='scripts/cost-ctrl.js'></script>
+  <script src='scripts/comparison-ctrl.js'></script>
   <script src='scripts/navbar-ctrl.js'></script>
   <script src='scripts/tabs-ctrl.js'></script>
   <script src='scripts/alerts-ctrl.js'></script>
