@@ -4,14 +4,14 @@ angular.module('fuelCalculator', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider)
 {
   $routeProvider
-    .when('/cost', {
-      templateUrl: 'views/cost.html',
-      controller: 'CostCtrl',
-      controllerAs: 'vm'
-    })
     .when('/comparison', {
       templateUrl: 'views/comparison.html',
       controller: 'ComparisonCtrl',
+      controllerAs: 'vm'
+    })
+    .when('/cost', {
+      templateUrl: 'views/cost.html',
+      controller: 'CostCtrl',
       controllerAs: 'vm'
     })
     .when('/distance', {

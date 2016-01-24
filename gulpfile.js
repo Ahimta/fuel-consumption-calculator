@@ -44,6 +44,7 @@ gulp.task('manifest', () =>
       cache: [
         'index.html',
         'scripts.js',
+        'views/comparison.html',
         'views/cost.html',
         'views/distance.html',
         'views/fuel-volume.html',
