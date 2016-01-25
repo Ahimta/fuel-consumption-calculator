@@ -27,7 +27,7 @@ angular.module('fuelCalculator')
     {
       switch (menuModel.getSelected())
       {
-        case 'distance': return 'المسافة المقطوعة'
+        case 'distance': return 'المسافة'
         case 'cost':     return 'التكلفة'
       }
     }
