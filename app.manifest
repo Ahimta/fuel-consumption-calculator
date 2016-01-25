@@ -3,8 +3,8 @@ CACHE MANIFEST
 CACHE:
 index.html
 scripts.js
-views/cost.html
 views/comparison.html
+views/cost.html
 views/distance.html
 views/fuel-volume.html
 views/tank-volume.html
@@ -18,4 +18,4 @@ https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
 NETWORK:
 *
 
-# hash: 64680f96e2d4d7572df551940b31c28945d42e27b344a49c7c5af9308a7e70a0
+# hash: 949141c32943895bc3f2b1877d6df78fa7182e98dfba17ca7f08d942eb2dfc7e
