@@ -1,27 +1,42 @@
 <form name="distanceForm">
   <div class="form-group">
-    <div class="input-group" ng-class="{'has-error': distanceForm.distance.$invalid}">
-      <div class="input-group-addon">كيلو</div>
-      <input type="number" min="1" max="1000000000" step="1" name="distance" required
-             id="distance" class="form-control" dir="rtl" ng-model="vm.distance">
+    <div class="input-group" ng-class="{'has-error': distanceForm.costOrDistance.$invalid}">
+      <div class="input-group-addon" ng-bind="vm.getSelectedUnit()"></div>
+      <input type="number" min="1" max="1000000000" step="1" name="costOrDistance" required
+             class="form-control" dir="rtl" ng-model="vm.costOrDistance">
       <div class="input-group-btn">
-       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
          <span class="caret"></span>
-         المسافة المقطوعة في
+         في
          <span ng-bind="vm.periodMenu.getSelectedLabel()"></span>
        </button>
        <ul class="dropdown-menu dropdown-menu-right">
          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('day')}" ng-click="vm.periodMenu.select('day')">
-           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة في اليوم</a>
+           <a ng-click="$event.preventDefault()" href="#">في اليوم</a>
          </li>
          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('week')}" ng-click="vm.periodMenu.select('week')">
-           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة في الاسبوع</a>
+           <a ng-click="$event.preventDefault()" href="#">في الاسبوع</a>
          </li>
          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('month')}" ng-click="vm.periodMenu.select('month')">
-           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة في الشهر</a>
+           <a ng-click="$event.preventDefault()" href="#">في الشهر</a>
          </li>
          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('year')}" ng-click="vm.periodMenu.select('year')">
-           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة في السنة</a>
+           <a ng-click="$event.preventDefault()" href="#">في السنة</a>
+         </li>
+       </ul>
+      </div>
+      <div class="input-group-btn">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="caret"></span>
+         <span ng-bind="vm.measureMenu.getSelectedLabel()"></span>
+       </button>
+       <ul class="dropdown-menu dropdown-menu-right">
+         <li class="text-right" ng-class="{active: vm.measureMenu.isSelected('distance')}" ng-click="vm.measureMenu.select('distance')">
+           <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة</a>
+         </li>
+         <li class="text-right" ng-class="{active: vm.measureMenu.isSelected('cost')}" ng-click="vm.measureMenu.select('cost')">
+           <a ng-click="$event.preventDefault()" href="#">التكلفة</a>
          </li>
        </ul>
       </div>
@@ -52,7 +67,43 @@
     </span>
   </div>
 </form>
-<article ng-show="distanceForm.$valid && consumptionForm.$valid">
+<article ng-show="distanceForm.$valid && consumptionForm.$valid && vm.measureMenu.isSelected('cost')">
+  <div class="table-responsive">
+    <table class="table table-hover table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center danger">الفرق</th>
+          <th class="text-center" ng-class="vm.getSecondClass()">مسافة الثانية</th>
+          <th class="text-center" ng-class="vm.getFirstClass()">مسافة الأولى</th>
+          <th class="text-center active">التكلفة</th>
+          <th class="text-center active">المدة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
+          <td class="text-center danger" dir="rtl" style="border-right: 0; border-left: 0">
+            <b ng-bind="vm.cost.calculateDistanceDifference(factor) | number:0"></b>
+            <span class="hidden-xs" style="font-size: 0.6em">كم</span>
+          </td>
+          <td class="text-center" ng-class="vm.getSecondClass()" dir="rtl">
+            <span ng-bind="vm.cost.calculateDistance(vm.distanceForLiters2, factor) | number:0"></span>
+            <span class="hidden-xs" style="font-size: 0.6em">كم</span>
+          </td>
+          <td class="text-center" ng-class="vm.getFirstClass()" dir="rtl">
+            <span ng-bind="vm.cost.calculateDistance(vm.distanceForLiters1, factor) | number:0"></span>
+            <span class="hidden-xs" style="font-size: 0.6em">كم</span>
+          </td>
+          <td class="text-center active" dir="rtl">
+            <span ng-bind="vm.cost.calculatePrice(factor) | roundPrice:2"></span>
+            <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
+          </td>
+          <th class="text-center active" ng-bind="period"></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</article>
+<article ng-show="distanceForm.$valid && consumptionForm.$valid && vm.measureMenu.isSelected('distance')">
   <div class="table-responsive">
     <table class="table table-hover table-condensed table-bordered">
       <thead>
@@ -67,19 +118,19 @@
       <tbody>
         <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
           <td class="text-center danger" dir="rtl" style="border-right: 0; border-left: 0">
-            <b ng-bind="vm.calculatePriceDifference(factor) | roundPrice:2"></b>
+            <b ng-bind="vm.distance.calculatePriceDifference(factor) | roundPrice:2"></b>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center" ng-class="vm.getSecondClass()" dir="rtl">
-            <span ng-bind="vm.calculatePrice(vm.distanceForLiters2, factor) | roundPrice:2"></span>
+            <span ng-bind="vm.distance.calculatePrice(vm.distanceForLiters2, factor) | roundPrice:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center" ng-class="vm.getFirstClass()" dir="rtl">
-            <span ng-bind="vm.calculatePrice(vm.distanceForLiters1, factor) | roundPrice:2"></span>
+            <span ng-bind="vm.distance.calculatePrice(vm.distanceForLiters1, factor) | roundPrice:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center active" dir="rtl">
-            <span ng-bind="vm.calculateDistance(factor) | number:0"></span>
+            <span ng-bind="vm.distance.calculateDistance(factor) | number:0"></span>
             <span class="hidden-xs" style="font-size: 0.6em">كم</span>
           </td>
           <th class="text-center active" ng-bind="period"></th>

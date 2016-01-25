@@ -19,6 +19,22 @@ angular.module('fuelCalculator')
     }
   }
 
+  this.getMeasureMenu = function (initialValue)
+  {
+    var menuModel = getMenuModel('Measure', initialValue || 'distance')
+
+    menuModel.getSelectedLabel = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'distance': return 'المسافة المقطوعة'
+        case 'cost':     return 'التكلفة'
+      }
+    }
+
+    return menuModel
+  }
+
   this.getPriceTypeMenu = function (initialValue)
   {
     var menuModel = getMenuModel('PriceType', initialValue || 'new')
