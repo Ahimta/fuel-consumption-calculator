@@ -17,11 +17,11 @@ angular.module('fuelCalculator')
 
   this.calculateDistance = function (factor)
   {
-    var costPerDay = vm.periodMenu.getValuePerDay(vm.cost) * factor
+    var costPerPeriod = vm.periodMenu.getValuePerDay(vm.cost) * factor
     var priceType = vm.priceMenu.getSelected()
     var fuelType = settingsService.fuelType()
 
-    return fuelService.calculateDistanceByPrice(priceType, fuelType, vm.distanceForLiters, vm.litersForDistance, costPerDay)
+    return fuelService.calculateDistanceByPrice(priceType, fuelType, vm.distanceForLiters, vm.litersForDistance, costPerPeriod)
   }
 
   this.calculatePrice = function (priceType, factor)

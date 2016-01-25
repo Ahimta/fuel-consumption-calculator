@@ -1,12 +1,3 @@
-<style>
-  .custom
-  {
-    -webkit-border-radius: 0px !important;
-    -moz-border-radius: 0px !important;
-    border-radius: 0px !important;
-  }
-</style>
-
 <form name="costForm">
   <div class="form-group">
     <div class="input-group" ng-class="{'has-error': costForm.cost.$invalid}">
@@ -14,7 +5,8 @@
       <input type="number" min="1" max="1000000000" step="1" name="cost" required
              id="cost" class="form-control" dir="rtl" ng-model="vm.cost">
       <div class="input-group-btn">
-       <button type="button" class="btn btn-default dropdown-toggle custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
          <span class="caret"></span>
          <span ng-bind="vm.priceMenu.getSelectedLabel()"></span>
        </button>
