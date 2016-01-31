@@ -19,6 +19,15 @@ angular.module('fuelCalculator')
     }
   }
 
+  this.getOctaneMenu = function (initialValue)
+  {
+    var menuModel = getMenuModel('New Octane', initialValue || '91')
+
+    menuModel.getSelectedLabel = menuModel.getSelected
+
+    return menuModel
+  }
+
   this.getMeasureMenu = function (initialValue)
   {
     var menuModel = getMenuModel('Measure', initialValue || 'distance')

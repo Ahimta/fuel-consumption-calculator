@@ -46,6 +46,16 @@ angular.module('fuelCalculator').service('fuelService', function ()
     else            { return Math.round(price) }
   }
 
+  this.whichBetter = function (priceType, fuelType1, distanceForLiters1, fuelType2, distanceForLiters2)
+  {
+    var pricePerKilo1 = getLiterPrice(priceType, fuelType1) / distanceForLiters1
+    var pricePerKilo2 = getLiterPrice(priceType, fuelType2) / distanceForLiters2
+
+    if      (pricePerKilo1 < pricePerKilo2) { return 'first'  }
+    else if (pricePerKilo2 < pricePerKilo1) { return 'second' }
+    else                                    { return 'same'   }
+  }
+
   this.calculateByDistance = calculateByDistance
   this.calculateByVolume = calculateByVolume
 

@@ -49,7 +49,28 @@
       <div class="input-group-addon">كيلو/لتر</div>
       <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters1" required
              class="form-control" dir="rtl" ng-model="vm.distanceForLiters1">
-      <div class="input-group-addon">كفاءة استهلاك المركبة الأولى</div>
+       <div class="input-group-btn">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                ng-class="{'btn-success': vm.octaneMenu1.isSelected('91'), 'btn-danger': vm.octaneMenu1.isSelected('95')}"
+                style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
+          <span class="caret"></span>
+          <span ng-bind="vm.octaneMenu1.getSelectedLabel()"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="text-right" ng-class="{active: vm.octaneMenu1.isSelected('91')}" ng-click="vm.octaneMenu1.select('91')">
+            <a ng-click="$event.preventDefault()" href="#">91</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.octaneMenu1.isSelected('95')}" ng-click="vm.octaneMenu1.select('95')">
+            <a ng-click="$event.preventDefault()" href="#">95</a>
+          </li>
+        </ul>
+       </div>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default" style="cursor: default;"
+                onclick="ga('send', 'event', 'Comparison', 'click', 'Fuel Effeciency - Vehicle 2')">
+          كفاءة استهلاك المركبة1
+        </button>
+      </div>
     </div>
   </div>
   <div class="form-group">
@@ -57,7 +78,28 @@
       <div class="input-group-addon">كيلو/لتر</div>
       <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters2" required
              class="form-control" dir="rtl" ng-model="vm.distanceForLiters2">
-      <div class="input-group-addon">كفاءة استهلاك المركبة الثانية</div>
+       <div class="input-group-btn">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                ng-class="{'btn-success': vm.octaneMenu2.isSelected('91'), 'btn-danger': vm.octaneMenu2.isSelected('95')}"
+                style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
+          <span class="caret"></span>
+          <span ng-bind="vm.octaneMenu2.getSelectedLabel()"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="text-right" ng-class="{active: vm.octaneMenu2.isSelected('91')}" ng-click="vm.octaneMenu2.select('91')">
+            <a ng-click="$event.preventDefault()" href="#">91</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.octaneMenu2.isSelected('95')}" ng-click="vm.octaneMenu2.select('95')">
+            <a ng-click="$event.preventDefault()" href="#">95</a>
+          </li>
+        </ul>
+       </div>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default" style="cursor: default;"
+                onclick="ga('send', 'event', 'Comparison', 'click', 'Fuel Effeciency - Vehicle 1')">
+                كفاءة استهلاك المركبة2
+        </button>
+      </div>
     </div>
     <span dir="rtl" class="help-block">
       <a target="_blank" href="https://www.sls.gov.sa/Pages/ar/Consumer/UsedVehicles.aspx"
@@ -86,11 +128,11 @@
             <span class="hidden-xs" style="font-size: 0.6em">كم</span>
           </td>
           <td class="text-center" ng-class="vm.getSecondClass()" dir="rtl">
-            <span ng-bind="vm.cost.calculateDistance(vm.distanceForLiters2, factor) | number:0"></span>
+            <span ng-bind="vm.cost.calculateDistance(vm.octaneMenu2.getSelected(), vm.distanceForLiters2, factor) | number:0"></span>
             <span class="hidden-xs" style="font-size: 0.6em">كم</span>
           </td>
           <td class="text-center" ng-class="vm.getFirstClass()" dir="rtl">
-            <span ng-bind="vm.cost.calculateDistance(vm.distanceForLiters1, factor) | number:0"></span>
+            <span ng-bind="vm.cost.calculateDistance(vm.octaneMenu1.getSelected(), vm.distanceForLiters1, factor) | number:0"></span>
             <span class="hidden-xs" style="font-size: 0.6em">كم</span>
           </td>
           <td class="text-center active" dir="rtl">
@@ -122,11 +164,11 @@
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center" ng-class="vm.getSecondClass()" dir="rtl">
-            <span ng-bind="vm.distance.calculatePrice(vm.distanceForLiters2, factor) | roundPrice:2"></span>
+            <span ng-bind="vm.distance.calculatePrice(vm.octaneMenu2.getSelected(), vm.distanceForLiters2, factor) | roundPrice:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center" ng-class="vm.getFirstClass()" dir="rtl">
-            <span ng-bind="vm.distance.calculatePrice(vm.distanceForLiters1, factor) | roundPrice:2"></span>
+            <span ng-bind="vm.distance.calculatePrice(vm.octaneMenu1.getSelected(), vm.distanceForLiters1, factor) | roundPrice:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center active" dir="rtl">
