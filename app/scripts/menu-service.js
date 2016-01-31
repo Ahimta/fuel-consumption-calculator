@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.service('menuService', ['$window', 'periodService', 'priceService', function ($window, periodService, priceService)
+.service('menuService', ['$window', 'periodService', 'priceService', 'settingsService', function ($window, periodService, priceService, settingsService)
 {
   function getMenuModel (menuName, initialValue)
   {
@@ -19,11 +19,21 @@ angular.module('fuelCalculator')
     }
   }
 
-  this.getOctaneMenu = function (initialValue)
+  this.getOctaneMenu = function (initialValue, dontSave)
   {
     var menuModel = getMenuModel('New Octane', initialValue || '91')
 
     menuModel.getSelectedLabel = menuModel.getSelected
+
+    if (!dontSave)
+    {
+      var oldSelect = menuModel.select
+      menuModel.select = function (octane)
+      {
+        settingsService.fuelType(octane)
+        oldSelect(octane)
+      }
+    }
 
     return menuModel
   }

@@ -14,8 +14,8 @@ angular.module('fuelCalculator')
   this.periodTable = periodService.getPeriodTable()
   this.periodMenu = menuService.getPeriodMenu()
   this.measureMenu = menuService.getMeasureMenu()
-  this.octaneMenu1 = menuService.getOctaneMenu(settingsService.fuelType())
-  this.octaneMenu2 = menuService.getOctaneMenu(settingsService.fuelType())
+  this.octaneMenu1 = menuService.getOctaneMenu(settingsService.fuelType(), true)
+  this.octaneMenu2 = menuService.getOctaneMenu(settingsService.fuelType(), true)
 
   this.getSelectedUnit = function ()
   {
