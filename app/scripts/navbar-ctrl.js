@@ -6,5 +6,9 @@ angular.module('fuelCalculator').controller('NavbarCtrl', ['$location', 'setting
 
   this.isFuelType = function (fuelType) { return settingsService.fuelType() === fuelType }
 
-  this.isComparisonPage = function () { return $location.path() === '/comparison' }
+  this.octaneHidden = function ()
+  {
+    var path = $location.path()
+    return path === '/comparison' || path === '/fuel-volume'
+  }
 }])

@@ -4,6 +4,22 @@
       <div class="input-group-addon">لتر</div>
       <input type="number" min="1" max="1000000000" step="1" name="volume" required
              class="form-control" dir="rtl" ng-model="vm.volume">
+       <div class="input-group-btn">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                ng-class="{'btn-success': vm.octaneMenu.isSelected('91'), 'btn-danger': vm.octaneMenu.isSelected('95')}"
+                style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
+          <span class="caret"></span>
+          <span ng-bind="vm.octaneMenu.getSelectedLabel()"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="text-right" ng-class="{active: vm.octaneMenu.isSelected('91')}" ng-click="vm.octaneMenu.select('91')">
+            <a ng-click="$event.preventDefault()" href="#">91</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.octaneMenu.isSelected('95')}" ng-click="vm.octaneMenu.select('95')">
+            <a ng-click="$event.preventDefault()" href="#">95</a>
+          </li>
+        </ul>
+       </div>
       <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="caret"></span>

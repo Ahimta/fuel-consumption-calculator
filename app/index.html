@@ -37,7 +37,7 @@
           <a class="navbar-brand" href="#/" ng-click="$event.preventDefault()" style="cursor: default;">
             <!-- <span class="glyphicon glyphicon-home" aria-hidden="true"></span> -->
           </a>
-          <ul class="nav navbar-nav navbar-left" ng-hide="navbar.isComparisonPage()">
+          <ul class="nav navbar-nav navbar-left" ng-hide="navbar.octaneHidden()">
             <div class="btn-group">
               <button type="button" class="btn btn-danger navbar-btn"
                       ng-class="{active: navbar.isFuelType('95')}" ng-click="navbar.setFuelType(95)">95</button>

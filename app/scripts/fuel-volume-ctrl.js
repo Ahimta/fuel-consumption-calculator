@@ -7,12 +7,15 @@ angular.module('fuelCalculator')
 
   this.periodTable = periodService.getPeriodTable()
   this.periodMenu = menuService.getPeriodMenu()
+  this.octaneMenu = menuService.getOctaneMenu(settingsService.fuelType())
   this.volume = 1
 
   this.calculatePrice = function (priceType, factor)
   {
     var volumePerDay = vm.periodMenu.getValuePerDay(vm.volume) * factor
-    return fuelService.calculateByVolume(priceType, settingsService.fuelType(), volumePerDay)
+    var fuelType = vm.octaneMenu.getSelected()
+
+    return fuelService.calculateByVolume(priceType, fuelType, volumePerDay)
   }
 
   this.calculatePriceDifference = function (factor)
