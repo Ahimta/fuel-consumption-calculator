@@ -37,13 +37,121 @@
   </div>
 </form>
 <form name="consumptionForm">
-  <div class="form-group">
+  <div class="form-group" dir="rtl" ng-show="vm.vehicleOptionMenu.isSelected('vehicle')">
+    <div class="btn-group-vertical" role="group" aria-label="..." style="width: 100%">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span ng-bind="vm.vehicleOptionMenu.getSelectedLabel()"></span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="width: 100%">
+          <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('effeciency')}" ng-click="vm.vehicleOptionMenu.select('effeciency')">
+            <a ng-click="$event.preventDefault()" href="#">كفاءة استهلاك المركبة</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('vehicle')}" ng-click="vm.vehicleOptionMenu.select('vehicle')">
+            <a ng-click="$event.preventDefault()" href="#">المركبة</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span ng-bind="vm.vehiclesMenu.getSelectedYear()"></span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="overflow-y: scroll; max-height: 10em; width: 100%">
+          <li class="text-right" ng-repeat="year in vm.vehiclesMenu.getAvailableYears() | orderBy:'-'"
+              ng-click="vm.vehiclesMenu.selectYear(year)" ng-class="{active: vm.vehiclesMenu.isSelectedYear(year)}">
+            <a href="#" ng-click="$event.preventDefault()" ng-bind="year"></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span ng-bind="vm.vehiclesMenu.getSelectedManufacturer()"></span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="overflow-y: scroll; max-height: 10em; width: 100%">
+          <li class="text-left" ng-repeat="manufacturer in vm.vehiclesMenu.getAvailableManufacturers() | orderBy:'+'"
+              ng-click="vm.vehiclesMenu.selectManufacturer(manufacturer)" ng-class="{active: vm.vehiclesMenu.isSelectedManufacturer(manufacturer)}">
+            <a href="#" ng-click="$event.preventDefault()" ng-bind="manufacturer"></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span ng-bind="vm.vehiclesMenu.getSelectedModel()"></span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="overflow-y: scroll; max-height: 10em; width: 100%">
+          <li class="text-left" ng-repeat="model in vm.vehiclesMenu.getAvailableModels() | orderBy:'+'"
+              ng-click="vm.vehiclesMenu.selectModel(model)" ng-class="{active: vm.vehiclesMenu.isSelectedModel(model)}">
+            <a href="#" ng-click="$event.preventDefault()" ng-bind="model"></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                ng-class="{'btn-success': vm.octaneMenu.isSelected('91'), 'btn-danger': vm.octaneMenu.isSelected('95')}">
+          <span ng-bind="vm.octaneMenu.getSelected()"></span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="width: 100%">
+          <li class="text-right" ng-class="{active: vm.octaneMenu.isSelected('91')}" ng-click="vm.octaneMenu.select('91')">
+            <a ng-click="$event.preventDefault()" href="#">91</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.octaneMenu.isSelected('95')}" ng-click="vm.octaneMenu.select('95')">
+            <a ng-click="$event.preventDefault()" href="#">95</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <span dir="rtl" class="help-block">
+      <a target="_blank" href="http://www.fueleconomy.gov/feg/findacar.shtml"
+         onclick="ga('send', 'event', 'US Fuel Economy Link', 'click', 'Tank Volume')">
+         كفاءة الوقود الأمريكي
+      </a>
+    </span>
+  </div>
+  <div class="form-group" ng-show="vm.vehicleOptionMenu.isSelected('effeciency')">
     <div class="input-group" ng-class="{'has-error': consumptionForm.distanceForLiters.$invalid}">
       <div class="input-group-addon">كيلو/لتر</div>
       <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters" required
-             id="distanceForLiters" class="form-control" dir="rtl"
+             class="form-control" dir="rtl"
              ng-model="vm.distanceForLiters" ng-change="vm.setConsumption(vm.distanceForLiters)">
-      <div class="input-group-addon">كفاءة استهلاك المركبة</div>
+       <div class="input-group-btn">
+         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dir="rtl"
+                 style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;"
+                 ng-class="{'btn-success': vm.octaneMenu.isSelected('91'), 'btn-danger': vm.octaneMenu.isSelected('95')}">
+           <span ng-bind="vm.octaneMenu.getSelected()"></span>
+           <span class="caret"></span>
+         </button>
+         <ul class="dropdown-menu">
+           <li class="text-right" ng-class="{active: vm.octaneMenu.isSelected('91')}" ng-click="vm.octaneMenu.select('91')">
+             <a ng-click="$event.preventDefault()" href="#">91</a>
+           </li>
+           <li class="text-right" ng-class="{active: vm.octaneMenu.isSelected('95')}" ng-click="vm.octaneMenu.select('95')">
+             <a ng-click="$event.preventDefault()" href="#">95</a>
+           </li>
+         </ul>
+       </div>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dir="rtl">
+          <span ng-bind="vm.vehicleOptionMenu.getSelectedLabel()"></span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('effeciency')}" ng-click="vm.vehicleOptionMenu.select('effeciency')">
+            <a ng-click="$event.preventDefault()" href="#">كفاءة استهلاك المركبة</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('vehicle')}" ng-click="vm.vehicleOptionMenu.select('vehicle')">
+            <a ng-click="$event.preventDefault()" href="#">المركبة</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <span dir="rtl" class="help-block">
       <a target="_blank" href="https://www.sls.gov.sa/Pages/ar/Consumer/UsedVehicles.aspx"
