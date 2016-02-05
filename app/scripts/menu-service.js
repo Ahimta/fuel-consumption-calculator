@@ -49,7 +49,7 @@ angular.module('fuelCalculator')
 
       isSelectedManufacturer: function (manufacturer) { return manufacturer === selectedManufacturer },
       isSelectedModel: function (model) { return model === selectedModel },
-      isSelectedYear: function (year) { return year === selectedYear },
+      isSelectedYear: function (year) { return (''+year) === (''+selectedYear) },
 
       getAvailableManufacturers: function () { return vehicleService.getAvailableManufacturers(selectedYear) },
       getAvailableModels: function () { return vehicleService.getAvailableModels(selectedYear, selectedManufacturer) },
