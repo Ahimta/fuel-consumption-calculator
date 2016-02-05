@@ -9,6 +9,6 @@ angular.module('fuelCalculator').controller('NavbarCtrl', ['$location', 'setting
   this.octaneHidden = function ()
   {
     var path = $location.path()
-    return path === '/comparison' || path === '/fuel-volume'
+    return path === '/comparison' || path === '/fuel-volume' || path === '/distance'
   }
 }])

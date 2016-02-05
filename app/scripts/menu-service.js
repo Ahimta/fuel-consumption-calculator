@@ -1,8 +1,62 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.service('menuService', ['$window', 'periodService', 'priceService', 'settingsService', function ($window, periodService, priceService, settingsService)
+.service('menuService', ['$window', 'periodService', 'priceService', 'settingsService', 'vehicleService', function ($window, periodService, priceService, settingsService, vehicleService)
 {
+  this.getVehiclesMenu = function (initialYear, initalManufacturer, initialModel, dontSave)
+  {
+    var selectedManufacturer = initalManufacturer || 'Toyota'
+    var selectedModel = initialModel || 'Hilux'
+    var selectedYear = initialYear || '2015'
+
+    return {
+      getSelectedManufacturer: function () { return selectedManufacturer },
+      getSelectedModel: function () { return selectedModel },
+      getSelectedYear: function () { return selectedYear },
+
+      getDistanceForLiter: function ()
+      { return vehicleService.getDistanceForLiter(selectedYear, selectedManufacturer, selectedModel) },
+
+      selectManufacturer: function (manufacturer)
+      {
+        selectedManufacturer = manufacturer
+        selectedModel = vehicleService.getFirstModel(selectedYear, manufacturer, selectedModel)
+
+        if (!dontSave)
+        {
+          settingsService.manufacturer(selectedManufacturer)
+          settingsService.model(selectedModel)
+        }
+      },
+      selectModel: function (model)
+      {
+        selectedModel = model
+        if (!dontSave) { settingsService.model(model) }
+      },
+      selectYear: function (year)
+      {
+        selectedYear = year
+        selectedManufacturer = vehicleService.getFirstManufacturer(year, selectedManufacturer)
+        selectedModel = vehicleService.getFirstModel(year, selectedManufacturer, selectedModel)
+
+        if (!dontSave)
+        {
+          settingsService.manufacturer(selectedManufacturer)
+          settingsService.model(selectedModel)
+          settingsService.year(selectedYear)
+        }
+      },
+
+      isSelectedManufacturer: function (manufacturer) { return manufacturer === selectedManufacturer },
+      isSelectedModel: function (model) { return model === selectedModel },
+      isSelectedYear: function (year) { return year === selectedYear },
+
+      getAvailableManufacturers: function () { return vehicleService.getAvailableManufacturers(selectedYear) },
+      getAvailableModels: function () { return vehicleService.getAvailableModels(selectedYear, selectedManufacturer) },
+      getAvailableYears: vehicleService.getAvailableYears
+    }
+  }
+
   function getMenuModel (menuName, initialValue)
   {
     var selectedValue = initialValue || null
@@ -17,6 +71,29 @@ angular.module('fuelCalculator')
         if ($window.ga) { $window.ga('send', 'event', menuName, 'change', (currentSelected + '->' + value)) }
       }
     }
+  }
+
+  this.getVehicleOptionMenu = function (initialValue)
+  {
+    var menuModel = getMenuModel('Vehicle Option', initialValue || 'vehicle')
+    var oldSelect = menuModel.select
+
+    menuModel.getSelectedLabel = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'effeciency': return 'كفاءة استهلاك المركبة'
+        case 'vehicle':    return 'المركبة'
+      }
+    }
+
+    menuModel.select = function (option)
+    {
+      settingsService.vehicleOption(option)
+      oldSelect(option)
+    }
+
+    return menuModel
   }
 
   this.getOctaneMenu = function (initialValue, dontSave)
