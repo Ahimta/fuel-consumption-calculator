@@ -73,7 +73,7 @@ angular.module('fuelCalculator')
     }
   }
 
-  this.getVehicleOptionMenu = function (initialValue)
+  this.getVehicleOptionMenu = function (initialValue, dontSave)
   {
     var menuModel = getMenuModel('Vehicle Option', initialValue || 'vehicle')
     var oldSelect = menuModel.select
@@ -89,7 +89,7 @@ angular.module('fuelCalculator')
 
     menuModel.select = function (option)
     {
-      settingsService.vehicleOption(option)
+      if (!dontSave) { settingsService.vehicleOption(option) }
       oldSelect(option)
     }
 

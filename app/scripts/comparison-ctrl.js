@@ -12,10 +12,21 @@ angular.module('fuelCalculator')
   this.distanceForLiters2 = settingsService.consumption()
 
   this.periodTable = periodService.getPeriodTable()
-  this.periodMenu = menuService.getPeriodMenu()
-  this.measureMenu = menuService.getMeasureMenu()
+
+  this.vehicleOptionMenu1 = menuService.getVehicleOptionMenu('effeciency', true)
+  this.vehicleOptionMenu2 = menuService.getVehicleOptionMenu('effeciency', true)
+  this.vehiclesMenu1 = menuService.getVehiclesMenu(settingsService.year(), settingsService.manufacturer(), settingsService.model(), true)
+  this.vehiclesMenu2 = menuService.getVehiclesMenu(settingsService.year(), settingsService.manufacturer(), settingsService.model(), true)
   this.octaneMenu1 = menuService.getOctaneMenu(settingsService.fuelType(), true)
   this.octaneMenu2 = menuService.getOctaneMenu(settingsService.fuelType(), true)
+  this.measureMenu = menuService.getMeasureMenu()
+  this.periodMenu = menuService.getPeriodMenu()
+
+  this.getDistanceForLiter1 = function ()
+  { return vm.vehicleOptionMenu1.isSelected('vehicle') ? vm.vehiclesMenu1.getDistanceForLiter() : vm.distanceForLiters1 }
+
+  this.getDistanceForLiter2 = function ()
+  { return vm.vehicleOptionMenu2.isSelected('vehicle') ? vm.vehiclesMenu2.getDistanceForLiter() : vm.distanceForLiters2 }
 
   this.getSelectedUnit = function ()
   {
@@ -28,7 +39,7 @@ angular.module('fuelCalculator')
 
   this.whichBetter = function()
   {
-    return fuelService.whichBetter('new', vm.octaneMenu1.getSelected(), vm.distanceForLiters1, vm.octaneMenu2.getSelected(), vm.distanceForLiters2)
+    return fuelService.whichBetter('new', vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2())
   }
 
   this.getFirstClass = function ()
@@ -68,8 +79,8 @@ angular.module('fuelCalculator')
 
   this.cost.calculateDistanceDifference = function (factor)
   {
-    var distance1 = vm.cost.calculateDistance(vm.octaneMenu1.getSelected(), vm.distanceForLiters1, factor)
-    var distance2 = vm.cost.calculateDistance(vm.octaneMenu2.getSelected(), vm.distanceForLiters2, factor)
+    var distance1 = vm.cost.calculateDistance(vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), factor)
+    var distance2 = vm.cost.calculateDistance(vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2(), factor)
 
     return Math.abs(fuelService.roundPrice(distance2) - fuelService.roundPrice(distance1))
   }
@@ -91,8 +102,8 @@ angular.module('fuelCalculator')
 
   this.distance.calculatePriceDifference = function (factor)
   {
-    var distance1 = vm.distance.calculatePrice(vm.octaneMenu1.getSelected(), vm.distanceForLiters1, factor)
-    var distance2 = vm.distance.calculatePrice(vm.octaneMenu2.getSelected(), vm.distanceForLiters2, factor)
+    var distance1 = vm.distance.calculatePrice(vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), factor)
+    var distance2 = vm.distance.calculatePrice(vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2(), factor)
 
     return Math.abs(fuelService.roundPrice(distance2) - fuelService.roundPrice(distance1))
   }
