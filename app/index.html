@@ -93,6 +93,10 @@
     <p>
   </footer>
 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+          crossorigin="anonymous"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js" crossorigin="anonymous"></script>
 
@@ -115,9 +119,6 @@
   <script src='scripts/alerts-ctrl.js'></script>
   <!-- endbuild -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
-          crossorigin="anonymous"></script>
-
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
           integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
           crossorigin="anonymous"></script>
@@ -135,6 +136,20 @@
     $(".navbar-collapse a:not(.dropdown-toggle), .navbar-brand").click(function ()
     {
       $(".navbar-collapse").collapse("hide")
+    })
+
+    var prevTop = 0
+    var w = $(window)
+    var n = $('nav.navbar')
+
+    w.scroll(function (event)
+    {
+      var currentTop = w.scrollTop()
+
+      if      (currentTop > prevTop) { n.fadeOut() }
+      else if (currentTop < prevTop) { n.fadeIn() }
+
+      prevTop = currentTop
     })
   </script>
 </body>
