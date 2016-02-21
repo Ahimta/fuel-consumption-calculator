@@ -82,10 +82,20 @@ angular.module('fuelCalculator')
     {
       switch (menuModel.getSelected())
       {
+        case 'average':    return 'معدل استهلاك المركبة'
         case 'effeciency': return 'كفاءة استهلاك المركبة'
         case 'vehicle':    return 'المركبة'
       }
     }
+
+    menuModel.getSelectedUnit = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'average':    return 'لتر/100كيلو'
+        case 'effeciency': return 'كيلو/لتر'
+      }
+    };
 
     menuModel.select = function (option)
     {

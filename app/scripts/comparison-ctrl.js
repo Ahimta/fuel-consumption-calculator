@@ -22,11 +22,21 @@ angular.module('fuelCalculator')
   this.measureMenu = menuService.getMeasureMenu()
   this.periodMenu = menuService.getPeriodMenu()
 
+  function getDistanceForLiter (vehicleOptionMenu, vehiclesMenu, distanceForLiters)
+  {
+    switch (vehicleOptionMenu.getSelected())
+    {
+      case 'average':    return 100 / distanceForLiters
+      case 'effeciency': return distanceForLiters
+      case 'vehicle':    return vehiclesMenu.getDistanceForLiter()
+    }
+  }
+
   this.getDistanceForLiter1 = function ()
-  { return vm.vehicleOptionMenu1.isSelected('vehicle') ? vm.vehiclesMenu1.getDistanceForLiter() : vm.distanceForLiters1 }
+  { return getDistanceForLiter(vm.vehicleOptionMenu1, vm.vehiclesMenu1, vm.distanceForLiters1) }
 
   this.getDistanceForLiter2 = function ()
-  { return vm.vehicleOptionMenu2.isSelected('vehicle') ? vm.vehiclesMenu2.getDistanceForLiter() : vm.distanceForLiters2 }
+  { return getDistanceForLiter(vm.vehicleOptionMenu2, vm.vehiclesMenu2, vm.distanceForLiters2) }
 
   this.getSelectedUnit = function ()
   {

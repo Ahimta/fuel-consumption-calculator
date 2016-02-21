@@ -55,6 +55,9 @@
           <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('effeciency')}" ng-click="vm.vehicleOptionMenu.select('effeciency')">
             <a ng-click="$event.preventDefault()" href="#">كفاءة استهلاك المركبة</a>
           </li>
+          <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('average')}" ng-click="vm.vehicleOptionMenu.select('average')">
+            <a ng-click="$event.preventDefault()" href="#">معدل استهلاك المركبة</a>
+          </li>
           <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('vehicle')}" ng-click="vm.vehicleOptionMenu.select('vehicle')">
             <a ng-click="$event.preventDefault()" href="#">المركبة</a>
           </li>
@@ -123,9 +126,9 @@
       </a>
     </span>
   </div>
-  <div class="form-group" ng-show="vm.vehicleOptionMenu.isSelected('effeciency')">
+  <div class="form-group" ng-show="vm.vehicleOptionMenu.isSelected('average') || vm.vehicleOptionMenu.isSelected('effeciency')">
     <div class="input-group" ng-class="{'has-error': consumptionForm.distanceForLiters.$invalid}">
-      <div class="input-group-addon">كيلو/لتر</div>
+      <div class="input-group-addon" ng-bind="vm.vehicleOptionMenu.getSelectedUnit()"></div>
       <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters" required
              class="form-control" dir="rtl"
              ng-model="vm.distanceForLiters" ng-change="vm.setConsumption(vm.distanceForLiters)">
@@ -154,13 +157,16 @@
           <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('effeciency')}" ng-click="vm.vehicleOptionMenu.select('effeciency')">
             <a ng-click="$event.preventDefault()" href="#">كفاءة استهلاك المركبة</a>
           </li>
+          <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('average')}" ng-click="vm.vehicleOptionMenu.select('average')">
+            <a ng-click="$event.preventDefault()" href="#">معدل استهلاك المركبة</a>
+          </li>
           <li class="text-right" ng-class="{active: vm.vehicleOptionMenu.isSelected('vehicle')}" ng-click="vm.vehicleOptionMenu.select('vehicle')">
             <a ng-click="$event.preventDefault()" href="#">المركبة</a>
           </li>
         </ul>
       </div>
     </div>
-    <span dir="rtl" class="help-block">
+    <span dir="rtl" class="help-block" ng-show="vm.vehicleOptionMenu.isSelected('effeciency')">
       <a target="_blank" href="https://www.sls.gov.sa/Pages/ar/Consumer/UsedVehicles.aspx"
          onclick="ga('send', 'event', 'Fuel Effeciency Link', 'click', 'Cost')">
         كفاءة الطاقة للسيارات
