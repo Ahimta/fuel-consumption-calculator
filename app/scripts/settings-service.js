@@ -30,13 +30,8 @@ angular.module('fuelCalculator').service('settingsService', ['$window', function
 
   this.fuelType = function (value)
   {
-    if (value)
-    {
-      var currentFuelType = self.fuelType()
-      $window.localStorage.setItem('fuelType', value)
-      if ($window.ga) { $window.ga('send', 'event', 'Octane', 'change', (currentFuelType + '->' + value)) }
-    }
-    else { return $window.localStorage.getItem('fuelType') || '91' }
+    if (value) { $window.localStorage.setItem('fuelType', value)         }
+    else       { return $window.localStorage.getItem('fuelType') || '91' }
   }
 
   this.tankVolume = function (value)
