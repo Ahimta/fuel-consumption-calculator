@@ -4,7 +4,7 @@ angular.module('fuelCalculator', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider)
 {
   $routeProvider
-    .when('/comparison', {
+    .when('/vehicle-comparison', {
       templateUrl: 'views/comparison.html',
       controller: 'ComparisonCtrl',
       controllerAs: 'vm'
@@ -24,6 +24,7 @@ angular.module('fuelCalculator', ['ngRoute'])
       controller: 'TankVolumeCtrl',
       controllerAs: 'vm'
     })
+    .when('/comparison', {redirectTo: '/vehicle-comparison'})
     .when('/tank-volume', {redirectTo: '/tank'})
     .otherwise({redirectTo: '/distance'})
 }])
