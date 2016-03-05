@@ -116,7 +116,7 @@ angular.module('fuelCalculator')
     {
       switch (menuModel.getSelected())
       {
-        case 'average':    return 'معدل استهلاك المركبة'
+        case 'average':    return 'لتر/100كيلو'
         case 'effeciency': return 'كفاءة استهلاك المركبة'
         case 'vehicle':    return 'المركبة'
       }
