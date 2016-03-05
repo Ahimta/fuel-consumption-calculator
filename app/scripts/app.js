@@ -24,11 +24,12 @@ angular.module('fuelCalculator', ['ngRoute'])
       controller: 'FuelVolumeCtrl',
       controllerAs: 'vm'
     })
-    .when('/tank-volume', {
+    .when('/tank', {
       templateUrl: 'views/tank-volume.html',
       controller: 'TankVolumeCtrl',
       controllerAs: 'vm'
     })
+    .when('/tank-volume', {redirectTo: '/tank'})
     .otherwise({redirectTo: '/distance'})
 }])
 .run(['$rootScope', '$location', '$window', function($rootScope, $location, $window)

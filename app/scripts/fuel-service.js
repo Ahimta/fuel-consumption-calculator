@@ -56,6 +56,12 @@ angular.module('fuelCalculator').service('fuelService', function ()
     else                                    { return 'same'   }
   }
 
+  this.getLitersByPrice = function (priceType, fuelType, price)
+  {
+    var literPrice = getLiterPrice(priceType, fuelType)
+    return price / literPrice
+  }
+
   this.calculateByDistance = calculateByDistance
   this.calculateByVolume = calculateByVolume
 

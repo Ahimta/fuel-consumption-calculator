@@ -20,6 +20,8 @@ angular.module('fuelCalculator')
   this.vehiclesMenu = menuService.getVehiclesMenu(settingsService.year(), settingsService.manufacturer(), settingsService.model())
   this.octaneMenu = menuService.getOctaneMenu(settingsService.fuelType())
   this.periodMenu = menuService.getPeriodMenu('week')
+  this.priceMenu = menuService.getPriceTypeMenu()
+  this.tankMeasureMenu = menuService.getTankMeasureMenu()
 
   function getDistanceForLiter ()
   {
@@ -35,7 +37,7 @@ angular.module('fuelCalculator')
   {
     var distanceForLiter = getDistanceForLiter()
     var fillTimesPerDay = vm.periodMenu.getValuePerDay(vm.fillTimes) * factor
-    var volumePerDay = vm.tankVolume * fillTimesPerDay
+    var volumePerDay = vm.tankMeasureMenu.getLiters(vm.priceMenu.getSelected(), vm.octaneMenu.getSelected(), vm.tankVolume * fillTimesPerDay)
 
     return fuelService.calculateDistanceByVolume(distanceForLiter, vm.litersForDistance, volumePerDay)
   }

@@ -29,10 +29,38 @@
   </div>
   <div class="form-group">
     <div class="input-group" ng-class="{'has-error': tankForm.tankVolume.$invalid}">
-      <div class="input-group-addon">لتر</div>
+      <div class="input-group-addon" ng-bind="vm.tankMeasureMenu.getSelectedUnit()"></div>
       <input type="number" min="1" max="1000000000" step="1" name="tankVolume" required
-             class="form-control" dir="rtl" ng-model="vm.tankVolume" ng-change="vm.updateTankVolume(vm.tankVolume)">
-      <div class="input-group-addon">حجم التانكي</div>
+             class="form-control" dir="rtl" ng-model="vm.tankVolume">
+      <div class="input-group-btn" ng-show="vm.tankMeasureMenu.isSelected('price')">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
+         <span class="caret"></span>
+         <span ng-bind="vm.priceMenu.getSelectedLabel()"></span>
+       </button>
+       <ul class="dropdown-menu dropdown-menu-right">
+         <li class="text-right" ng-class="{active: vm.priceMenu.isSelected('new')}" ng-click="vm.priceMenu.select('new')">
+           <a ng-click="$event.preventDefault()" href="#">حالياً</a>
+         </li>
+         <li class="text-right" ng-class="{active: vm.priceMenu.isSelected('old')}" ng-click="vm.priceMenu.select('old')">
+           <a ng-click="$event.preventDefault()" href="#">سابقاً</a>
+         </li>
+       </ul>
+      </div>
+      <div class="input-group-btn">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="caret"></span>
+         <span ng-bind="vm.tankMeasureMenu.getSelectedLabel()"></span>
+       </button>
+       <ul class="dropdown-menu dropdown-menu-right">
+         <li class="text-right" ng-class="{active: vm.tankMeasureMenu.isSelected('price')}" ng-click="vm.tankMeasureMenu.select('price')">
+           <a ng-click="$event.preventDefault()" href="#">تكلفة التعبئة</a>
+         </li>
+         <li class="text-right" ng-class="{active: vm.tankMeasureMenu.isSelected('volume')}" ng-click="vm.tankMeasureMenu.select('volume')">
+           <a ng-click="$event.preventDefault()" href="#">حجم التانكي</a>
+         </li>
+       </ul>
+     </div>
     </div>
   </div>
 </form>

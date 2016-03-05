@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.service('menuService', ['$window', 'periodService', 'priceService', 'settingsService', 'vehicleService', function ($window, periodService, priceService, settingsService, vehicleService)
+.service('menuService', ['$window', 'fuelService', 'periodService', 'priceService', 'settingsService', 'vehicleService', function ($window, fuelService, periodService, priceService, settingsService, vehicleService)
 {
   this.getVehiclesMenu = function (initialYear, initalManufacturer, initialModel, dontSave)
   {
@@ -71,6 +71,40 @@ angular.module('fuelCalculator')
         if ($window.ga) { $window.ga('send', 'event', menuName, 'change', (currentSelected + '->' + value)) }
       }
     }
+  }
+
+  this.getTankMeasureMenu = function (initialValue)
+  {
+    var menuModel = getMenuModel('Tank Measure', initialValue || 'price')
+
+    menuModel.getSelectedLabel = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'price':  return 'تكلفة التعبئة'
+        case 'volume': return 'حجم التانكي'
+      }
+    }
+
+    menuModel.getSelectedUnit = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'price':  return 'ريال'
+        case 'volume': return 'لتر'
+      }
+    }
+
+    menuModel.getLiters = function (priceType, fuelType, priceOrVolume)
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'price':  return fuelService.getLitersByPrice(priceType, fuelType, priceOrVolume)
+        case 'volume': return priceOrVolume
+      }
+    }
+
+    return menuModel
   }
 
   this.getVehicleOptionMenu = function (initialValue, dontSave)
