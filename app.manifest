@@ -6,7 +6,6 @@ scripts.js
 views/comparison.html
 views/cost.html
 views/distance.html
-views/fuel-volume.html
 views/tank-volume.html
 favicons/favicon.ico
 https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
@@ -18,4 +17,4 @@ https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
 NETWORK:
 *
 
-# hash: 7c5685b2f37c1c6b9b9766aa2077061817ad4cbb00506e9bc158d5f81a2b592e
+# hash: d935e8a78a6389e722d355cb5734e344c181f7b5fd50e82ca4900f99d17ffe4b
