@@ -19,11 +19,6 @@ angular.module('fuelCalculator', ['ngRoute'])
       controller: 'DistanceCtrl',
       controllerAs: 'vm'
     })
-    .when('/fuel-volume', {
-      templateUrl: 'views/fuel-volume.html',
-      controller: 'FuelVolumeCtrl',
-      controllerAs: 'vm'
-    })
     .when('/tank', {
       templateUrl: 'views/tank-volume.html',
       controller: 'TankVolumeCtrl',
