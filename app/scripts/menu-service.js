@@ -167,8 +167,17 @@ angular.module('fuelCalculator')
     {
       switch (menuModel.getSelected())
       {
-        case 'distance': return 'المسافة'
+        case 'distance': return 'المسافة المقطوعة'
         case 'cost':     return 'التكلفة'
+      }
+    }
+
+    menuModel.getSelectedUnit = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'distance': return 'كيلو'
+        case 'cost':     return 'ريال'
       }
     }
 

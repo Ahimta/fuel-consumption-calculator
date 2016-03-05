@@ -6,7 +6,7 @@ angular.module('fuelCalculator')
   var vm = this
 
   this.litersForDistance = 1
-  this.cost = 1
+  this.cost = 50
 
   this.distanceForLiters = settingsService.consumption()
   this.setConsumption = settingsService.consumption
@@ -17,6 +17,7 @@ angular.module('fuelCalculator')
   this.octaneMenu = menuService.getOctaneMenu(settingsService.fuelType())
   this.periodMenu = menuService.getPeriodMenu()
   this.priceMenu = menuService.getPriceTypeMenu()
+  this.measureMenu = menuService.getMeasureMenu()
 
   function getDistanceForLiter ()
   {
@@ -30,21 +31,37 @@ angular.module('fuelCalculator')
 
   this.calculateDistance = function (factor)
   {
-    var distanceForLiters = getDistanceForLiter()
-    var costPerPeriod = vm.periodMenu.getValuePerDay(vm.cost) * factor
-    var priceType = vm.priceMenu.getSelected()
-    var fuelType = settingsService.fuelType()
+    switch (vm.measureMenu.getSelected())
+    {
+      case 'cost':
+        var distanceForLiters = getDistanceForLiter()
+        var costPerPeriod = vm.periodMenu.getValuePerDay(vm.cost) * factor
+        var priceType = vm.priceMenu.getSelected()
+        var fuelType = settingsService.fuelType()
 
-    return fuelService.calculateDistanceByPrice(priceType, fuelType, distanceForLiters, vm.litersForDistance, costPerPeriod)
+        return fuelService.calculateDistanceByPrice(priceType, fuelType, distanceForLiters, vm.litersForDistance, costPerPeriod)
+
+      case 'distance':
+        var distancePerDay = vm.periodMenu.getValuePerDay(vm.cost)
+        return distancePerDay * factor
+    }
   }
 
   this.calculatePrice = function (priceType, factor)
   {
     var distanceForLiters = getDistanceForLiter()
     var fuelType = settingsService.fuelType()
-    var distance = vm.calculateDistance(factor)
 
-    return fuelService.calculateByDistance(priceType, fuelType, distanceForLiters, vm.litersForDistance, distance)
+    switch (vm.measureMenu.getSelected())
+    {
+      case 'cost':
+        var distance = vm.calculateDistance(factor)
+        return fuelService.calculateByDistance(priceType, fuelType, distanceForLiters, vm.litersForDistance, distance)
+
+      case 'distance':
+        var distancePerPeriod = vm.periodMenu.getValuePerDay(vm.cost) * factor
+        return fuelService.calculateByDistance(priceType, fuelType, distanceForLiters, vm.litersForDistance, distancePerPeriod)
+    }
   }
 
   this.calculatePriceDifference = function (factor)

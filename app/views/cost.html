@@ -1,10 +1,10 @@
 <form name="costForm">
   <div class="form-group">
     <div class="input-group" ng-class="{'has-error': costForm.cost.$invalid}">
-      <div class="input-group-addon">ريال</div>
+      <div class="input-group-addon" ng-bind="vm.measureMenu.getSelectedUnit()"></div>
       <input type="number" min="1" max="1000000000" step="1" name="cost" required
-             id="cost" class="form-control" dir="rtl" ng-model="vm.cost">
-      <div class="input-group-btn">
+             class="form-control" dir="rtl" ng-model="vm.cost">
+      <div class="input-group-btn" ng-show="vm.measureMenu.isSelected('cost')">
        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
          <span class="caret"></span>
@@ -20,26 +20,41 @@
        </ul>
       </div>
       <div class="input-group-btn">
-       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
          <span class="caret"></span>
-         التكلفة في
+         <span>في</span>
          <span ng-bind="vm.periodMenu.getSelectedLabel()"></span>
        </button>
        <ul class="dropdown-menu dropdown-menu-right">
          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('day')}" ng-click="vm.periodMenu.select('day')">
-           <a ng-click="$event.preventDefault()" href="#">التكلفة في اليوم</a>
+           <a ng-click="$event.preventDefault()" href="#">في اليوم</a>
          </li>
          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('week')}" ng-click="vm.periodMenu.select('week')">
-           <a ng-click="$event.preventDefault()" href="#">التكلفة في الاسبوع</a>
+           <a ng-click="$event.preventDefault()" href="#">في الاسبوع</a>
          </li>
          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('month')}" ng-click="vm.periodMenu.select('month')">
-           <a ng-click="$event.preventDefault()" href="#">التكلفة في الشهر</a>
+           <a ng-click="$event.preventDefault()" href="#">في الشهر</a>
          </li>
          <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('year')}" ng-click="vm.periodMenu.select('year')">
-           <a ng-click="$event.preventDefault()" href="#">التكلفة في السنة</a>
+           <a ng-click="$event.preventDefault()" href="#">في السنة</a>
          </li>
        </ul>
      </div>
+     <div class="input-group-btn">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span ng-bind="vm.measureMenu.getSelectedLabel()"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li class="text-right" ng-class="{active: vm.measureMenu.isSelected('distance')}" ng-click="vm.measureMenu.select('distance')">
+          <a ng-click="$event.preventDefault()" href="#">المسافة المقطوعة</a>
+        </li>
+        <li class="text-right" ng-class="{active: vm.measureMenu.isSelected('cost')}" ng-click="vm.measureMenu.select('cost')">
+          <a ng-click="$event.preventDefault()" href="#">التكلفة</a>
+        </li>
+      </ul>
+    </div>
     </div>
   </div>
 </form>

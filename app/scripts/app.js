@@ -9,14 +9,9 @@ angular.module('fuelCalculator', ['ngRoute'])
       controller: 'ComparisonCtrl',
       controllerAs: 'vm'
     })
-    .when('/cost', {
+    .when('/cost-and-distance', {
       templateUrl: 'views/cost.html',
       controller: 'CostCtrl',
-      controllerAs: 'vm'
-    })
-    .when('/distance', {
-      templateUrl: 'views/distance.html',
-      controller: 'DistanceCtrl',
       controllerAs: 'vm'
     })
     .when('/tank', {
@@ -25,8 +20,10 @@ angular.module('fuelCalculator', ['ngRoute'])
       controllerAs: 'vm'
     })
     .when('/comparison', {redirectTo: '/vehicle-comparison'})
+    .when('/cost', {redirectTo: '/cost-and-distance'})
+    .when('/distance', {redirectTo: '/cost-and-distance'})
     .when('/tank-volume', {redirectTo: '/tank'})
-    .otherwise({redirectTo: '/distance'})
+    .otherwise({redirectTo: '/cost-and-distance'})
 }])
 .run(['$rootScope', '$location', '$window', function($rootScope, $location, $window)
 {
