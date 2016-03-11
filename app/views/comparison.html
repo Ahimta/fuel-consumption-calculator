@@ -308,7 +308,12 @@
     <table class="table table-hover table-condensed table-bordered">
       <thead>
         <tr>
-          <th class="text-center danger">الفرق</th>
+          <th class="text-center danger">
+            <span class="hidden-xs">
+              <span>%</span><span ng-bind="vm.getPercentage() | number:0"></span>
+            </span>
+            <span>الفرق</span>
+          </th>
           <th class="text-center" ng-class="vm.getSecondClass()">مسافة الثانية</th>
           <th class="text-center" ng-class="vm.getFirstClass()">مسافة الأولى</th>
           <th class="text-center active">التكلفة</th>
@@ -344,7 +349,12 @@
     <table class="table table-hover table-condensed table-bordered">
       <thead>
         <tr>
-          <th class="text-center danger">الفرق</th>
+          <th class="text-center danger">
+            <span class="hidden-xs">
+              <span>%</span><span ng-bind="vm.getPercentage() | number:0"></span>
+            </span>
+            <span>الفرق</span>
+          </th>
           <th class="text-center" ng-class="vm.getSecondClass()">تكلفة الثانية</th>
           <th class="text-center" ng-class="vm.getFirstClass()">تكلفة الأولى</th>
           <th class="text-center active">المسافة</th>

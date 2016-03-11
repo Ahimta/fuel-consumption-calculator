@@ -40,16 +40,29 @@ angular.module('fuelCalculator').service('fuelService', function ()
     return calculateByVolume(priceType, fuelType, volume)
   }
 
+  function getPricePerKilo (priceType, fuelType, distanceForLiter)
+  { return getLiterPrice(priceType, fuelType) / distanceForLiter }
+
   this.roundPrice = function (price)
   {
     if (price < 10) { return price             }
     else            { return Math.round(price) }
   }
 
+  this.getPercentageDifference = function (priceType, fuelType1, distanceForLiters1, fuelType2, distanceForLiters2)
+  {
+    var pricePerKilo1 = getPricePerKilo(priceType, fuelType1, distanceForLiters1)
+    var pricePerKilo2 = getPricePerKilo(priceType, fuelType2, distanceForLiters2)
+
+    if      (pricePerKilo1 > pricePerKilo2) { return pricePerKilo1 / pricePerKilo2 * 100 }
+    else if (pricePerKilo2 > pricePerKilo1) { return pricePerKilo2 / pricePerKilo1 * 100 }
+    else                                    { return 0                                   }
+  }
+
   this.whichBetter = function (priceType, fuelType1, distanceForLiters1, fuelType2, distanceForLiters2)
   {
-    var pricePerKilo1 = getLiterPrice(priceType, fuelType1) / distanceForLiters1
-    var pricePerKilo2 = getLiterPrice(priceType, fuelType2) / distanceForLiters2
+    var pricePerKilo1 = getPricePerKilo(priceType, fuelType1, distanceForLiters1)
+    var pricePerKilo2 = getPricePerKilo(priceType, fuelType2, distanceForLiters2)
 
     if      (pricePerKilo1 < pricePerKilo2) { return 'first'  }
     else if (pricePerKilo2 < pricePerKilo1) { return 'second' }

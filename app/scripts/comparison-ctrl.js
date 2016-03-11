@@ -72,6 +72,11 @@ angular.module('fuelCalculator')
     }
   }
 
+  this.getPercentage = function ()
+  {
+    return fuelService.getPercentageDifference('new', vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2())
+  }
+
   this.cost = {}
 
   this.cost.calculateDistance = function (fuelType, distanceForLiters, factor)
