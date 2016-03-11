@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.controller('AlertsCtrl', ['$window', 'settingsService', function ($window, settingsService)
+.controller('AlertsCtrl', ['$scope', '$window', 'settingsService', function ($scope, $window, settingsService)
 {
   var vm = this
 
@@ -23,6 +23,7 @@ angular.module('fuelCalculator')
     {
       console.log('updateready')
       vm.isNewerVersionAvailable = true
+      $scope.digest()
     }
 
     $window.applicationCache.addEventListener('updateready', onUpdateReady)
