@@ -15,8 +15,8 @@ angular.module('fuelCalculator', ['ngRoute'])
       controllerAs: 'vm'
     })
     .when('/tank', {
-      templateUrl: 'views/tank-volume.html',
-      controller: 'TankVolumeCtrl',
+      templateUrl: 'views/tank.html',
+      controller: 'TankCtrl',
       controllerAs: 'vm'
     })
     .when('/comparison', {redirectTo: '/vehicle-comparison'})

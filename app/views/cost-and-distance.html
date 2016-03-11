@@ -1,8 +1,8 @@
 <form name="costForm">
   <div class="form-group">
-    <div class="input-group" ng-class="{'has-error': costForm.cost.$invalid}">
+    <div class="input-group" ng-class="{'has-error': costForm.costOrDistance.$invalid}">
       <div class="input-group-addon" ng-bind="vm.measureMenu.getSelectedUnit()"></div>
-      <input type="number" min="1" max="1000000000" step="1" name="cost" required
+      <input type="number" min="1" max="1000000000" step="1" name="costOrDistance" required
              class="form-control" dir="rtl" ng-model="vm.costOrDistance">
       <div class="input-group-btn" ng-show="vm.measureMenu.isSelected('cost')">
        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
