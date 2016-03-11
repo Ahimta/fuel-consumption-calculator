@@ -31,7 +31,7 @@
     <div class="input-group" ng-class="{'has-error': tankForm.tankCostOrVolume.$invalid}">
       <div class="input-group-addon" ng-bind="vm.tankMeasureMenu.getSelectedUnit()"></div>
       <input type="number" min="1" max="1000000000" step="1" name="tankCostOrVolume" required
-             class="form-control" dir="rtl" ng-model="vm.tankCostOrVolume">
+             class="form-control" dir="rtl" ng-model="vm.tankCostOrVolume" ng-change="vm.updateTankCostOrVolume(vm.tankCostOrVolume)">
       <div class="input-group-btn" ng-show="vm.tankMeasureMenu.isSelected('price')">
        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">

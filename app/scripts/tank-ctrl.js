@@ -13,7 +13,7 @@ angular.module('fuelCalculator')
 
   this.periodTable = periodService.getPeriodTable()
 
-  this.updateTankVolume = settingsService.tankCostOrVolume
+  this.updateTankCostOrVolume = settingsService.tankVolume
   this.setConsumption = settingsService.consumption
 
   this.vehicleOptionMenu = menuService.getVehicleOptionMenu(settingsService.vehicleOption())
