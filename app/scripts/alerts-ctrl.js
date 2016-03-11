@@ -1,10 +1,11 @@
 'use strict'
 
-angular.module('fuelCalculator').controller('AlertsCtrl', ['$window', 'settingsService', function ($window, settingsService)
+angular.module('fuelCalculator')
+.controller('AlertsCtrl', ['$scope', '$window', 'settingsService', function ($scope, $window, settingsService)
 {
   var isNewerVersionAvailable = false
 
-  this.alertsRead = function () { return !isNewerVersionAvailable && settingsService.alertsRead() }
+  this.alertsRead = function () { return settingsService.alertsRead() }
 
   this.dismiss = function () { settingsService.alertsRead(true) }
 
@@ -18,7 +19,12 @@ angular.module('fuelCalculator').controller('AlertsCtrl', ['$window', 'settingsS
 
   if ($window.applicationCache)
   {
-    function onUpdateReady() { console.log('updateready'); isNewerVersionAvailable = true }
+    function onUpdateReady()
+    {
+      console.log('updateready')
+      isNewerVersionAvailable = true
+      $scope.digest()
+    }
 
     $window.applicationCache.addEventListener('updateready', onUpdateReady)
 

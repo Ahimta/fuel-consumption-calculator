@@ -69,12 +69,12 @@
     </nav>
   </header>
 
-  <aside class="container" ng-controller="AlertsCtrl as alerts" ng-hide="alerts.alertsRead()">
+  <aside class="container" ng-controller="AlertsCtrl as alerts" ng-hide="alerts.alertsRead() && !alerts.isNewerVersionAvailable()">
     <div class="alert alert-success alert-dismissible" role="alert" dir="rtl">
       <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close" ng-click="alerts.dismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
-      <p>الموقع يعمل بدون انترنت</p>
+      <p ng-hide="alerts.alertsRead()">الموقع يعمل بدون انترنت</p>
       <p ng-show="alerts.isNewerVersionAvailable()">
         <span>يوجد إصدار جديد: </span><a ng-click="alerts.update($event)" href="#">حدث الآن</a>
       </p>
