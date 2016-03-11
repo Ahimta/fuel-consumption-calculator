@@ -8,7 +8,7 @@ angular.module('fuelCalculator').controller('AlertsCtrl', ['$window', 'settingsS
 
   this.dismiss = function () { settingsService.alertsRead(true) }
 
-  this.isNewerVersionAvailable = function () { return isNewerVersionAvailable; }
+  this.isNewerVersionAvailable = function () { return isNewerVersionAvailable }
 
   this.update = function (event)
   {
@@ -18,7 +18,7 @@ angular.module('fuelCalculator').controller('AlertsCtrl', ['$window', 'settingsS
 
   if ($window.applicationCache)
   {
-    function onUpdateReady() { isNewerVersionAvailable = true }
+    function onUpdateReady() { console.log('updateready'); isNewerVersionAvailable = true }
 
     $window.applicationCache.addEventListener('updateready', onUpdateReady)
 
