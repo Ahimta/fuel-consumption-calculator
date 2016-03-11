@@ -4,9 +4,8 @@ CACHE:
 index.html
 scripts.js
 views/comparison.html
-views/cost.html
-views/distance.html
-views/tank-volume.html
+views/cost-and-distance.html
+views/tank.html
 favicons/favicon.ico
 https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
 https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js
@@ -17,4 +16,4 @@ https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
 NETWORK:
 *
 
-# hash: 2925da37618b53e6a74dbfb2cb7a5960bc57505d71ad1f6481f2538d83aea603
+# hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
