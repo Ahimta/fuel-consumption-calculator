@@ -8,8 +8,8 @@ angular.module('fuelCalculator')
   this.litersForDistance = 1
   this.costOrDistance = 50
 
-  this.distanceForLiters1 = settingsService.consumption()
-  this.distanceForLiters2 = settingsService.consumption()
+  this.distanceForLiters1 = settingsService.averageOrEfficiency()
+  this.distanceForLiters2 = settingsService.averageOrEfficiency()
 
   this.periodTable = periodService.getPeriodTable()
 

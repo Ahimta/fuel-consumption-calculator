@@ -34,13 +34,13 @@ angular.module('fuelCalculator').service('settingsService', ['$window', function
     else       { return $window.localStorage.getItem('fuelType') || '91' }
   }
 
-  this.tankVolume = function (value)
+  this.tankCostOrVolume = function (value)
   {
     if (value) { $window.localStorage.setItem('tankVolume', parseFloat(value) || 65) }
     else       { return parseFloat($window.localStorage.getItem('tankVolume')) || 65 }
   }
 
-  this.consumption = function (value)
+  this.averageOrEfficiency = function (value)
   {
     if (value) { $window.localStorage.setItem('consumption', parseFloat(value) || 8) }
     else       { return parseFloat($window.localStorage.getItem('consumption')) || 8 }

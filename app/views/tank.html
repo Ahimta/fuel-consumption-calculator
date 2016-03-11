@@ -152,7 +152,7 @@
       <div class="input-group-addon" ng-bind="vm.vehicleOptionMenu.getSelectedUnit()"></div>
       <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters" required
              class="form-control" dir="rtl"
-             ng-model="vm.distanceForLiters" ng-change="vm.setConsumption(vm.distanceForLiters)">
+             ng-model="vm.distanceForLiters" ng-change="vm.updateAverageOrEfficiency(vm.distanceForLiters)">
        <div class="input-group-btn">
          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dir="rtl"
                  style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;"

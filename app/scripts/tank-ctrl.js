@@ -5,16 +5,16 @@ angular.module('fuelCalculator')
 {
   var vm = this
 
-  this.distanceForLiters = settingsService.consumption()
-  this.tankCostOrVolume = settingsService.tankVolume()
+  this.distanceForLiters = settingsService.averageOrEfficiency()
+  this.tankCostOrVolume = settingsService.tankCostOrVolume()
 
   this.litersForDistance = 1
   this.fillTimes = 1
 
   this.periodTable = periodService.getPeriodTable()
 
-  this.updateTankCostOrVolume = settingsService.tankVolume
-  this.setConsumption = settingsService.consumption
+  this.updateTankCostOrVolume = settingsService.tankCostOrVolume
+  this.updateAverageOrEfficiency = settingsService.averageOrEfficiency
 
   this.vehicleOptionMenu = menuService.getVehicleOptionMenu(settingsService.vehicleOption())
   this.vehiclesMenu = menuService.getVehiclesMenu(settingsService.year(), settingsService.manufacturer(), settingsService.model())
