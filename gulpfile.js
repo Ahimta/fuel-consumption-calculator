@@ -45,7 +45,7 @@ gulp.task('manifest', () =>
         'index.html',
         'scripts.js',
         'views/comparison.html',
-        'views/cost.html',
+        'views/cost-and-distance.html',
         'views/tank-volume.html',
         'favicons/favicon.ico',
         'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',

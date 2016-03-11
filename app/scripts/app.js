@@ -10,8 +10,8 @@ angular.module('fuelCalculator', ['ngRoute'])
       controllerAs: 'vm'
     })
     .when('/cost-and-distance', {
-      templateUrl: 'views/cost.html',
-      controller: 'CostCtrl',
+      templateUrl: 'views/cost-and-distance.html',
+      controller: 'CostAndDistanceCtrl',
       controllerAs: 'vm'
     })
     .when('/tank', {

@@ -1,12 +1,12 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.controller('CostCtrl', ['fuelService', 'menuService', 'periodService', 'settingsService', function (fuelService, menuService, periodService, settingsService)
+.controller('CostAndDistanceCtrl', ['fuelService', 'menuService', 'periodService', 'settingsService', function (fuelService, menuService, periodService, settingsService)
 {
   var vm = this
 
   this.litersForDistance = 1
-  this.cost = 50
+  this.costOrDistance = 50
 
   this.distanceForLiters = settingsService.consumption()
   this.setConsumption = settingsService.consumption
@@ -35,14 +35,14 @@ angular.module('fuelCalculator')
     {
       case 'cost':
         var distanceForLiters = getDistanceForLiter()
-        var costPerPeriod = vm.periodMenu.getValuePerDay(vm.cost) * factor
+        var costPerPeriod = vm.periodMenu.getValuePerDay(vm.costOrDistance) * factor
         var priceType = vm.priceMenu.getSelected()
         var fuelType = settingsService.fuelType()
 
         return fuelService.calculateDistanceByPrice(priceType, fuelType, distanceForLiters, vm.litersForDistance, costPerPeriod)
 
       case 'distance':
-        var distancePerDay = vm.periodMenu.getValuePerDay(vm.cost)
+        var distancePerDay = vm.periodMenu.getValuePerDay(vm.costOrDistance)
         return distancePerDay * factor
     }
   }
@@ -59,7 +59,7 @@ angular.module('fuelCalculator')
         return fuelService.calculateByDistance(priceType, fuelType, distanceForLiters, vm.litersForDistance, distance)
 
       case 'distance':
-        var distancePerPeriod = vm.periodMenu.getValuePerDay(vm.cost) * factor
+        var distancePerPeriod = vm.periodMenu.getValuePerDay(vm.costOrDistance) * factor
         return fuelService.calculateByDistance(priceType, fuelType, distanceForLiters, vm.litersForDistance, distancePerPeriod)
     }
   }
