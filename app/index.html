@@ -146,8 +146,8 @@
       var currentTop = w.scrollTop()
       var difference = currentTop - prevTop
 
-      if      (difference > +10) { n.fadeOut() }
-      else if (difference < -10) { n.fadeIn() }
+      if      (difference > +5) { n.fadeOut() }
+      else if (difference < -5) { n.fadeIn() }
 
       prevTop = currentTop
     })
