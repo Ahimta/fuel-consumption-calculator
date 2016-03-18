@@ -1,0 +1,128 @@
+<form name="waterForm">
+  <div class="form-group">
+    <div class="input-group" ng-class="{'has-error': waterForm.costOrVolume.$invalid}">
+      <div class="input-group-addon" ng-bind="vm.measureMenu.getSelectedUnit()"></div>
+      <input type="number" min="1" max="1000000000" step="1" name="costOrVolume" required
+             class="form-control" dir="rtl" ng-model="vm.costOrVolume">
+      <div class="input-group-btn" ng-show="vm.measureMenu.isSelected('cost')">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
+         <span class="caret"></span>
+         <span ng-bind="vm.priceMenu.getSelectedLabel()"></span>
+       </button>
+       <ul class="dropdown-menu dropdown-menu-right">
+         <li class="text-right" ng-class="{active: vm.priceMenu.isSelected('new')}" ng-click="vm.priceMenu.select('new')">
+           <a ng-click="$event.preventDefault()" href="#">حاليا</a>
+         </li>
+         <li class="text-right" ng-class="{active: vm.priceMenu.isSelected('old')}" ng-click="vm.priceMenu.select('old')">
+           <a ng-click="$event.preventDefault()" href="#">سابقا</a>
+         </li>
+       </ul>
+      </div>
+      <div class="input-group-btn">
+       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
+         <span class="caret"></span>
+         <span>كل</span>
+         <span ng-bind="vm.periodMenu.getSelectedLabel()"></span>
+       </button>
+       <ul class="dropdown-menu dropdown-menu-right">
+         <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('month')}" ng-click="vm.periodMenu.select('month')">
+           <a ng-click="$event.preventDefault()" href="#">كل شهر</a>
+         </li>
+         <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('three-months')}" ng-click="vm.periodMenu.select('three-months')">
+           <a ng-click="$event.preventDefault()" href="#">كل 3 شهور</a>
+         </li>
+         <li class="text-right" ng-class="{active: vm.periodMenu.isSelected('year')}" ng-click="vm.periodMenu.select('year')">
+           <a ng-click="$event.preventDefault()" href="#">كل سنة</a>
+         </li>
+       </ul>
+     </div>
+     <div class="input-group-btn">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span ng-bind="vm.measureMenu.getSelectedLabel()"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li class="text-right" ng-class="{active: vm.measureMenu.isSelected('volume')}" ng-click="vm.measureMenu.select('volume')">
+          <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك</a>
+        </li>
+        <li class="text-right" ng-class="{active: vm.measureMenu.isSelected('cost')}" ng-click="vm.measureMenu.select('cost')">
+          <a ng-click="$event.preventDefault()" href="#">التكلفة</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <span class="help-block" dir="rtl">
+      <a href="https://ebranch.nwc.com.sa/Arabic/Pages/BillCalculator.aspx" target="_blank"
+         onclick="ga('send', 'event', 'Water Cost and Volume', 'click', 'National Water Company')">شركة المياه الوطنية</a>
+    </span>
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="numberOfUnits">عدد الوحدات</label>
+    <div class="input-group" ng-class="{'has-error': waterForm.numberOfUnits.$invalid}">
+      <div class="input-group-addon">وحدة</div>
+      <input type="number" name="numberOfUnits" min="1" max="1000000000" step="1" pattern="\d+" required
+             class="form-control" id="numberOfUnits" dir="rtl" ng-model="vm.numberOfUnits" ng-init="vm.numberOfUnits = 1">
+      <div class="input-group-addon">عدد الوحدات</div>
+    </div>
+    <span class="help-block" dir="rtl">
+      <span>عادة يكون</span>
+      <span>1</span>
+      <span>للوحدات السكنية</span>
+    </span>
+  </div>
+  <div class="form-group" dir="rtl">
+    <label for="counterRadius">قطر العداد</label>
+    <select class="form-control" id="counterRadius" ng-model="vm.counterRadius"
+            ng-options="item.value as item.label for item in vm.radiusOptions">
+    </select>
+    <span class="help-block" dir="rtl">
+      <span>عادة يكون</span>
+      <span>0.75</span>
+      <span>للوحدات السكنية</span>
+    </span>
+  </div>
+  <div class="checkbox" dir="rtl">
+    <label>
+      <input type="checkbox" ng-model="vm.withService">
+      <span style="margin-right: 1.5em">يوجد خدمة صرف صحي</span>
+    </label>
+  </div>
+</form>
+<article ng-show="waterForm.$valid">
+  <div class="table-responsive">
+    <table class="table table-hover table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center danger">الفرق</th>
+          <th class="text-center warning">التكلفة سابقا</th>
+          <th class="text-center success">التكلفة حاليا</th>
+          <th class="text-center active">الكمية</th>
+          <th class="text-center active">المدة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
+          <td class="text-center danger" dir="rtl" style="border-right: 0; border-left: 0">
+            <b ng-bind="vm.calculatePriceDifference(factor) | number:1"></b>
+            <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
+          </td>
+          <td class="text-center warning" dir="rtl">
+            <span ng-bind="vm.calculatePrice('old', factor) | number:1"></span>
+            <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
+          </td>
+          <td class="text-center success" dir="rtl">
+            <span ng-bind="vm.calculatePrice('new', factor) | number:1"></span>
+            <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
+          </td>
+          <td class="text-center active" dir="rtl">
+            <span ng-bind="vm.calculateVolume(factor) | number:0"></span>
+            <span class="hidden-xs" style="font-size: 0.6em">متر مكعب</span>
+          </td>
+          <th class="text-center active" ng-bind="period" dir="rtl" style="border-right: 0; border-left: 0"></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</article>

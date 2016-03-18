@@ -19,10 +19,16 @@ angular.module('fuelCalculator', ['ngRoute'])
       controller: 'TankCtrl',
       controllerAs: 'vm'
     })
+    .when('/water/cost-and-volume', {
+      templateUrl: 'views/water-cost-and-volume.html',
+      controller: 'WaterCostAndVolumeCtrl',
+      controllerAs: 'vm'
+    })
     .when('/comparison', {redirectTo: '/vehicle-comparison'})
     .when('/cost', {redirectTo: '/cost-and-distance'})
     .when('/distance', {redirectTo: '/cost-and-distance'})
     .when('/tank-volume', {redirectTo: '/tank'})
+    .when('/water/comparison', {redirectTo: '/water/cost-and-volume'})
     .otherwise({redirectTo: '/cost-and-distance'})
 }])
 .run(['$rootScope', '$location', '$window', function($rootScope, $location, $window)

@@ -159,6 +159,31 @@ angular.module('fuelCalculator')
     return menuModel
   }
 
+  this.getWaterMeasureMenu = function (initialValue)
+  {
+    var menuModel = getMenuModel('Water Measure', initialValue || 'volume')
+
+    menuModel.getSelectedLabel = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'cost':   return 'التكلفة'
+        case 'volume': return 'كمية الاستهلاك'
+      }
+    }
+
+    menuModel.getSelectedUnit = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'cost':   return 'ريال'
+        case 'volume': return 'متر مكعب'
+      }
+    }
+
+    return menuModel
+  }
+
   this.getMeasureMenu = function (initialValue)
   {
     var menuModel = getMenuModel('Measure', initialValue || 'distance')
@@ -201,6 +226,18 @@ angular.module('fuelCalculator')
 
     menuModel.getValuePerDay = function (valuePerPeriod)
     { return periodService.getValuePerDay(menuModel.getSelected(), valuePerPeriod) }
+
+    return menuModel
+  }
+
+  this.getWaterPeriodMenu = function (initialValue)
+  {
+    var menuModel = getMenuModel('Water Period', initialValue || 'month')
+
+    menuModel.getSelectedLabel = function () { return periodService.getWaterPeriodLabel(menuModel.getSelected()) }
+
+    menuModel.getValuePerMonth = function (valuePerPeriod)
+    { return periodService.getWaterValuePerMonth(menuModel.getSelected(), valuePerPeriod) }
 
     return menuModel
   }

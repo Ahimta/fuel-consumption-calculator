@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('fuelCalculator').service('periodService', ['$window', function ($window)
+angular.module('fuelCalculator').service('periodService', [function ()
 {
     var TABLE_DAY = 'يوم'
     var TABLE_WEEK = 'اسبوع'
@@ -17,7 +17,36 @@ angular.module('fuelCalculator').service('periodService', ['$window', function (
 
     this.getPeriodLabel = function (period) { return VISUAL_PERIODS[period] }
 
+    this.getWaterPeriodLabel = function (period)
+    {
+      switch (period)
+      {
+        case 'month':        return 'شهر'
+        case 'three-months': return '3 شهور'
+        case 'year':         return 'سنة'
+      }
+    }
+
+    this.getWaterValuePerMonth = function (period, valuePerPeriod)
+    {
+      switch (period)
+      {
+        case 'month':        return valuePerPeriod
+        case 'three-months': return valuePerPeriod / 3
+        case 'year':         return valuePerPeriod / 12
+      }
+    }
+
     this.getValuePerDay = function (period, valuePerPeriod) { return valuePerPeriod / PERIODS_FACTORS[period] }
 
     this.getPeriodTable = function () { return PERIOD_TABLE }
+
+    this.getWaterTable = function ()
+    {
+      var MONTH = 'شهر'
+      var THREE_MONTHS = '3 شهور'
+      var YEAR = 'سنة'
+
+      return [[MONTH, 1], [THREE_MONTHS, 3], [YEAR, 12]]
+    }
 }])
