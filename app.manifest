@@ -6,6 +6,7 @@ scripts.js
 views/comparison.html
 views/cost-and-distance.html
 views/tank.html
+views/water-cost-and-volume.html
 favicons/favicon.ico
 https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
 https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js
@@ -16,4 +17,4 @@ https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
 NETWORK:
 *
 
-# hash: 7c36418cef7a9409b56d56c78e05b929d735f4c245c94f842fc318ada356177d
+# hash: eb0aa5da582b660424b129ac06094dd052a5e36de679c745862d763f3a87b32f
