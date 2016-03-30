@@ -1,13 +1,13 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.controller('WaterCostAndVolumeCtrl', ['fuelService', 'menuService', 'periodService', 'settingsService', 'waterService', function (fuelService, menuService, periodService, settingsService, waterService)
+.controller('WaterCostAndVolumeCtrl', ['$routeParams', 'fuelService', 'menuService', 'periodService', 'settingsService', 'validationService', 'waterService', function ($routeParams, fuelService, menuService, periodService, settingsService, validationService, waterService)
 {
   var vm = this
 
-  this.costOrVolume = 50
-  this.counterRadius = 19
-  this.withService = false
+  this.costOrVolume = parseInt($routeParams.costOrVolume) || 30
+  this.counterRadius = parseInt(validationService.getValidCounterRadius($routeParams.counterRadius)) || 19
+  this.withService = parseInt($routeParams.withService) === 1 || false
 
   this.radiusOptions = [
     {label: '0.5 (12mm)', value: 12},
@@ -17,10 +17,10 @@ angular.module('fuelCalculator')
     {label: '2 أو أكثر (60mm أو أكثر)', value: 60},
   ]
 
-  this.measureMenu = menuService.getWaterMeasureMenu()
-  this.periodMenu = menuService.getWaterPeriodMenu()
+  this.measureMenu = menuService.getWaterMeasureMenu(validationService.getValidWaterMeasure($routeParams.measure))
+  this.periodMenu = menuService.getWaterPeriodMenu(validationService.getValidWaterPeriod($routeParams.period))
   this.periodTable = periodService.getWaterTable()
-  this.priceMenu = menuService.getPriceTypeMenu()
+  this.priceMenu = menuService.getPriceTypeMenu(validationService.getValidPriceType($routeParams.priceType))
 
   this.calculateVolume = function (factor)
   {
