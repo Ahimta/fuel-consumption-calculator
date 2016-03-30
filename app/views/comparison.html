@@ -121,7 +121,7 @@
     </div>
   </div>
   <div class="form-group" ng-show="vm.vehicleOptionMenu1.isSelected('average') || vm.vehicleOptionMenu1.isSelected('effeciency')">
-    <div class="input-group" ng-class="{'has-error': consumptionForm.distanceForLiters.$invalid}">
+    <div class="input-group" ng-class="{'has-error': consumptionForm1.distanceForLiters1.$invalid}">
       <div class="input-group-addon" ng-bind="vm.vehicleOptionMenu1.getSelectedUnit()"></div>
        <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters1" required
               class="form-control" dir="rtl" ng-model="vm.distanceForLiters1">
@@ -251,7 +251,7 @@
     </span>
   </div>
   <div class="form-group" ng-show="vm.vehicleOptionMenu2.isSelected('average') || vm.vehicleOptionMenu2.isSelected('effeciency')">
-    <div class="input-group" ng-class="{'has-error': consumptionForm.distanceForLiters.$invalid}">
+    <div class="input-group" ng-class="{'has-error': consumptionForm2.distanceForLiters2.$invalid}">
       <div class="input-group-addon" ng-bind="vm.vehicleOptionMenu2.getSelectedUnit()"></div>
       <input type="number" min="1" max="1000000000" step="1" name="distanceForLiters2" required
              class="form-control" dir="rtl" ng-model="vm.distanceForLiters2">
