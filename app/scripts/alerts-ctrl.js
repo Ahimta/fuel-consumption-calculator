@@ -23,7 +23,7 @@ angular.module('fuelCalculator')
     {
       console.log('updateready')
       vm.isNewerVersionAvailable = true
-      $scope.digest()
+      $scope.$digest()
     }
 
     $window.applicationCache.addEventListener('updateready', onUpdateReady)
