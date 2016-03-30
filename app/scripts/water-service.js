@@ -34,45 +34,40 @@ angular.module('fuelCalculator').service('waterService', [function ()
     return costOrVolumeSum + (remainingSumOrVolume * excessiveConsumptionPrice)
   }
 
-  function calculateOldPriceByVolume (volume)
-  { return calculatePriceHelper([[50, 0.1], [50, 0.15], [100, 2], [100, 4]], 6, volume) }
+  function calculateOldPriceByVolume (units, volume)
+  { return calculatePriceHelper([[50, 0.1], [50, 0.15], [100, 2], [100, 4]], 6, volume / units) * units }
 
-  function calculateNewPriceByVolume (withService, volume)
+  function calculateNewPriceByVolume (units, radius, withService, volume)
   {
-    var cost = calculatePriceHelper([[15, 0.1], [15, 1], [15, 3], [15, 4]], 6, volume)
-    return (withService ? cost * 1.5 : cost)
+    var maintainance = calculateMaintainance(radius)
+    var cost = calculatePriceHelper([[15, 0.1], [15, 1], [15, 3], [15, 4]], 6, volume / units) * units
+    return (withService ? cost * 1.5 : cost) + maintainance
   }
 
-  function calculateVolumeByOldPrice (cost)
-  { return calculatePriceHelper([[50*0.1, 1/0.1], [50*0.15, 1/0.15], [100*2, 1/2], [100*4, 1/4]], 1/6, cost) }
+  function calculateVolumeByOldPrice (units, cost)
+  { return calculatePriceHelper([[50*0.1, 1/0.1], [50*0.15, 1/0.15], [100*2, 1/2], [100*4, 1/4]], 1/6, cost / units) * units }
 
-  function calculateVolumeByNewPrice (withService, cost)
+  function calculateVolumeByNewPrice (units, radius, withService, cost)
   {
-    var actualCost = (withService ? cost / 1.5 : cost)
-    var volume = calculatePriceHelper([[15*0.1, 1/0.1], [15*1, 1/1], [15*3, 1/3], [15*4, 1/4]], 1/6, actualCost)
+    var maintainance = calculateMaintainance(radius)
+    var costPerUnit = (cost - maintainance) / units
+    var actualCost = (withService ? costPerUnit / 1.5 : costPerUnit)
+    var volume = calculatePriceHelper([[15*0.1, 1/0.1], [15*1, 1/1], [15*3, 1/3], [15*4, 1/4]], 1/6, actualCost) * units
 
-    return volume
+    return (actualCost <= maintainance ? 0 : volume)
   }
 
   this.calculatePriceByVolume = function (priceType, units, radius, withService, volume)
   {
-    var maintainance = calculateMaintainance(radius)
-    var volumePerUnit = volume / units
-    var costPerUnit = (priceType === 'new' ?
-                       calculateNewPriceByVolume(withService, volumePerUnit) :
-                       calculateOldPriceByVolume(volumePerUnit))
-
-    return costPerUnit * units + maintainance
+    return (priceType === 'new' ?
+            calculateNewPriceByVolume(units, radius, withService, volume) :
+            calculateOldPriceByVolume(units, volume))
   }
 
   this.calculateVolumeByPrice = function (priceType, units, radius, withService, cost)
   {
-    var maintainance = calculateMaintainance(radius)
-    var costPerUnit = (cost - maintainance) / units
-    var volumePerUnit = (priceType === 'new' ?
-                         calculateVolumeByNewPrice(withService, costPerUnit) :
-                         calculateVolumeByOldPrice(costPerUnit))
-
-    return (cost <= maintainance ? 0 : volumePerUnit * units)
+    return (priceType === 'new' ?
+            calculateVolumeByNewPrice(units, radius, withService, cost) :
+            calculateVolumeByOldPrice(units, cost))
   }
 }])
