@@ -54,7 +54,7 @@ angular.module('fuelCalculator').service('waterService', [function ()
     var actualCost = (withService ? costPerUnit / 1.5 : costPerUnit)
     var volume = calculatePriceHelper([[15*0.1, 1/0.1], [15*1, 1/1], [15*3, 1/3], [15*4, 1/4]], 1/6, actualCost) * units
 
-    return (actualCost <= maintainance ? 0 : volume)
+    return (cost <= maintainance ? 0 : volume)
   }
 
   this.calculatePriceByVolume = function (priceType, units, radius, withService, volume)
