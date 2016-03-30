@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.controller('WaterCostAndVolumeCtrl', ['$routeParams', 'fuelService', 'menuService', 'periodService', 'settingsService', 'validationService', 'waterService', function ($routeParams, fuelService, menuService, periodService, settingsService, validationService, waterService)
+.controller('WaterCostAndVolumeCtrl', ['$routeParams', 'fuelService', 'menuService', 'periodService', 'priceService', 'settingsService', 'validationService', 'waterService', function ($routeParams, fuelService, menuService, periodService, priceService, settingsService, validationService, waterService)
 {
   var vm = this
 
@@ -59,5 +59,13 @@ angular.module('fuelCalculator')
     var newPrice = vm.calculatePrice('new', factor)
 
     return newPrice - oldPrice
+  }
+
+  this.getDifferencePercentage = function ()
+  {
+    var oldPrice = vm.calculatePrice('old', 1)
+    var newPrice = vm.calculatePrice('new', 1)
+
+    return priceService.getPercentageDifference(oldPrice, newPrice)
   }
 }])
