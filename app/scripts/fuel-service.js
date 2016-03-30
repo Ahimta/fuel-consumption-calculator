@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('fuelCalculator').service('fuelService', function ()
+angular.module('fuelCalculator').service('fuelService', ['priceService', function (priceService)
 {
 
   function calculateDistanceByVolume (distanceForLiters, litersForDistance, volume)
@@ -54,9 +54,7 @@ angular.module('fuelCalculator').service('fuelService', function ()
     var pricePerKilo1 = getPricePerKilo(priceType, fuelType1, distanceForLiters1)
     var pricePerKilo2 = getPricePerKilo(priceType, fuelType2, distanceForLiters2)
 
-    if      (pricePerKilo1 > pricePerKilo2) { return pricePerKilo1 / pricePerKilo2 * 100 }
-    else if (pricePerKilo2 > pricePerKilo1) { return pricePerKilo2 / pricePerKilo1 * 100 }
-    else                                    { return 0                                   }
+    return priceService.getPercentageDifference(pricePerKilo1, pricePerKilo2)
   }
 
   this.whichBetter = function (priceType, fuelType1, distanceForLiters1, fuelType2, distanceForLiters2)
@@ -82,4 +80,4 @@ angular.module('fuelCalculator').service('fuelService', function ()
   this.calculateDistanceByPrice = calculateDistanceByPrice
 
   this.getLiterPrice = getLiterPrice
-})
+}])
