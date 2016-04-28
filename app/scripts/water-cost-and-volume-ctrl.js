@@ -24,17 +24,12 @@ angular.module('fuelCalculator')
 
   this.calculateVolume = function (factor)
   {
+    var measure = vm.measureMenu.getSelected()
+    var priceType = vm.priceMenu.getSelected()
     var costOrVolumePerMonth = vm.periodMenu.getValuePerMonth(vm.costOrVolume)
+    var volumePerMonth = waterService.calculateVolumeByMeasure(measure, priceType, vm.numberOfUnits, vm.counterRadius, vm.withService, costOrVolumePerMonth)
 
-    switch (vm.measureMenu.getSelected())
-    {
-      case 'cost':
-        var priceType = vm.priceMenu.getSelected()
-        return waterService.calculateVolumeByPrice(priceType, vm.numberOfUnits, vm.counterRadius, vm.withService, costOrVolumePerMonth) * factor
-
-      case 'volume':
-        return costOrVolumePerMonth * factor
-    }
+    return volumePerMonth * factor
   }
 
   this.calculatePrice = function (priceType, factor)

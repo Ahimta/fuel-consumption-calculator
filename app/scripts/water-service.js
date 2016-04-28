@@ -2,6 +2,8 @@
 
 angular.module('fuelCalculator').service('waterService', [function ()
 {
+  var self = this
+
   function calculateMaintainance (radius)
   {
     if      (radius >= 50) { return 15 }
@@ -69,5 +71,14 @@ angular.module('fuelCalculator').service('waterService', [function ()
     return (priceType === 'new' ?
             calculateVolumeByNewPrice(units, radius, withService, cost) :
             calculateVolumeByOldPrice(units, cost))
+  }
+
+  this.calculateVolumeByMeasure = function (measure, priceType, units, radius, withService, costOrVolume)
+  {
+    switch (measure)
+    {
+      case 'cost':   return self.calculateVolumeByPrice(priceType, units, radius, withService, costOrVolume)
+      case 'volume': return costOrVolume
+    }
   }
 }])
