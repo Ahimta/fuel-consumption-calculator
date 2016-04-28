@@ -81,4 +81,15 @@ angular.module('fuelCalculator').service('waterService', [function ()
       case 'volume': return costOrVolume
     }
   }
+
+  this.getRadiusOptions = function ()
+  {
+    return [
+        {label: '0.5 (12mm)', value: 12},
+        {label: '0.75 (19mm)', value: 19},
+        {label: '1.25 (40mm)', value: 40},
+        {label: '1.5 (50mm)', value: 50},
+        {label: '2 أو أكثر (60mm أو أكثر)', value: 60},
+      ]
+  }
 }])
