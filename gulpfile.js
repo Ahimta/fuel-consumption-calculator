@@ -47,6 +47,7 @@ gulp.task('manifest', () =>
         'views/comparison.html',
         'views/cost-and-distance.html',
         'views/tank.html',
+        'views/water-comparison.html',
         'views/water-cost-and-volume.html',
         'favicons/favicon.ico',
         'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',

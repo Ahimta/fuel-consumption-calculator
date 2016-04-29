@@ -5,7 +5,7 @@ angular.module('fuelCalculator')
 {
   var vm = this
 
-  this.costOrVolume = parseInt($routeParams.costOrVolume) || 30
+  this.costOrVolume = parseInt($routeParams.costOrVolume) || 10
   this.counterRadius = parseInt(validationService.getValidCounterRadius($routeParams.counterRadius)) || 19
   this.withService = parseInt($routeParams.withService) === 1 || false
 
