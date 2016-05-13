@@ -22,7 +22,7 @@
     ga('create', 'UA-49010546-4', 'auto');
   </script>
 
-  <title>أسعار البنزين و المياه</title>
+  <title>أسعار البنزين و المياه و الكهرباء (قريباً)</title>
 
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -52,23 +52,31 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a target="_blank" onclick="ga('send', 'event', 'Navigation', 'click', 'Contact us')"
-                 href="https://twitter.com/intent/tweet?via=ahymta&url=https%3A//ahimta.github.io/fuel-consumption-calculator/">راسلنا</a>
+              <a target="_blank" onclick="ga('send', 'event', 'Navigation', 'click', 'Contact Us (Icon)')"
+                 title="راسلنا"
+                 href="https://twitter.com/intent/tweet?via=ahymta&url=https%3A//ahimta.github.io/fuel-consumption-calculator/">
+                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+              </a>
             </li>
             <li class="disabled" ng-class="{active: navbar.isElectricityPage()}">
               <a href="#/electricity" dir="rtl"
-                 onclick="ga('send', 'event', 'Navigation', 'click', 'Electricity Prices (Soon)')">
-                أسعار الكهرباء (قريباً)
+                 title="أسعار الكهرباء (قريباً)"
+                 onclick="ga('send', 'event', 'Navigation', 'click', 'Electricity Prices (Soon - icon)')">
+                <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
               </a>
             </li>
             <li ng-class="{active: navbar.isWaterPage()}">
-              <a href="#/water/cost-and-volume" dir="rtl" onclick="ga('send', 'event', 'Navigation', 'click', 'Water Prices')">
-                أسعار المياه
+              <a href="#/water/cost-and-volume" dir="rtl"
+                 title="أسعار المياه"
+                 onclick="ga('send', 'event', 'Navigation', 'click', 'Water Prices (Icon)')">
+                <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
               </a>
             </li>
             <li ng-class="{active: navbar.isFuelPage()}">
-              <a href="#/cost-and-distance" dir="rtl" onclick="ga('send', 'event', 'Navigation', 'click', 'Gasoline Prices')">
-                أسعار البنزين
+              <a href="#/cost-and-distance" dir="rtl"
+                 title="أسعار البنزين"
+                 onclick="ga('send', 'event', 'Navigation', 'click', 'Gasoline Prices (Icon)')">
+                <span class="glyphicon glyphicon-scale" aria-hidden="true"></span>
               </a>
             </li>
           </ul>
