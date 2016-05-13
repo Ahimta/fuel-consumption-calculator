@@ -162,25 +162,15 @@
   <!-- <script src="vendor/bootstrap.min.js"></script> -->
 
   <script>
-    $(".navbar-collapse a:not(.dropdown-toggle), .navbar-brand").click(function ()
+    (function ()
     {
-      $(".navbar-collapse").collapse("hide")
-    })
+      var navbarCollapse = $(".navbar-collapse")
 
-    var prevTop = 0
-    var w = $(window)
-    var n = $('nav.navbar')
-
-    w.scroll(function (event)
-    {
-      var currentTop = w.scrollTop()
-      var difference = currentTop - prevTop
-
-      if      (difference > +5) { n.fadeOut() }
-      else if (difference < -5) { n.fadeIn() }
-
-      prevTop = currentTop
-    })
+      $(".navbar-collapse a:not(.dropdown-toggle), .navbar-brand").click(function ()
+      {
+        navbarCollapse.collapse("hide")
+      })
+    })()
   </script>
 </body>
 </html>
