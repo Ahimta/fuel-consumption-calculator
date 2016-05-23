@@ -9,13 +9,14 @@ views/tank.html
 views/water-comparison.html
 views/water-cost-and-volume.html
 favicons/favicon.ico
-https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
+vendor/bootstrap/css/bootstrap.min.css
 https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js
 https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js
-https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
+vendor/bootstrap/js/bootstrap.min.js
 https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
+vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2
 
 NETWORK:
 *
 
-# hash: ad039360c5764342afc8687c3b84842a2b8f70a70116c389b1961327f1747dd6
+# hash: 4a622e3ca3f55c126f15630d199e72e29eeeec45accbdd0392b44babe20c3036
