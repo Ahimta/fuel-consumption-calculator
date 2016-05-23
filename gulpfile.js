@@ -9,7 +9,8 @@ let gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    usemin = require('gulp-usemin')
+    usemin = require('gulp-usemin'),
+    merge = require('merge-stream')
 
 let runSequence = require('run-sequence')
 
@@ -50,12 +51,12 @@ gulp.task('manifest', () =>
         'views/water-comparison.html',
         'views/water-cost-and-volume.html',
         'favicons/favicon.ico',
-        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
+        'vendor/bootstrap/css/bootstrap.min.css',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js',
-        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
+        'vendor/bootstrap/js/bootstrap.min.js',
         'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
-        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff2'
+        'vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2'
       ],
       hash: true
      }))
@@ -74,9 +75,14 @@ gulp.task('usemin', () =>
 
 gulp.task('copy', () =>
 {
-  gulp.src('app/views/*.html')
+  let html = gulp.src('app/views/*.html')
     .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
     .pipe(gulp.dest('dist/views'))
+
+  let bootstrap = gulp.src('app/vendor/bootstrap/**/*')
+    .pipe(gulp.dest('dist/vendor/bootstrap/'))
+
+  merge(html, bootstrap)
 })
 
 gulp.task('server:connect', () =>
