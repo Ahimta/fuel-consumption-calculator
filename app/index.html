@@ -55,6 +55,20 @@
                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
               </a>
             </li>
+            <li class="dropdown text-right">
+              <a dir="rtl" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                 onclick="ga('send', 'event', 'Navigation', 'click', 'Other Websites')">
+                <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a target="_blank" href="https://ahimta.github.io/bagi"
+                     onclick="ga('send', 'event', 'Navigation', 'click', 'Bagi Link')">
+                     باقي
+                  </a>
+                </li>
+              </ul>
+            </li>
             <li class="disabled text-right" ng-class="{active: navbar.isElectricityPage()}">
               <a href="#/electricity" dir="rtl"
                  title="أسعار الكهرباء (قريباً)"
