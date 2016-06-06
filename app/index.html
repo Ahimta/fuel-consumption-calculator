@@ -109,7 +109,7 @@
   </aside>
 
   <section class="page-header" ng-controller="TabsCtrl as tabs">
-    <nav class="container" ng-hide="tabs.isCurrentPath('/electricity') || tabs.isCurrentPath('/water/cost-and-volume') || tabs.isCurrentPath('/water/comparison')">
+    <nav class="container" ng-show="tabs.isFuelPage()">
       <ul class="nav nav-tabs nav-justified">
         <li ng-class="{active: tabs.isCurrentPath('/vehicle-comparison')}"><a href="#/vehicle-comparison">مقارنة المركبات</a></li>
         <li ng-class="{active: tabs.isCurrentPath('/tank')}"><a href="#/tank">التانكي</a></li>
@@ -117,7 +117,7 @@
       </ul>
     </nav>
 
-    <nav class="container" ng-show="tabs.isCurrentPath('/water/cost-and-volume') || tabs.isCurrentPath('/water/comparison')">
+    <nav class="container" ng-show="tabs.isWaterPage()">
       <ul class="nav nav-tabs nav-justified">
         <li ng-class="{active: tabs.isCurrentPath('/water/comparison')}">
           <a href="#/water/comparison" dir="rtl"
@@ -155,6 +155,7 @@
 
   <!-- build:js(app) scripts.js -->
   <script src='scripts/app.js'></script>
+  <script src='scripts/location-service.js'></script>
   <script src='scripts/validation-service.js'></script>
   <script src='scripts/settings-service.js'></script>
   <script src='scripts/vehicle-service.js'></script>
