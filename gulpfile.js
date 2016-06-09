@@ -10,9 +10,17 @@ let gulp = require('gulp'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
     usemin = require('gulp-usemin'),
-    merge = require('merge-stream')
+    merge = require('merge-stream'),
+    jade = require('gulp-jade')
 
 let runSequence = require('run-sequence')
+
+gulp.task('jade', () =>
+{
+  gulp.src('app/jade_views/*.jade')
+    .pipe(jade())
+    .pipe(gulp.dest('./app/views/'))
+})
 
 gulp.task('favicons', () =>
 {
@@ -110,12 +118,17 @@ gulp.task('server:reload', () =>
 //     .pipe(ghPages())
 // })
 
+gulp.task('reload', (callback) =>
+{
+  runSequence('jade', 'server:reload', callback)
+})
+
 gulp.task('watch', ['server:connect'], () =>
 {
-  gulp.watch(['app/{index.html,views/*.html,scripts/*.js}'], ['server:reload'])
+  gulp.watch(['app/{index.html,views/*.html,scripts/*.js}'], ['reload'])
 })
 
 gulp.task('dist', (callback) =>
 {
-  runSequence(['copy', 'usemin'], ['favicons', 'manifest'], callback)
+  runSequence('jade', ['copy', 'usemin'], ['favicons', 'manifest'], callback)
 })
