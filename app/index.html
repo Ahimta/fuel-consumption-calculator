@@ -22,7 +22,7 @@
     ga('create', 'UA-49010546-4', 'auto');
   </script>
 
-  <title>أسعار البنزين و المياه و الكهرباء (قريباً)</title>
+  <title>أسعار البنزين و المياه و الكهرباء</title>
 
   <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 
@@ -69,10 +69,10 @@
                 </li>
               </ul>
             </li>
-            <li class="disabled text-right" ng-class="{active: navbar.isElectricityPage()}">
-              <a href="#/electricity" dir="rtl"
-                 title="أسعار الكهرباء (قريباً)"
-                 onclick="ga('send', 'event', 'Navigation', 'click', 'Electricity Prices (Soon - icon)')">
+            <li class="text-right" ng-class="{active: navbar.isElectricityPage()}">
+              <a href="#/electricity/consumption-and-cost" dir="rtl"
+                 title="أسعار الكهرباء"
+                 onclick="ga('send', 'event', 'Navigation', 'click', 'Electricity Prices (Icon)')">
                 <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
               </a>
             </li>
@@ -172,7 +172,10 @@
   <script src='scripts/alerts-ctrl.js'></script>
   <script src='scripts/water-cost-and-volume-ctrl.js'></script>
   <script src='scripts/water-comparison-ctrl.js'></script>
+  <script src='scripts/electricity-consumtion-and-cost-ctrl.js'></script>
   <script src='scripts/water-service.js'></script>
+  <script src='scripts/electricity-service.js'></script>
+  <script src='scripts/unit-service.js'></script>
   <!-- endbuild -->
 
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

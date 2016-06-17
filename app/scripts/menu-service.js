@@ -209,6 +209,31 @@ angular.module('fuelCalculator')
     return menuModel
   }
 
+  this.getElectricityMeasureMenu = function (initialValue)
+  {
+    var menuModel = getMenuModel('ElectricityMeasure', initialValue || 'consumption')
+
+    menuModel.getSelectedLabel = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'consumption': return 'شرائح الاستهلاك'
+        case 'cost':        return 'التكلفة'
+      }
+    }
+
+    menuModel.getSelectedUnit = function ()
+    {
+      switch (menuModel.getSelected())
+      {
+        case 'consumption': return 'ك.و.س'
+        case 'cost':        return 'ريال'
+      }
+    }
+
+    return menuModel
+  }
+
   this.getPriceTypeMenu = function (initialValue)
   {
     var menuModel = getMenuModel('PriceType', initialValue || 'new')

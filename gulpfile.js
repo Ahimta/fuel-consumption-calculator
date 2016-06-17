@@ -18,7 +18,7 @@ let runSequence = require('run-sequence')
 gulp.task('jade', () =>
 {
   gulp.src('app/jade_views/*.jade')
-    .pipe(jade())
+    .pipe(jade({pretty: true}))
     .pipe(gulp.dest('./app/views/'))
 })
 
@@ -58,6 +58,7 @@ gulp.task('manifest', () =>
         'views/tank.html',
         'views/water-comparison.html',
         'views/water-cost-and-volume.html',
+        'views/electricity-consumption-and-cost.html',
         'favicons/favicon.ico',
         'vendor/bootstrap/css/bootstrap.min.css',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
@@ -125,7 +126,7 @@ gulp.task('reload', (callback) =>
 
 gulp.task('watch', ['server:connect'], () =>
 {
-  gulp.watch(['app/{index.html,views/*.html,scripts/*.js}'], ['reload'])
+  gulp.watch(['app/{index.html,views/*.html,jade_views/*.jade,scripts/*.js}'], ['reload'])
 })
 
 gulp.task('dist', (callback) =>

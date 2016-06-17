@@ -3,7 +3,7 @@
 angular.module('fuelCalculator').service('locationService', ['$location', function ($location)
 {
   function isCurrentPath (path) { return path === $location.path() }
-  function isElectricityPage () { return $location.path() === '/electricity' }
+  function isElectricityPage () { return $location.path() === '/electricity/consumption-and-cost' }
   function isWaterPage () { return $location.path() === '/water/cost-and-volume' || $location.path() === '/water/comparison' }
 
   this.isFuelPage = function () { return !isElectricityPage() && !isWaterPage() }

@@ -1,0 +1,68 @@
+form(name='electricityForm')
+  div.form-group
+    div.input-group(ng-class="{'has-error': electricityForm.consumptionOrCost.$invalid}")
+      div.input-group-addon(ng-bind='vm.measureMenu.getSelectedUnit()')
+      input.form-control(type='number' min='1' max='1000000000' step='1' name='consumptionOrCost' dir='rtl' required
+                         ng-model='vm.consumptionOrCost')
+      div.input-group-btn(ng-show="vm.measureMenu.isSelected('cost')")
+        button.btn.btn-default.dropdown-toggle(type='button' data-toggle='dropdown'
+                                               style='-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;')
+          span.caret
+          span &nbsp;
+          span(ng-bind='vm.priceMenu.getSelectedLabel()')
+        ul.dropdown-menu.dropdown-menu-right
+          li.text-right(ng-class="{active: vm.priceMenu.isSelected('new')}" ng-click="vm.priceMenu.select('new')")
+            a(ng-click='$event.preventDefault()' href='#') حاليا
+          li.text-right(ng-class="{active: vm.priceMenu.isSelected('old')}" ng-click="vm.priceMenu.select('old')")
+            a(ng-click='$event.preventDefault()' href='#') سابقا
+      div.input-group-btn
+        button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          span.caret
+          span &nbsp;
+          span(ng-bind='vm.measureMenu.getSelectedLabel()')
+        ul.dropdown-menu.dropdown-menu-right
+          li.text-right(ng-class="{active: vm.measureMenu.isSelected('consumption')}", ng-click="vm.measureMenu.select('consumption')")
+            a(ng-click='$event.preventDefault()', href='#') شرائح الاستهلاك
+          li.text-right(ng-class="{active: vm.measureMenu.isSelected('cost')}", ng-click="vm.measureMenu.select('cost')")
+            a(ng-click='$event.preventDefault()', href='#') التكلفة
+  div.form-group
+    div.input-group(ng-class="{'has-error': electricityForm.meter.$invalid}")
+      div.input-group-addon أمبير
+      input.form-control(type='number' min='20' max='1000000' step='1' name='meter' dir='rtl' required ng-model='vm.meter')
+      div.input-group-addon سعة القاطع
+  div.form-group(dir='rtl')
+    label(for='category') فئة الاستهلاك
+    select#category.form-control(ng-model='vm.category', ng-options='item.value as item.label for item in vm.categoryOptions')
+article(ng-show='electricityForm.$valid')
+  div.table-responsive
+      table.table.table-hover.table-condensed.table-bordered
+        thead
+          tr
+            th.text-center.danger
+              span.hidden-xs
+                span %
+                span(ng-bind='vm.getDifferencePercentage(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) | number:0')
+              span الفرق
+            th.text-center.warning التكلفة سابقا
+            th.text-center.success التكلفة حاليا
+            th.text-center.active الشرائح
+            th.text-center.active المدة
+        tbody
+          tr(ng-repeat='pair in vm.periodTable', ng-init='period = pair[0]; factor = pair[1]')
+            td.text-center.danger(dir='rtl', style='border-right: 0; border-left: 0')
+              b(ng-bind='vm.calculatePriceDifference(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
+              span.hidden-xs &nbsp;
+              span.hidden-xs(style='font-size: 0.6em') ريال
+            td.text-center.warning(dir='rtl')
+              span(ng-bind="vm.calculatePrice(vm.measureMenu.getSelected(), 'old', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
+              span.hidden-xs &nbsp;
+              span.hidden-xs(style='font-size: 0.6em') ريال
+            td.text-center.success(dir='rtl')
+              span(ng-bind="vm.calculatePrice(vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
+              span.hidden-xs &nbsp;
+              span.hidden-xs(style='font-size: 0.6em') ريال
+            td.text-center.active(dir='rtl')
+              span(ng-bind='vm.calculateConsumption(vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
+              span.hidden-xs &nbsp;
+              span.hidden-xs(style='font-size: 0.6em') ك.و.س
+            th.text-center.active(ng-bind='period', dir='rtl', style='border-right: 0; border-left: 0')
