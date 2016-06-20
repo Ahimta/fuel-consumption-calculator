@@ -1,0 +1,28 @@
+mixin electricityConsumptionOrCostField(formName, ngModel, measureMenu, priceMenu, optionalSuffix)
+  div.form-group
+    div.input-group(ng-class="{'has-error': #{formName}.consumptionOrCost.$invalid}")
+      div.input-group-addon(ng-bind='#{measureMenu}.getSelectedUnit()')
+      input.form-control(type='number' min='1' max='1000000000' step='1' name='consumptionOrCost' dir='rtl' required
+                         ng-model=ngModel)
+      div.input-group-btn(ng-show="#{measureMenu}.isSelected('cost')")
+        button.btn.btn-default.dropdown-toggle(type='button' data-toggle='dropdown'
+                                               style='-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;')
+          span.caret
+          span &nbsp;
+          span(ng-bind='#{priceMenu}.getSelectedLabel()')
+        ul.dropdown-menu.dropdown-menu-right
+          li.text-right(ng-class="{active: #{priceMenu}.isSelected('new')}" ng-click="#{priceMenu}.select('new')")
+            a(ng-click='$event.preventDefault()' href='#') حاليا
+          li.text-right(ng-class="{active: #{priceMenu}.isSelected('old')}" ng-click="#{priceMenu}.select('old')")
+            a(ng-click='$event.preventDefault()' href='#') سابقا
+      div.input-group-btn
+        button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          span.caret
+          span &nbsp;
+          span= optionalSuffix
+          span(ng-bind='#{measureMenu}.getSelectedLabel()')
+        ul.dropdown-menu.dropdown-menu-right
+          li.text-right(ng-class="{active: #{measureMenu}.isSelected('consumption')}", ng-click="#{measureMenu}.select('consumption')")
+            a(ng-click='$event.preventDefault()', href='#') شرائح الاستهلاك
+          li.text-right(ng-class="{active: #{measureMenu}.isSelected('cost')}", ng-click="#{measureMenu}.select('cost')")
+            a(ng-click='$event.preventDefault()', href='#') التكلفة

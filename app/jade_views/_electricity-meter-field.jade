@@ -1,0 +1,6 @@
+mixin electricityMeterField(formName, ngModel)
+  div.form-group
+    div.input-group(ng-class="{'has-error': #{formName}.meter.$invalid}")
+      div.input-group-addon أمبير
+      input.form-control(type='number' min='20' max='1000000' step='1' name='meter' dir='rtl' required ng-model=ngModel)
+      div.input-group-addon سعة القاطع

@@ -1,0 +1,4 @@
+mixin electricityCategoryField(ngModel, categoryOptions)
+  div.form-group(dir='rtl')
+    label(for='category') فئة الاستهلاك
+    select#category.form-control(ng-model=ngModel, ng-options='item.value as item.label for item in #{categoryOptions}')
