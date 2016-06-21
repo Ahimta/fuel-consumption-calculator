@@ -107,8 +107,8 @@ gulp.task('server:connect', () =>
 
 gulp.task('server:reload', () =>
 {
-  gulp.src('app/{index.html,views/*.html,scripts/*.js}')
-    .pipe(changed('app/{index.html,views/*.html,scripts/*.js}'))
+  gulp.src('app/{index.html,scripts/*.js}')
+    .pipe(changed('app/{index.html,scripts/*.js}'))
     .pipe(connect.reload())
 })
 
@@ -126,7 +126,7 @@ gulp.task('reload', (callback) =>
 
 gulp.task('watch', ['server:connect'], () =>
 {
-  gulp.watch(['app/{index.html,views/*.html,jade_views/*.jade,scripts/*.js}'], ['reload'])
+  gulp.watch(['app/{index.html,jade_views/*.jade,scripts/*.js}'], ['reload'])
 })
 
 gulp.task('dist', (callback) =>
