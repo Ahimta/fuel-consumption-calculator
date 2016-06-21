@@ -124,7 +124,21 @@
              onclick="ga('send', 'event', 'Water Tabs', 'click', 'Water Comparison')">مقارنة الاستهلاك</a>
         </li>
         <li ng-class="{active: tabs.isCurrentPath('/water/cost-and-volume')}">
-          <a href="#/water/cost-and-volume">الكمية و التكلفة</a>
+          <a href="#/water/cost-and-volume" dir="rtl"
+             onclick="ga('send', 'event', 'Water Tabs', 'click', 'Water Cost and Volume')">الكمية و التكلفة</a>
+        </li>
+      </ul>
+    </nav>
+
+    <nav class="container" ng-show="tabs.isElectricityPage()">
+      <ul class="nav nav-tabs nav-justified">
+        <li ng-class="{active: tabs.isCurrentPath('/electricity/comparison')}">
+          <a href="#/electricity/comparison" dir="rtl"
+             onclick="ga('send', 'event', 'Electricity Tabs', 'click', 'Electricity Comparison')">مقارنة الاستهلاك</a>
+        </li>
+        <li ng-class="{active: tabs.isCurrentPath('/electricity/consumption-and-cost')}">
+          <a href="#/electricity/consumption-and-cost" dir="rtl"
+             onclick="ga('send', 'event', 'Electricity Tabs', 'click', 'Electricity Consumption and Cost')">الكمية و التكلفة</a>
         </li>
       </ul>
     </nav>
@@ -173,6 +187,7 @@
   <script src='scripts/water-cost-and-volume-ctrl.js'></script>
   <script src='scripts/water-comparison-ctrl.js'></script>
   <script src='scripts/electricity-consumtion-and-cost-ctrl.js'></script>
+  <script src='scripts/electricity-comparison-ctrl.js'></script>
   <script src='scripts/water-service.js'></script>
   <script src='scripts/electricity-service.js'></script>
   <script src='scripts/unit-service.js'></script>

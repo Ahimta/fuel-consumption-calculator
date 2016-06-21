@@ -15,6 +15,7 @@ article(ng-show='electricityForm.$valid')
               span.hidden-xs
                 span %
                 span(ng-bind='vm.getDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) | number:0')
+                span &nbsp;
               span الفرق
             th.text-center.warning التكلفة سابقا
             th.text-center.success التكلفة حاليا

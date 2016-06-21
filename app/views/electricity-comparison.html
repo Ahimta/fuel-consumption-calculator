@@ -1,0 +1,82 @@
+
+<form name="electricityForm">
+  <div class="form-group">
+    <div ng-class="{'has-error': electricityForm.consumptionOrCost.$invalid}" class="input-group">
+      <div ng-bind="vm.measureMenu.getSelectedUnit()" class="input-group-addon"></div>
+      <input type="number" min="1" max="1000000000" step="1" name="consumptionOrCost" dir="rtl" required="required" ng-model="vm.consumptionOrCost" class="form-control"/>
+      <div ng-show="vm.measureMenu.isSelected('cost')" class="input-group-btn">
+        <button type="button" data-toggle="dropdown" style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;" class="btn btn-default dropdown-toggle"><span class="caret"></span><span>&nbsp;</span><span ng-bind="vm.priceMenu.getSelectedLabel()"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li ng-class="{active: vm.priceMenu.isSelected('new')}" ng-click="vm.priceMenu.select('new')" class="text-right"><a ng-click="$event.preventDefault()" href="#">حاليا</a></li>
+          <li ng-class="{active: vm.priceMenu.isSelected('old')}" ng-click="vm.priceMenu.select('old')" class="text-right"><a ng-click="$event.preventDefault()" href="#">سابقا</a></li>
+        </ul>
+      </div>
+      <div class="input-group-btn">
+        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle"><span class="caret"></span><span>&nbsp;</span><span>1</span><span ng-bind="vm.measureMenu.getSelectedLabel()"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li ng-class="{active: vm.measureMenu.isSelected('consumption')}" ng-click="vm.measureMenu.select('consumption')" class="text-right"><a ng-click="$event.preventDefault()" href="#">شرائح الاستهلاك</a></li>
+          <li ng-class="{active: vm.measureMenu.isSelected('cost')}" ng-click="vm.measureMenu.select('cost')" class="text-right"><a ng-click="$event.preventDefault()" href="#">التكلفة</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div ng-class="{'has-error': electricityForm.consumptionOrCost.$invalid}" class="input-group">
+      <div ng-bind="vm.measureMenu2.getSelectedUnit()" class="input-group-addon"></div>
+      <input type="number" min="1" max="1000000000" step="1" name="consumptionOrCost" dir="rtl" required="required" ng-model="vm.consumptionOrCost2" class="form-control"/>
+      <div ng-show="vm.measureMenu2.isSelected('cost')" class="input-group-btn">
+        <button type="button" data-toggle="dropdown" style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;" class="btn btn-default dropdown-toggle"><span class="caret"></span><span>&nbsp;</span><span ng-bind="vm.priceMenu2.getSelectedLabel()"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li ng-class="{active: vm.priceMenu2.isSelected('new')}" ng-click="vm.priceMenu2.select('new')" class="text-right"><a ng-click="$event.preventDefault()" href="#">حاليا</a></li>
+          <li ng-class="{active: vm.priceMenu2.isSelected('old')}" ng-click="vm.priceMenu2.select('old')" class="text-right"><a ng-click="$event.preventDefault()" href="#">سابقا</a></li>
+        </ul>
+      </div>
+      <div class="input-group-btn">
+        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle"><span class="caret"></span><span>&nbsp;</span><span>2</span><span ng-bind="vm.measureMenu2.getSelectedLabel()"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li ng-class="{active: vm.measureMenu2.isSelected('consumption')}" ng-click="vm.measureMenu2.select('consumption')" class="text-right"><a ng-click="$event.preventDefault()" href="#">شرائح الاستهلاك</a></li>
+          <li ng-class="{active: vm.measureMenu2.isSelected('cost')}" ng-click="vm.measureMenu2.select('cost')" class="text-right"><a ng-click="$event.preventDefault()" href="#">التكلفة</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div ng-class="{'has-error': electricityForm.meter.$invalid}" class="input-group">
+      <div class="input-group-addon">أمبير</div>
+      <input type="number" min="20" max="1000000" step="1" name="meter" dir="rtl" required="required" ng-model="vm.meter" class="form-control"/>
+      <div class="input-group-addon">سعة القاطع</div>
+    </div>
+  </div>
+  <div dir="rtl" class="form-group">
+    <label for="category">فئة الاستهلاك</label>
+    <select id="category" ng-model="vm.category" ng-options="item.value as item.label for item in vm.categoryOptions" class="form-control"></select>
+  </div>
+</form>
+<article ng-show="electricityForm.$valid">
+  <div class="table-responsive">
+    <table class="table table-hover table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center danger"><span class="hidden-xs"><span>%</span><span ng-bind="vm.getCostDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0"></span><span>&nbsp;</span></span><span>فرق التكلفة</span></th>
+          <th class="text-center success">التكلفة2</th>
+          <th class="text-center success">التكلفة1</th>
+          <th class="text-center danger"><span class="hidden-xs"><span>%</span><span ng-bind="vm.getConsumptionDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0"></span><span>&nbsp;</span></span><span>فرق الشرائح</span></th>
+          <th class="text-center active">الشرائح2</th>
+          <th class="text-center active">1الشرائح</th>
+          <th class="text-center active">المدة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
+          <td dir="rtl" style="border-right: 0; border-left: 0" class="text-center danger"><b ng-bind="vm.calculatePriceDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0"></b><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
+          <td dir="rtl" class="text-center success"><span ng-bind="vm.calculatePrice(vm.priceMenu2, vm.measureMenu2.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
+          <td dir="rtl" class="text-center success"><span ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
+          <td dir="rtl" style="border-right: 0; border-left: 0" class="text-center danger"><b ng-bind="vm.calculatePriceDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0"></b><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
+          <td dir="rtl" class="text-center active"><span ng-bind="vm.calculateConsumption(vm.priceMenu2, vm.measureMenu2.getSelected(), vm.priceMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
+          <td dir="rtl" class="text-center active"><span ng-bind="vm.calculateConsumption(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
+          <th ng-bind="period" dir="rtl" style="border-right: 0; border-left: 0" class="text-center active"></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</article>

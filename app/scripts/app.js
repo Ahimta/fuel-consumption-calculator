@@ -29,6 +29,11 @@ angular.module('fuelCalculator', ['ngRoute'])
       controller: 'WaterComparisonCtrl',
       controllerAs: 'vm'
     })
+    .when('/electricity/comparison', {
+      templateUrl: 'views/electricity-comparison.html',
+      controller: 'ElectricityComparisonCtrl',
+      controllerAs: 'vm'
+    })
     .when('/electricity/consumption-and-cost', {
       templateUrl: 'views/electricity-consumption-and-cost.html',
       controller: 'ElectricityConsumptionAndCostCtrl',
