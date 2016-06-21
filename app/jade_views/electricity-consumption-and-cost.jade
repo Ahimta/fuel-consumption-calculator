@@ -14,7 +14,7 @@ article(ng-show='electricityForm.$valid')
             th.text-center.danger
               span.hidden-xs
                 span %
-                span(ng-bind='vm.getDifferencePercentage(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) | number:0')
+                span(ng-bind='vm.getDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) | number:0')
               span الفرق
             th.text-center.warning التكلفة سابقا
             th.text-center.success التكلفة حاليا
@@ -23,19 +23,19 @@ article(ng-show='electricityForm.$valid')
         tbody
           tr(ng-repeat='pair in vm.periodTable', ng-init='period = pair[0]; factor = pair[1]')
             td.text-center.danger(dir='rtl', style='border-right: 0; border-left: 0')
-              b(ng-bind='vm.calculatePriceDifference(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
+              b(ng-bind='vm.calculatePriceDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ريال
             td.text-center.warning(dir='rtl')
-              span(ng-bind="vm.calculatePrice(vm.measureMenu.getSelected(), 'old', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
+              span(ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'old', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ريال
             td.text-center.success(dir='rtl')
-              span(ng-bind="vm.calculatePrice(vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
+              span(ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ريال
             td.text-center.active(dir='rtl')
-              span(ng-bind='vm.calculateConsumption(vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
+              span(ng-bind='vm.calculateConsumption(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ك.و.س
             th.text-center.active(ng-bind='period', dir='rtl', style='border-right: 0; border-left: 0')
