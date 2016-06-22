@@ -51,6 +51,11 @@
     <label for="category">فئة الاستهلاك</label>
     <select id="category" ng-model="vm.category" ng-options="item.value as item.label for item in vm.categoryOptions" class="form-control"></select>
   </div>
+  <div dir="rtl" class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="vm.showDetails"/><span style="margin-right: 1.5em">عرض جميع التفاصيل</span>
+    </label>
+  </div>
 </form>
 <article ng-show="electricityForm.$valid">
   <div class="table-responsive">
@@ -58,22 +63,22 @@
       <thead>
         <tr>
           <th class="text-center danger"><span class="hidden-xs"><span>%</span><span ng-bind="vm.getCostDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0"></span><span>&nbsp;</span></span><span>فرق التكلفة</span></th>
-          <th class="text-center success">التكلفة2</th>
-          <th class="text-center success">التكلفة1</th>
+          <th ng-show="vm.showDetails" class="text-center success">التكلفة2</th>
+          <th ng-show="vm.showDetails" class="text-center success"> التكلفة1</th>
           <th class="text-center danger"><span class="hidden-xs"><span>%</span><span ng-bind="vm.getConsumptionDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0"></span><span>&nbsp;</span></span><span>فرق الشرائح</span></th>
-          <th class="text-center active">الشرائح2</th>
-          <th class="text-center active">1الشرائح</th>
+          <th ng-show="vm.showDetails" class="text-center active"> الشرائح2</th>
+          <th ng-show="vm.showDetails" class="text-center active"> 1الشرائح</th>
           <th class="text-center active">المدة</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
           <td dir="rtl" style="border-right: 0; border-left: 0" class="text-center danger"><b ng-bind="vm.calculatePriceDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0"></b><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
-          <td dir="rtl" class="text-center success"><span ng-bind="vm.calculatePrice(vm.priceMenu2, vm.measureMenu2.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
-          <td dir="rtl" class="text-center success"><span ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
-          <td dir="rtl" style="border-right: 0; border-left: 0" class="text-center danger"><b ng-bind="vm.calculatePriceDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0"></b><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
-          <td dir="rtl" class="text-center active"><span ng-bind="vm.calculateConsumption(vm.priceMenu2, vm.measureMenu2.getSelected(), vm.priceMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
-          <td dir="rtl" class="text-center active"><span ng-bind="vm.calculateConsumption(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
+          <td dir="rtl" ng-show="vm.showDetails" class="text-center success"><span ng-bind="vm.calculatePrice(vm.priceMenu2, vm.measureMenu2.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
+          <td dir="rtl" ng-show="vm.showDetails" class="text-center success"><span ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
+          <td dir="rtl" style="border-right: 0; border-left: 0" class="text-center danger"><b ng-bind="vm.calculateConsumptionDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0"></b><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
+          <td dir="rtl" ng-show="vm.showDetails" class="text-center active"><span ng-bind="vm.calculateConsumption(vm.priceMenu2, vm.measureMenu2.getSelected(), vm.priceMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
+          <td dir="rtl" ng-show="vm.showDetails" class="text-center active"><span ng-bind="vm.calculateConsumption(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
           <th ng-bind="period" dir="rtl" style="border-right: 0; border-left: 0" class="text-center active"></th>
         </tr>
       </tbody>

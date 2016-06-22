@@ -11,6 +11,7 @@ angular.module('fuelCalculator')
   this.consumptionOrCost = 200
   this.consumptionOrCost2 = 200
   this.meter = 20
+  this.showDetails = false
 
   this.periodTable = electricityService.getPeriodTable()
   this.priceMenu = menuService.getPriceTypeMenu()
