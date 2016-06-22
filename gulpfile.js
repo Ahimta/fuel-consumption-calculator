@@ -59,6 +59,7 @@ gulp.task('manifest', () =>
         'views/water-comparison.html',
         'views/water-cost-and-volume.html',
         'views/electricity-consumption-and-cost.html',
+        'views/electricity-comparison.html',
         'favicons/favicon.ico',
         'vendor/bootstrap/css/bootstrap.min.css',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
