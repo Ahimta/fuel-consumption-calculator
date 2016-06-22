@@ -9,6 +9,7 @@ views/tank.html
 views/water-comparison.html
 views/water-cost-and-volume.html
 views/electricity-consumption-and-cost.html
+views/electricity-comparison.html
 favicons/favicon.ico
 vendor/bootstrap/css/bootstrap.min.css
 https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js
@@ -20,4 +21,4 @@ vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2
 NETWORK:
 *
 
-# hash: 832a18da9a81715877e4ca779f230fbcbe2b6cd3b29412581ee8945029a9353c
+# hash: bce2f135d7a83fe7b98d6e2a0665693806b736acdefc0dfbb7ae5f0a01a8f4e5
