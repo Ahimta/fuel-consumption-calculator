@@ -62,10 +62,10 @@
     <table class="table table-hover table-condensed table-bordered">
       <thead>
         <tr>
-          <th class="text-center danger"><span class="hidden-xs"><span>%</span><span ng-bind="vm.getCostDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0"></span><span>&nbsp;</span></span><span>فرق التكلفة</span></th>
+          <th class="text-center danger"><span><span>%</span><span ng-bind="vm.getCostDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0"></span><span>&nbsp;</span></span><span>فرق التكلفة</span></th>
           <th ng-show="vm.showDetails" class="text-center success">التكلفة2</th>
           <th ng-show="vm.showDetails" class="text-center success"> التكلفة1</th>
-          <th class="text-center danger"><span class="hidden-xs"><span>%</span><span ng-bind="vm.getConsumptionDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0"></span><span>&nbsp;</span></span><span>فرق الشرائح</span></th>
+          <th class="text-center danger"><span><span>%</span><span ng-bind="vm.getConsumptionDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0"></span><span>&nbsp;</span></span><span>فرق الشرائح</span></th>
           <th ng-show="vm.showDetails" class="text-center active"> الشرائح2</th>
           <th ng-show="vm.showDetails" class="text-center active"> 1الشرائح</th>
           <th class="text-center active">المدة</th>

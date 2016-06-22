@@ -15,7 +15,7 @@ article(ng-show='electricityForm.$valid')
         thead
           tr
             th.text-center.danger
-              span.hidden-xs
+              span
                 span %
                 span(ng-bind='vm.getCostDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0')
                 span &nbsp;
@@ -23,7 +23,7 @@ article(ng-show='electricityForm.$valid')
             th.text-center.success(ng-show='vm.showDetails') التكلفة2
             th.text-center.success(ng-show='vm.showDetails')  التكلفة1
             th.text-center.danger
-              span.hidden-xs
+              span
                 span %
                 span(ng-bind='vm.getConsumptionDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0')
                 span &nbsp;
