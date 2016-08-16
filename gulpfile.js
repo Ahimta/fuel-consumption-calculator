@@ -71,7 +71,8 @@ gulp.task('manifest', () =>
         'images/flat_web_icon_set/color/Twitter.png',
         'images/flat_web_icon_set/color/Google+.png',
         'images/flat_web_icon_set/color/LinkedIn.png',
-        'images/flat_web_icon_set/color/Email.png'
+        'images/flat_web_icon_set/color/Email.png',
+        'images/whatsapp.png'
       ],
       hash: true
      }))
