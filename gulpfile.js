@@ -98,7 +98,10 @@ gulp.task('copy', () =>
   let bootstrap = gulp.src('app/vendor/bootstrap/**/*')
     .pipe(gulp.dest('dist/vendor/bootstrap/'))
 
-  merge(html, bootstrap)
+  let images = gulp.src('app/images/**/*')
+    .pipe(gulp.dest('dist/images/'))
+
+  merge(html, bootstrap, images)
 })
 
 gulp.task('server:connect', () =>
