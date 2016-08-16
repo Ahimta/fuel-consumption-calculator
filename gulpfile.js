@@ -66,7 +66,12 @@ gulp.task('manifest', () =>
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js',
         'vendor/bootstrap/js/bootstrap.min.js',
         'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
-        'vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2'
+        'vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2',
+        'images/flat_web_icon_set/color/Facebook.png',
+        'images/flat_web_icon_set/color/Twitter.png',
+        'images/flat_web_icon_set/color/Google+.png',
+        'images/flat_web_icon_set/color/LinkedIn.png',
+        'images/flat_web_icon_set/color/Email.png'
       ],
       hash: true
      }))
