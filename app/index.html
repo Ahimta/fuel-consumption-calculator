@@ -119,6 +119,19 @@
     </nav>
   </header>
 
+  <aside class="container">
+    <div class="alert alert-success alert-dismissible" role="alert" dir="rtl">
+      <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close" ng-click="alerts.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p>
+        <a target="_blank" onclick="ga('send', 'event', 'Monetization', 'click', 'Indiegogo')" href="https://igg.me/at/energy-cost">
+          حملة تطوير المشروع
+        </a>
+      </p>
+    </div>
+  </aside>
+
   <aside class="container" ng-controller="AlertsCtrl as alerts" ng-hide="alerts.alertsRead() && !alerts.isNewerVersionAvailable">
     <div class="alert alert-success alert-dismissible" role="alert" dir="rtl">
       <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close" ng-click="alerts.dismiss()">
