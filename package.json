@@ -2,9 +2,11 @@
   "name": "fuel-calculator",
   "version": "0.0.1-alpha",
   "description": "Fuel Consumption Calculator",
-  "main": "index.js",
+  "main": "app/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dist": "gulp dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -13,13 +15,15 @@
   "keywords": [
     "fuel",
     "calculator",
+    "electricity",
     "gas",
     "gasoline",
     "patrol",
-    "price"
+    "price",
+    "water"
   ],
   "author": "Abdullah Alansari <ahimta@gmail.com>",
-  "license": "All Rights Reserved",
+  "license": "UNLICENSED",
   "homepage": "https://bitbucket.org/ahimta/fuel-consumption-calculator#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
