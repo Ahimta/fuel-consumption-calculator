@@ -1,39 +1,36 @@
 'use strict'
 
 let gulp = require('gulp'),
-    changed = require('gulp-changed'),
-    connect = require('gulp-connect'),
-    ghPages = require('gulp-gh-pages'),
-    htmlmin = require('gulp-htmlmin'),
-    uglify = require('gulp-uglify'),
-    usemin = require('gulp-usemin'),
-    merge = require('merge-stream'),
-    jade = require('gulp-jade'),
-    swPrecache = require('sw-precache')
+  changed = require('gulp-changed'),
+  connect = require('gulp-connect'),
+  ghPages = require('gulp-gh-pages'),
+  htmlmin = require('gulp-htmlmin'),
+  uglify = require('gulp-uglify'),
+  usemin = require('gulp-usemin'),
+  merge = require('merge-stream'),
+  jade = require('gulp-jade'),
+  swPrecache = require('sw-precache')
 
 let runSequence = require('run-sequence')
 
-gulp.task('jade', () =>
-{
+gulp.task('jade', () => {
   gulp.src('app/jade_views/*.jade')
-    .pipe(jade({pretty: true}))
+    .pipe(jade({ pretty: true }))
     .pipe(gulp.dest('./app/views/'))
 })
 
-gulp.task('usemin', () =>
-{
+gulp.task('usemin', () => {
   gulp.src('app/index.html')
     .pipe(usemin({
-      html: [htmlmin({collapseWhitespace: true, removeComments: true})],
+      html: [htmlmin({ collapseWhitespace: true, removeComments: true })],
       js: [uglify()]
     }))
     .pipe(gulp.dest('dist/'))
 })
 
-gulp.task('copy', () =>
-{
+gulp.task('copy', () => {
   let html = gulp.src('app/views/*.html')
-    .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
     .pipe(gulp.dest('dist/views'))
 
   let images = gulp.src('app/images/**/*')
@@ -45,8 +42,7 @@ gulp.task('copy', () =>
   merge(html, images, vendor)
 })
 
-gulp.task('server:connect', () =>
-{
+gulp.task('server:connect', () => {
   connect.server({
     livereload: true,
     fallback: 'app/index.html',
@@ -56,31 +52,27 @@ gulp.task('server:connect', () =>
   })
 })
 
-gulp.task('server:reload', () =>
-{
+gulp.task('server:reload', () => {
   gulp.src('app/{index.html,scripts/*.js}')
     .pipe(changed('app/{index.html,scripts/*.js}'))
     .pipe(connect.reload())
 })
 
-gulp.task('deploy', function ()
-{
+gulp.task('deploy', function () {
+  const remoteUrl = 'git@github.com:Ahimta/fuel-consumption-calculator.git'
   return gulp.src('./dist/**/*')
-    .pipe(ghPages())
+    .pipe(ghPages({ remoteUrl }))
 })
 
-gulp.task('reload', (callback) =>
-{
+gulp.task('reload', (callback) => {
   runSequence('jade', 'server:reload', callback)
 })
 
-gulp.task('watch', ['server:connect'], () =>
-{
+gulp.task('watch', ['server:connect'], () => {
   gulp.watch(['app/{index.html,jade_views/*.jade,scripts/*.js}'], ['reload'])
 })
 
-gulp.task('dist', (callback) =>
-{
+gulp.task('dist', (callback) => {
   runSequence('jade', ['copy', 'usemin'], ['sw-precache'], callback)
 })
 
