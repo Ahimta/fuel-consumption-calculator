@@ -4,7 +4,7 @@
   "description": "Fuel Consumption Calculator",
   "main": "app/index.html",
   "scripts": {
-    "dist": "gulp dist",
+    "build": "gulp dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "gulp watch"
   },
