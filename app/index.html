@@ -24,8 +24,8 @@
   <link rel="apple-touch-icon" href="images/icon-152x152.png">
 
   <script type="text/javascript">
-    if (window.location.hostname !== 'localhost' && window.location.protocol === 'http:') {
-      window.location.protocol = 'https'
+    if (location.hostname !== 'localhost' && location.protocol !== 'https:') {
+      location.protocol = 'https'
     }
   </script>
 
