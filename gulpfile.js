@@ -1,17 +1,15 @@
 'use strict'
 
 let gulp = require('gulp'),
-    favicons = require('gulp-favicons'),
-    manifest = require('gulp-manifest'),
     changed = require('gulp-changed'),
     connect = require('gulp-connect'),
     ghPages = require('gulp-gh-pages'),
     htmlmin = require('gulp-htmlmin'),
-    rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
     usemin = require('gulp-usemin'),
     merge = require('merge-stream'),
-    jade = require('gulp-jade')
+    jade = require('gulp-jade'),
+    swPrecache = require('sw-precache')
 
 let runSequence = require('run-sequence')
 
@@ -20,63 +18,6 @@ gulp.task('jade', () =>
   gulp.src('app/jade_views/*.jade')
     .pipe(jade({pretty: true}))
     .pipe(gulp.dest('./app/views/'))
-})
-
-gulp.task('favicons', () =>
-{
-    gulp.src('app/images/favicon.png')
-      .pipe(favicons({
-        appName: 'Fuel Consumption Calculator',
-        appDescription: 'Fuel consumption calculator, currently only for Saudia Arabia',
-        developerName: 'Abdullah Alansari',
-        developerURL: 'https://github.com/Ahimta',
-        path: 'favicons/',
-        url: 'https://ahimta.github.io/fuel-consumption-calculator',
-        display: 'standalone',
-        orientation: 'portrait',
-        version: '0.0.1-alpha',
-        logging: false,
-        online: false,
-        html: 'dist/index.html',
-        replace: true
-      }))
-      .pipe(gulp.dest('dist/favicons'))
-})
-
-gulp.task('manifest', () =>
-{
-  gulp.src(['dist/index.html', 'dist/scripts.html', 'dist/views/*.html'])
-    .pipe(manifest({
-      preferOnline: false,
-      filename: 'app.manifest',
-      exclude: 'app.manifest',
-      cache: [
-        'index.html',
-        'scripts.js',
-        'views/comparison.html',
-        'views/cost-and-distance.html',
-        'views/tank.html',
-        'views/water-comparison.html',
-        'views/water-cost-and-volume.html',
-        'views/electricity-consumption-and-cost.html',
-        'views/electricity-comparison.html',
-        'favicons/favicon.ico',
-        'vendor/bootstrap/css/bootstrap.min.css',
-        'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
-        'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js',
-        'vendor/bootstrap/js/bootstrap.min.js',
-        'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
-        'vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2',
-        'images/flat_web_icon_set/color/Facebook.png',
-        'images/flat_web_icon_set/color/Twitter.png',
-        'images/flat_web_icon_set/color/Google+.png',
-        'images/flat_web_icon_set/color/LinkedIn.png',
-        'images/flat_web_icon_set/color/Email.png',
-        'images/whatsapp.png'
-      ],
-      hash: true
-     }))
-    .pipe(gulp.dest('dist/'))
 })
 
 gulp.task('usemin', () =>
@@ -95,13 +36,13 @@ gulp.task('copy', () =>
     .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
     .pipe(gulp.dest('dist/views'))
 
-  let bootstrap = gulp.src('app/vendor/bootstrap/**/*')
-    .pipe(gulp.dest('dist/vendor/bootstrap/'))
-
   let images = gulp.src('app/images/**/*')
     .pipe(gulp.dest('dist/images/'))
 
-  merge(html, bootstrap, images)
+  let vendor = gulp.src('app/vendor/**/*')
+    .pipe(gulp.dest('dist/vendor/'))
+
+  merge(html, images, vendor)
 })
 
 gulp.task('server:connect', () =>
@@ -140,5 +81,31 @@ gulp.task('watch', ['server:connect'], () =>
 
 gulp.task('dist', (callback) =>
 {
-  runSequence('jade', ['copy', 'usemin'], ['favicons', 'manifest'], callback)
+  runSequence('jade', ['copy', 'usemin'], ['sw-precache'], callback)
 })
+
+gulp.task('sw-precache', callback => {
+  writeServiceWorkerFile('./dist', true, callback)
+})
+
+function writeServiceWorkerFile(rootDir, handleFetch, callback) {
+  const config = {
+    cacheId: packageJson.name,
+    handleFetch,
+    staticFileGlobs: [
+      `${rootDir}/*.css`,
+      `${rootDir}/*.html`,
+      `${rootDir}/*.js`,
+      `${rootDir}/images/*.png`,
+      `${rootDir}/vendor/*.js`,
+      `${rootDir}/vendor/bootstrap/css/bootstrap.min.css`,
+      `${rootDir}/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2`,
+      `${rootDir}/vendor/bootstrap/js/bootstrap.min.js`
+    ],
+    stripPrefix: `${rootDir}/`,
+    // verbose defaults to false, but for the purposes of this demo, log more.
+    verbose: true
+  }
+
+  swPrecache.write(path.join(rootDir, 'service-worker.js'), config, callback)
+}

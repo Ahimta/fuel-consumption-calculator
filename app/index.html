@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" manifest="app.manifest">
+<html lang="ar">
 <head>
   <meta charset="utf-8">
   <meta name="application-name" content="Fuel Consumption Calculator">
@@ -10,9 +10,18 @@
   <meta property="og:title" content="أسعار البنزين و المياه و الكهرباء">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ahimta.github.io/fuel-consumption-calculator/">
-  <meta property="og:image" content="https://ahimta.github.io/fuel-consumption-calculator/images/og-image.png">
-  <meta name="theme-color" content="#222222">
+  <meta property="og:image" content="https://ahimta.github.io/fuel-consumption-calculator/images/icon-256x256.png">
   <meta name="msapplication-TileColor" content="#222222">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="منتجات الطاقة">
+  <meta name="msapplication-TileColor" content="#222222">
+  <meta name="msapplication-TileImage" content="images/icon-144x144.png">
+  <meta name="theme-color" content="#222222">
+  <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://ahimta.github.io/fuel-consumption-calculator/">
+  <link rel="icon" type="image/png" href="images/icon-128x128.png">
+  <link rel="apple-touch-icon" href="images/icon-152x152.png">
 
   <script type="text/javascript">
     if (window.location.hostname !== 'localhost' && window.location.protocol === 'http:') {
@@ -521,9 +530,9 @@
 
   <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js" crossorigin="anonymous"></script>
+  <script src="vendor/jquery.min.js"></script>
+  <script src="vendor/angular.min.js"></script>
+  <script src="vendor/angular-route.min.js"></script>
 
   <!-- build:js(app) scripts.js -->
   <script src='scripts/app.js'></script>
