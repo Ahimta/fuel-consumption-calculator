@@ -26,6 +26,7 @@
   "license": "UNLICENSED",
   "homepage": "https://bitbucket.org/ahimta/fuel-consumption-calculator#readme",
   "devDependencies": {
+    "del": "^2.2.2",
     "eslint": "^3.14.1",
     "gulp": "^3.9.0",
     "gulp-changed": "^1.3.0",

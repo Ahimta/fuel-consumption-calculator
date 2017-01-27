@@ -3,6 +3,7 @@
 let gulp = require('gulp'),
   changed = require('gulp-changed'),
   connect = require('gulp-connect'),
+  del = require('del'),
   ghPages = require('gulp-gh-pages'),
   htmlmin = require('gulp-htmlmin'),
   uglify = require('gulp-uglify'),
@@ -11,16 +12,19 @@ let gulp = require('gulp'),
   jade = require('gulp-jade'),
   swPrecache = require('sw-precache')
 
+let path = require('path')
 let runSequence = require('run-sequence')
 
+const packageJson = require('./package.json')
+
 gulp.task('jade', () => {
-  gulp.src('app/jade_views/*.jade')
+  return gulp.src('app/jade_views/*.jade')
     .pipe(jade({ pretty: true }))
     .pipe(gulp.dest('./app/views/'))
 })
 
 gulp.task('usemin', () => {
-  gulp.src('app/index.html')
+  return gulp.src('app/index.html')
     .pipe(usemin({
       html: [htmlmin({ collapseWhitespace: true, removeComments: true })],
       js: [uglify()]
@@ -36,14 +40,17 @@ gulp.task('copy', () => {
   let images = gulp.src('app/images/**/*')
     .pipe(gulp.dest('dist/images/'))
 
-  let vendor = gulp.src('app/vendor/**/*')
-    .pipe(gulp.dest('dist/vendor/'))
+  let manifest = gulp.src('app/manifest.json')
+    .pipe(gulp.dest('dist/'))
 
-  merge(html, images, vendor)
+  let vendor = gulp.src('app/vendor/bootstrap/**/*')
+    .pipe(gulp.dest('dist/vendor/bootstrap/'))
+
+  return merge(html, images, manifest, vendor)
 })
 
 gulp.task('server:connect', () => {
-  connect.server({
+  return connect.server({
     livereload: true,
     fallback: 'app/index.html',
     host: 'localhost',
@@ -53,7 +60,7 @@ gulp.task('server:connect', () => {
 })
 
 gulp.task('server:reload', () => {
-  gulp.src('app/{index.html,scripts/*.js}')
+  return gulp.src('app/{index.html,scripts/*.js}')
     .pipe(changed('app/{index.html,scripts/*.js}'))
     .pipe(connect.reload())
 })
@@ -65,19 +72,23 @@ gulp.task('deploy', function () {
 })
 
 gulp.task('reload', (callback) => {
-  runSequence('jade', 'server:reload', callback)
+  return runSequence('jade', 'server:reload', callback)
 })
 
 gulp.task('watch', ['server:connect'], () => {
-  gulp.watch(['app/{index.html,jade_views/*.jade,scripts/*.js}'], ['reload'])
+  return gulp.watch(['app/{index.html,jade_views/*.jade,scripts/*.js}'], ['reload'])
+})
+
+gulp.task('clean', () => {
+  return del('dist/')
 })
 
 gulp.task('dist', (callback) => {
-  runSequence('jade', ['copy', 'usemin'], ['sw-precache'], callback)
+  return runSequence('clean', 'jade', ['copy', 'usemin'], 'sw-precache', callback)
 })
 
 gulp.task('sw-precache', callback => {
-  writeServiceWorkerFile('./dist', true, callback)
+  writeServiceWorkerFile('dist', true, callback)
 })
 
 function writeServiceWorkerFile(rootDir, handleFetch, callback) {
@@ -85,14 +96,13 @@ function writeServiceWorkerFile(rootDir, handleFetch, callback) {
     cacheId: packageJson.name,
     handleFetch,
     staticFileGlobs: [
-      `${rootDir}/*.css`,
-      `${rootDir}/*.html`,
+      `${rootDir}/index.html`,
       `${rootDir}/*.js`,
       `${rootDir}/images/*.png`,
-      `${rootDir}/vendor/*.js`,
       `${rootDir}/vendor/bootstrap/css/bootstrap.min.css`,
       `${rootDir}/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2`,
-      `${rootDir}/vendor/bootstrap/js/bootstrap.min.js`
+      `${rootDir}/vendor/bootstrap/js/bootstrap.min.js`,
+      `${rootDir}/views/*.html`,
     ],
     stripPrefix: `${rootDir}/`,
     // verbose defaults to false, but for the purposes of this demo, log more.
