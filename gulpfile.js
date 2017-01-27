@@ -95,6 +95,17 @@ function writeServiceWorkerFile(rootDir, handleFetch, callback) {
   const config = {
     cacheId: packageJson.name,
     handleFetch,
+    runtimeCaching: [{
+      // See https://github.com/GoogleChrome/sw-toolbox#methods
+      urlPattern: /vendor\/bootstrap\/fonts\//,
+      handler: 'cacheFirst',
+      // See https://github.com/GoogleChrome/sw-toolbox#options
+      options: {
+        cache: {
+          name: 'runtime-cache'
+        }
+      }
+    }],
     staticFileGlobs: [
       `${rootDir}/index.html`,
       `${rootDir}/*.js`,
