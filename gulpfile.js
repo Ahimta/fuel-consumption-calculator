@@ -122,12 +122,11 @@ gulp.task('server:reload', () =>
     .pipe(connect.reload())
 })
 
-// gulp.task('deploy', function ()
-// {
-//   let remoteUrl = 'https://github.com/Ahimta/fuel-consumption-calculator.git'
-//   return gulp.src('./dist/**/*')
-//     .pipe(ghPages())
-// })
+gulp.task('deploy', function ()
+{
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages())
+})
 
 gulp.task('reload', (callback) =>
 {
