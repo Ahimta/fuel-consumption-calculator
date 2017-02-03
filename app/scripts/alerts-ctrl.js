@@ -5,6 +5,8 @@ angular.module('fuelCalculator')
 {
   var vm = this
 
+  this.offlineSupported = ('serviceWorker' in $window.navigator)
+
   this.isNewerVersionAvailable = false
 
   this.alertsRead = function () { return settingsService.alertsRead() }

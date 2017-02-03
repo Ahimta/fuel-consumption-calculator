@@ -427,15 +427,12 @@
       </nav>
     </header>
 
-    <aside class="container" ng-controller="AlertsCtrl as alerts" ng-hide="alerts.alertsRead() && !alerts.isNewerVersionAvailable" style="margin-bottom: 0">
-      <div class="alert alert-success alert-dismissible" role="alert" dir="rtl">
-        <button type="button" class="close pull-left" data-dismiss="alert" aria-label="Close" ng-click="alerts.dismiss()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <p ng-hide="alerts.alertsRead()">الموقع يعمل بدون انترنت</p>
-        <p ng-show="alerts.isNewerVersionAvailable">
-          <span>يوجد إصدار جديد: </span><a ng-click="alerts.update($event)" href="#">حدث الآن</a>
-        </p>
+    <aside class="container" ng-controller="AlertsCtrl as alerts">
+      <div class="alert alert-warning" role="alert" dir="rtl" style="margin-bottom: -7px" ng-hide="alerts.offlineSupported">
+        الموقع لا يعمل بدون إنترنت!
+      </div>
+      <div class="alert alert-success" role="alert" dir="rtl" style="margin-bottom: -7px" ng-show="alerts.offlineSupported">
+        الموقع يعمل بدون إنترنت!
       </div>
     </aside>
 
