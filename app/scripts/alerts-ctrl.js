@@ -3,13 +3,12 @@
 angular.module('fuelCalculator')
 .controller('AlertsCtrl', ['$scope', '$window', 'settingsService', function ($scope, $window, settingsService)
 {
-  var _newerVersionAvailable = false
   var serviceWorkerSupported = ('serviceWorker' in $window.navigator)
   var vm = this
 
   this.offlineSupported = serviceWorkerSupported
 
-  this.newerVersionAvailable = function () { return _newerVersionAvailable }
+  this.newerVersionAvailable = false
 
   this.alertsRead = function () { return settingsService.alertsRead() }
 
@@ -41,7 +40,7 @@ angular.module('fuelCalculator')
                   // It's the perfect time to display a "New content is available; please refresh."
                   // message in the page's interface.
                   console.log('New or updated content is available.')
-                  _newerVersionAvailable = true
+                  vm.newerVersionAvailable = true
                   $scope.digest()
                 } else {
                   // At this point, everything has been precached.
