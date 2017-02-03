@@ -440,39 +440,60 @@
     </aside>
 
     <section class="page-header" ng-controller="TabsCtrl as tabs" style="margin-top: 0">
-      <nav class="container" ng-show="tabs.isFuelPage()">
-        <ul class="nav nav-tabs nav-justified">
-          <li ng-class="{active: tabs.isCurrentPath('/vehicle-comparison')}"><a href="#/vehicle-comparison">مقارنة المركبات</a></li>
-          <li ng-class="{active: tabs.isCurrentPath('/tank')}"><a href="#/tank">التانكي</a></li>
-          <li ng-class="{active: tabs.isCurrentPath('/cost-and-distance')}"><a href="#/cost-and-distance">المسافة و التكلفة</a></li>
-        </ul>
-      </nav>
+      <div ng-show="tabs.isFuelPage()">
+        <h1 class="text-center">أسعار البنزين</h1>
+        <nav class="container">
+          <ul class="nav nav-tabs nav-justified">
+            <li ng-class="{active: tabs.isCurrentPath('/vehicle-comparison')}">
+              <a href="#/vehicle-comparison">مقارنة المركبات</a>
+            </li>
+            <li ng-class="{active: tabs.isCurrentPath('/tank')}"><a href="#/tank">التانكي</a></li>
+            <li ng-class="{active: tabs.isCurrentPath('/cost-and-distance')}">
+              <a href="#/cost-and-distance">المسافة و التكلفة</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-      <nav class="container" ng-show="tabs.isWaterPage()">
-        <ul class="nav nav-tabs nav-justified">
-          <li ng-class="{active: tabs.isCurrentPath('/water/comparison')}">
-            <a href="#/water/comparison" dir="rtl"
-              onclick="ga('send', 'event', 'Water Tabs', 'click', 'Water Comparison')">مقارنة الاستهلاك</a>
-          </li>
-          <li ng-class="{active: tabs.isCurrentPath('/water/cost-and-volume')}">
-            <a href="#/water/cost-and-volume" dir="rtl"
-              onclick="ga('send', 'event', 'Water Tabs', 'click', 'Water Cost and Volume')">الكمية و التكلفة</a>
-          </li>
-        </ul>
-      </nav>
+      <div ng-show="tabs.isWaterPage()">
+        <h1 class="text-center">أسعار المياه</h1>
+        <nav class="container">
+          <ul class="nav nav-tabs nav-justified">
+            <li ng-class="{active: tabs.isCurrentPath('/water/comparison')}">
+              <a href="#/water/comparison" dir="rtl"
+                onclick="ga('send', 'event', 'Water Tabs', 'click', 'Water Comparison')">
+                مقارنة الاستهلاك
+              </a>
+            </li>
+            <li ng-class="{active: tabs.isCurrentPath('/water/cost-and-volume')}">
+              <a href="#/water/cost-and-volume" dir="rtl"
+                onclick="ga('send', 'event', 'Water Tabs', 'click', 'Water Cost and Volume')">
+                الكمية و التكلفة
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-      <nav class="container" ng-show="tabs.isElectricityPage()">
-        <ul class="nav nav-tabs nav-justified">
-          <li ng-class="{active: tabs.isCurrentPath('/electricity/comparison')}">
-            <a href="#/electricity/comparison" dir="rtl"
-              onclick="ga('send', 'event', 'Electricity Tabs', 'click', 'Electricity Comparison')">مقارنة الاستهلاك</a>
-          </li>
-          <li ng-class="{active: tabs.isCurrentPath('/electricity/consumption-and-cost')}">
-            <a href="#/electricity/consumption-and-cost" dir="rtl"
-              onclick="ga('send', 'event', 'Electricity Tabs', 'click', 'Electricity Consumption and Cost')">الكمية و التكلفة</a>
-          </li>
-        </ul>
-      </nav>
+      <div ng-show="tabs.isElectricityPage()">
+        <h1 class="text-center">أسعار الكهرباء</h1>
+        <nav class="container" ng-show="tabs.isElectricityPage()">
+          <ul class="nav nav-tabs nav-justified">
+            <li ng-class="{active: tabs.isCurrentPath('/electricity/comparison')}">
+              <a href="#/electricity/comparison" dir="rtl"
+                onclick="ga('send', 'event', 'Electricity Tabs', 'click', 'Electricity Comparison')">
+                مقارنة الاستهلاك
+              </a>
+            </li>
+            <li ng-class="{active: tabs.isCurrentPath('/electricity/consumption-and-cost')}">
+              <a href="#/electricity/consumption-and-cost" dir="rtl"
+                onclick="ga('send', 'event', 'Electricity Tabs', 'click', 'Electricity Consumption and Cost')">
+                الكمية و التكلفة
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </section>
 
     <section class="container" ng-view></section>
