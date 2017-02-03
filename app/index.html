@@ -399,10 +399,10 @@
     </header>
 
     <aside class="container" ng-controller="AlertsCtrl as alerts">
-      <div class="alert alert-success" role="alert" dir="rtl" style="margin-bottom: -7px" ng-show="alerts.newerVersionAvailable">
+      <div class="alert alert-success" role="alert" dir="rtl" style="margin-bottom: -7px" ng-show="alerts.newerVersionAvailable()">
         <span>يوجد إصدار جديد: </span><a ng-click="alerts.update($event)" href="#">حدث الآن</a>
       </div>
-      <div class="alert alert-success" role="alert" dir="rtl" style="margin-bottom: -7px" ng-show="alerts.offlineSupported && !alerts.newerVersionAvailable">
+      <div class="alert alert-success" role="alert" dir="rtl" style="margin-bottom: -7px" ng-show="alerts.offlineSupported && !alerts.newerVersionAvailable()">
         الموقع يعمل بدون إنترنت!
       </div>
       <div class="alert alert-warning" role="alert" dir="rtl" style="margin-bottom: -7px" ng-hide="alerts.offlineSupported">
