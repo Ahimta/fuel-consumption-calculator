@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('fuelCalculator')
-.controller('AlertsCtrl', ['$scope', '$window', 'settingsService', function ($scope, $window, settingsService)
+.controller('AlertsCtrl', ['$rootScope', '$window', 'settingsService', function ($rootScope, $window, settingsService)
 {
   var serviceWorkerSupported = ('serviceWorker' in $window.navigator)
   var vm = this
@@ -41,7 +41,7 @@ angular.module('fuelCalculator')
                   // message in the page's interface.
                   console.log('New or updated content is available.')
                   vm.newerVersionAvailable = true
-                  $scope.$digest()
+                  $rootScope.$digest()
                 } else {
                   // At this point, everything has been precached.
                   // It's the perfect time to display a "Content is cached for offline use." message.
