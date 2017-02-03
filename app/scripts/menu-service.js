@@ -3,6 +3,22 @@
 angular.module('fuelCalculator')
 .service('menuService', ['$window', 'fuelService', 'periodService', 'priceService', 'settingsService', 'vehicleService', function ($window, fuelService, periodService, priceService, settingsService, vehicleService)
 {
+  function getMenuModel (menuName, initialValue)
+  {
+    var selectedValue = initialValue || null
+
+    return {
+      getSelected: function () { return selectedValue },
+      isSelected: function (value) { return value === selectedValue },
+      select: function (value)
+      {
+        var currentSelected = selectedValue
+        selectedValue = value
+        if ($window.ga) { $window.ga('send', 'event', menuName, 'change', (currentSelected + '->' + value)) }
+      }
+    }
+  }
+
   this.getVehiclesMenu = function (initialYear, initalManufacturer, initialModel, dontSave)
   {
     var selectedManufacturer = initalManufacturer || 'Toyota'
@@ -54,22 +70,6 @@ angular.module('fuelCalculator')
       getAvailableManufacturers: function () { return vehicleService.getAvailableManufacturers(selectedYear) },
       getAvailableModels: function () { return vehicleService.getAvailableModels(selectedYear, selectedManufacturer) },
       getAvailableYears: vehicleService.getAvailableYears
-    }
-  }
-
-  function getMenuModel (menuName, initialValue)
-  {
-    var selectedValue = initialValue || null
-
-    return {
-      getSelected: function () { return selectedValue },
-      isSelected: function (value) { return value === selectedValue },
-      select: function (value)
-      {
-        var currentSelected = selectedValue
-        selectedValue = value
-        if ($window.ga) { $window.ga('send', 'event', menuName, 'change', (currentSelected + '->' + value)) }
-      }
     }
   }
 
@@ -211,7 +211,7 @@ angular.module('fuelCalculator')
 
   this.getElectricityMeasureMenu = function (initialValue)
   {
-    var menuModel = getMenuModel('ElectricityMeasure', initialValue || 'consumption')
+    var menuModel = getMenuModel('ElectricityMeasure', initialValue || 'cost')
 
     menuModel.getSelectedLabel = function ()
     {
