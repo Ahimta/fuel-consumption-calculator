@@ -5,20 +5,29 @@ angular.module('fuelCalculator').service('electricityService', ['unitService', f
   var self = this
   var TARIFFS = {}
 
-  TARIFFS['old'] = {
-    metropolitan: {regular: [[2000, 0.05], [2000, 0.10], [2000, 0.12], [1000, 0.15], [1000, 0.20], [1000, 0.22], [1000, 0.24]], excessive: 0.26},
-    profit: {regular: [[4000, 0.12], [4000, 0.20]], excessive: 0.26},
-    government: {regular: [], excessive: 0.26},
-    enterprise: {regular: [], excessive: 0.14},
-    agriculture: {regular: [[2000, 0.05], [2000, 0.10], [1000, 0.10], [3000, 0.12]], excessive: 0.12}
-  }
+  // 2017 tariff
+  // TARIFFS['old'] = {
+  //   metropolitan: {regular: [[2000, 0.05], [2000, 0.10], [2000, 0.12], [1000, 0.15], [1000, 0.20], [1000, 0.22], [1000, 0.24]], excessive: 0.26},
+  //   profit: {regular: [[4000, 0.12], [4000, 0.20]], excessive: 0.26},
+  //   government: {regular: [], excessive: 0.26},
+  //   enterprise: {regular: [], excessive: 0.14},
+  //   agriculture: {regular: [[2000, 0.05], [2000, 0.10], [1000, 0.10], [3000, 0.12]], excessive: 0.12}
+  // }
 
-  TARIFFS['new'] = {
+  TARIFFS['old'] = {
     metropolitan: {regular: [[2000, 0.05], [2000, 0.10], [2000, 0.20]], excessive: 0.30},
     profit: {regular: [[4000, 0.16], [4000, 0.24]], excessive: 30},
     government: {regular: [], excessive: 0.32},
     enterprise: {regular: [], excessive: 0.18},
     agriculture: {regular: [[2000, 0.10], [2000, 0.10], [1000, 0.12], [3000, 0.12]], excessive: 0.16}
+  }
+
+  TARIFFS['new'] = {
+    metropolitan: {regular: [[6000, 0.18]], excessive: 0.30},
+    profit: {regular: [[6000, 0.20]], excessive: 0.30},
+    government: {regular: [], excessive: 0.32},
+    enterprise: {regular: [], excessive: 0.18},
+    agriculture: {regular: [[6000, 0.16]], excessive: 0.20}
   }
 
   this.getCategoryOptions = function ()
