@@ -200,7 +200,12 @@
     <table class="table table-hover table-condensed table-bordered">
       <thead>
         <tr>
-          <th class="text-center danger">الفرق</th>
+          <th class="text-center danger">
+            <span class="hidden-xs">
+              <span>%</span><span ng-bind="vm.getPriceDifferencePercentage(vm.octaneMenu.getSelected()) | number:0"></span>
+            </span>
+            <span>الفرق</span>
+          </th>
           <th class="text-center warning">التكلفة سابقاً</th>
           <th class="text-center success">التكلفة حالياً</th>
           <th class="text-center active">المسافة</th>
