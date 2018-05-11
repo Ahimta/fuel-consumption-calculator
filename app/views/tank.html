@@ -190,7 +190,7 @@
       <tbody>
         <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
           <td class="text-center success" dir="rtl">
-            <span ng-bind="vm.calculatePrice('new', factor) | roundPrice:2"></span>
+            <span ng-bind="vm.calculatePrice(factor) | roundPrice:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center active" dir="rtl">

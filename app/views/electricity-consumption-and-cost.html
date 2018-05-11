@@ -37,8 +37,8 @@
       </thead>
       <tbody>
         <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
-          <td dir="rtl" class="text-center success"><span ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
-          <td dir="rtl" class="text-center active"><span ng-bind="vm.calculateConsumption(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
+          <td dir="rtl" class="text-center success"><span ng-bind="vm.calculatePrice(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ريال</span></td>
+          <td dir="rtl" class="text-center active"><span ng-bind="vm.calculateConsumption(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0"></span><span class="hidden-xs">&nbsp;</span><span style="font-size: 0.6em" class="hidden-xs">ك.و.س</span></td>
           <th ng-bind="period" dir="rtl" style="border-right: 0; border-left: 0" class="text-center active"></th>
         </tr>
       </tbody>

@@ -3,7 +3,7 @@ include ./_electricity-meter-field
 include ./_electricity-category-field
 
 form(name='electricityForm')
-  +electricityConsumptionOrCostField('electricityForm', 'vm.consumptionOrCost', 'vm.measureMenu', 'vm.priceMenu')
+  +electricityConsumptionOrCostField('electricityForm', 'vm.consumptionOrCost', 'vm.measureMenu')
   +electricityMeterField('electricityForm', 'vm.meter')
   +electricityCategoryField('vm.category', 'vm.categoryOptions')
 article(ng-show='electricityForm.$valid')
@@ -17,11 +17,11 @@ article(ng-show='electricityForm.$valid')
         tbody
           tr(ng-repeat='pair in vm.periodTable', ng-init='period = pair[0]; factor = pair[1]')
             td.text-center.success(dir='rtl')
-              span(ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
+              span(ng-bind="vm.calculatePrice(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ريال
             td.text-center.active(dir='rtl')
-              span(ng-bind='vm.calculateConsumption(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
+              span(ng-bind="vm.calculateConsumption(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ك.و.س
             th.text-center.active(ng-bind='period', dir='rtl', style='border-right: 0; border-left: 0')

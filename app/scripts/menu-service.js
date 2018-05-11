@@ -95,11 +95,11 @@ angular.module('fuelCalculator')
       }
     }
 
-    menuModel.getLiters = function (priceType, fuelType, priceOrVolume)
+    menuModel.getLiters = function (fuelType, priceOrVolume)
     {
       switch (menuModel.getSelected())
       {
-        case 'price':  return fuelService.getLitersByPrice(priceType, fuelType, priceOrVolume)
+        case 'price':  return fuelService.getLitersByPrice(fuelType, priceOrVolume)
         case 'volume': return priceOrVolume
       }
     }
@@ -230,15 +230,6 @@ angular.module('fuelCalculator')
         case 'cost':        return 'ريال'
       }
     }
-
-    return menuModel
-  }
-
-  this.getPriceTypeMenu = function (initialValue)
-  {
-    var menuModel = getMenuModel('PriceType', initialValue || 'new')
-
-    menuModel.getSelectedLabel = function () { return priceService.getPriceTypeLabel(menuModel.getSelected()) }
 
     return menuModel
   }

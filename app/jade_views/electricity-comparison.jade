@@ -4,8 +4,8 @@ include ./_electricity-category-field
 include ./_show-details-checkbox
 
 form(name='electricityForm')
-  +electricityConsumptionOrCostField('electricityForm', 'vm.consumptionOrCost', 'vm.measureMenu', 'vm.priceMenu', '1')
-  +electricityConsumptionOrCostField('electricityForm', 'vm.consumptionOrCost2', 'vm.measureMenu2', 'vm.priceMenu2', '2')
+  +electricityConsumptionOrCostField('electricityForm', 'vm.consumptionOrCost', 'vm.measureMenu', '1')
+  +electricityConsumptionOrCostField('electricityForm', 'vm.consumptionOrCost2', 'vm.measureMenu2', '2')
   +electricityMeterField('electricityForm', 'vm.meter')
   +electricityCategoryField('vm.category', 'vm.categoryOptions')
   +showDetailsCheckbox('vm.showDetails')
@@ -17,7 +17,7 @@ article(ng-show='electricityForm.$valid')
             th.text-center.danger
               span
                 span %
-                span(ng-bind='vm.getCostDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0')
+                span(ng-bind='vm.getCostDifferencePercentage(vm.measureMenu.getSelected(), vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0')
                 span &nbsp;
               span فرق التكلفة
             th.text-center.success(ng-show='vm.showDetails') التكلفة2
@@ -25,7 +25,7 @@ article(ng-show='electricityForm.$valid')
             th.text-center.danger
               span
                 span %
-                span(ng-bind='vm.getConsumptionDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0')
+                span(ng-bind='vm.getConsumptionDifferencePercentage(vm.measureMenu.getSelected(), vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) | number:0')
                 span &nbsp;
               span فرق الشرائح
             th.text-center.active(ng-show='vm.showDetails')  الشرائح2
@@ -34,27 +34,27 @@ article(ng-show='electricityForm.$valid')
         tbody
           tr(ng-repeat='pair in vm.periodTable', ng-init='period = pair[0]; factor = pair[1]')
             td.text-center.danger(dir='rtl', style='border-right: 0; border-left: 0')
-              b(ng-bind='vm.calculatePriceDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0')
+              b(ng-bind='vm.calculatePriceDifference(vm.measureMenu.getSelected(), vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0')
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ريال
             td.text-center.success(dir='rtl' ng-show='vm.showDetails')
-              span(ng-bind="vm.calculatePrice(vm.priceMenu2, vm.measureMenu2.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0")
+              span(ng-bind="vm.calculatePrice(vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ريال
             td.text-center.success(dir='rtl' ng-show='vm.showDetails')
-              span(ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
+              span(ng-bind="vm.calculatePrice(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ريال
             td.text-center.danger(dir='rtl', style='border-right: 0; border-left: 0')
-              b(ng-bind='vm.calculateConsumptionDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu2, vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0')
+              b(ng-bind='vm.calculateConsumptionDifference(vm.measureMenu.getSelected(), vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost, vm.consumptionOrCost2) * factor | number:0')
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ك.و.س
             td.text-center.active(dir='rtl' ng-show='vm.showDetails')
-              span(ng-bind='vm.calculateConsumption(vm.priceMenu2, vm.measureMenu2.getSelected(), vm.priceMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0')
+              span(ng-bind="vm.calculateConsumption(vm.measureMenu2.getSelected(), vm.category, vm.meter, vm.consumptionOrCost2) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ك.و.س
             td.text-center.active(dir='rtl' ng-show='vm.showDetails')
-              span(ng-bind='vm.calculateConsumption(vm.priceMenu, vm.measureMenu.getSelected(), vm.priceMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
+              span(ng-bind="vm.calculateConsumption(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ك.و.س
             th.text-center.active(ng-bind='period', dir='rtl', style='border-right: 0; border-left: 0')

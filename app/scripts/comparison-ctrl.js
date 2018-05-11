@@ -49,7 +49,7 @@ angular.module('fuelCalculator')
 
   this.whichBetter = function()
   {
-    return fuelService.whichBetter('new', vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2())
+    return fuelService.whichBetter(vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2())
   }
 
   this.getFirstClass = function ()
@@ -74,7 +74,7 @@ angular.module('fuelCalculator')
 
   this.getPercentage = function ()
   {
-    return fuelService.getPercentageDifference('new', vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2())
+    return fuelService.getPercentageDifference(vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2())
   }
 
   this.cost = {}
@@ -83,7 +83,7 @@ angular.module('fuelCalculator')
   {
     var costPerPeriod = vm.periodMenu.getValuePerDay(vm.costOrDistance) * factor
 
-    return fuelService.calculateDistanceByPrice('new', fuelType, distanceForLiters, vm.litersForDistance, costPerPeriod)
+    return fuelService.calculateDistanceByPrice(fuelType, distanceForLiters, vm.litersForDistance, costPerPeriod)
   }
 
   this.cost.calculatePrice = function (factor)
@@ -112,7 +112,7 @@ angular.module('fuelCalculator')
   {
     var distancePerPeriod = vm.periodMenu.getValuePerDay(vm.costOrDistance) * factor
 
-    return fuelService.calculateByDistance('new', fuelType, distanceForLiters, vm.litersForDistance, distancePerPeriod)
+    return fuelService.calculateByDistance(fuelType, distanceForLiters, vm.litersForDistance, distancePerPeriod)
   }
 
   this.distance.calculatePriceDifference = function (factor)

@@ -3,26 +3,7 @@
 angular.module('fuelCalculator').service('electricityService', ['unitService', function (unitService)
 {
   var self = this
-  var TARIFFS = {}
-
-  // 2017 tariff
-  // TARIFFS['old'] = {
-  //   metropolitan: {regular: [[2000, 0.05], [2000, 0.10], [2000, 0.12], [1000, 0.15], [1000, 0.20], [1000, 0.22], [1000, 0.24]], excessive: 0.26},
-  //   profit: {regular: [[4000, 0.12], [4000, 0.20]], excessive: 0.26},
-  //   government: {regular: [], excessive: 0.26},
-  //   enterprise: {regular: [], excessive: 0.14},
-  //   agriculture: {regular: [[2000, 0.05], [2000, 0.10], [1000, 0.10], [3000, 0.12]], excessive: 0.12}
-  // }
-
-  TARIFFS['old'] = {
-    metropolitan: {regular: [[2000, 0.05], [2000, 0.10], [2000, 0.20]], excessive: 0.30},
-    profit: {regular: [[4000, 0.16], [4000, 0.24]], excessive: 30},
-    government: {regular: [], excessive: 0.32},
-    enterprise: {regular: [], excessive: 0.18},
-    agriculture: {regular: [[2000, 0.10], [2000, 0.10], [1000, 0.12], [3000, 0.12]], excessive: 0.16}
-  }
-
-  TARIFFS['new'] = {
+  var TARIFFS = {
     metropolitan: {regular: [[6000, 0.18]], excessive: 0.30},
     profit: {regular: [[6000, 0.20]], excessive: 0.30},
     government: {regular: [], excessive: 0.32},
@@ -66,28 +47,31 @@ angular.module('fuelCalculator').service('electricityService', ['unitService', f
     else                    { return 30 }
   }
 
-  this.calculateConsumptionByCost = function (priceType, category, meter, cost)
+  this.calculateConsumptionByCost = function (category, meter, cost)
   {
-    if (TARIFFS[priceType] && TARIFFS[priceType][category])
-    {
-      var tariff = TARIFFS[priceType][category]
-      var meterCost = calculateMeterCost(meter)
-      var electricityCost = cost - meterCost
+    const tariff = TARIFFS[category]
 
-      return unitService.calculateInvertedUnit(tariff.regular, tariff.excessive, electricityCost)
+    if (!tariff)
+    {
+      return -1
     }
-    else { return -1 }
+
+    var meterCost = calculateMeterCost(meter)
+    var electricityCost = cost - meterCost
+
+    return unitService.calculateInvertedUnit(tariff.regular, tariff.excessive, electricityCost)
   }
 
-  this.calculateCostByConsumption = function (priceType, category, meter, consumption)
+  this.calculateCostByConsumption = function (category, meter, consumption)
   {
-    if (TARIFFS[priceType] && TARIFFS[priceType][category])
-    {
-      var tariff = TARIFFS[priceType][category]
-      var meterCost = calculateMeterCost(meter)
+    const tariff = TARIFFS[category]
 
-      return unitService.calculateUnit(tariff.regular, tariff.excessive, consumption) + meterCost
+    if (!tariff)
+    {
+      return -1
     }
-    else { return -1 }
+
+    var meterCost = calculateMeterCost(meter)
+    return unitService.calculateUnit(tariff.regular, tariff.excessive, consumption) + meterCost
   }
 }])

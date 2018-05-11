@@ -21,9 +21,6 @@ angular.module('fuelCalculator').service('waterService', ['unitService', functio
     return (withService ? cost * 1.5 : cost) + maintainance
   }
 
-  function calculateVolumeByOldPrice (units, cost)
-  { return unitService.calculateUnit([[50*0.1, 1/0.1], [50*0.15, 1/0.15], [100*2, 1/2], [100*4, 1/4]], 1/6, cost / units) * units }
-
   function calculateVolumeByNewPrice (units, radius, withService, cost)
   {
     var maintainance = calculateMaintainance(radius)
@@ -34,25 +31,21 @@ angular.module('fuelCalculator').service('waterService', ['unitService', functio
     return (cost <= maintainance ? 0 : volume)
   }
 
-  this.calculatePriceByVolume = function (priceType, units, radius, withService, volume)
+  this.calculatePriceByVolume = function (units, radius, withService, volume)
   {
-    return (priceType === 'new' ?
-            calculateNewPriceByVolume(units, radius, withService, volume) :
-            calculateOldPriceByVolume(units, volume))
+    return calculateNewPriceByVolume(units, radius, withService, volume)
   }
 
-  this.calculateVolumeByPrice = function (priceType, units, radius, withService, cost)
+  this.calculateVolumeByPrice = function (units, radius, withService, cost)
   {
-    return (priceType === 'new' ?
-            calculateVolumeByNewPrice(units, radius, withService, cost) :
-            calculateVolumeByOldPrice(units, cost))
+    return calculateVolumeByNewPrice(units, radius, withService, cost)
   }
 
-  this.calculateVolumeByMeasure = function (measure, priceType, units, radius, withService, costOrVolume)
+  this.calculateVolumeByMeasure = function (measure, units, radius, withService, costOrVolume)
   {
     switch (measure)
     {
-      case 'cost':   return self.calculateVolumeByPrice(priceType, units, radius, withService, costOrVolume)
+      case 'cost':   return self.calculateVolumeByPrice(units, radius, withService, costOrVolume)
       case 'volume': return costOrVolume
     }
   }

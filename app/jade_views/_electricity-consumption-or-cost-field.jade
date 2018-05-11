@@ -1,4 +1,4 @@
-mixin electricityConsumptionOrCostField(formName, ngModel, measureMenu, priceMenu, optionalSuffix)
+mixin electricityConsumptionOrCostField(formName, ngModel, measureMenu, optionalSuffix)
   div.form-group
     div.input-group(ng-class="{'has-error': #{formName}.consumptionOrCost.$invalid}")
       div.input-group-addon(ng-bind='#{measureMenu}.getSelectedUnit()')

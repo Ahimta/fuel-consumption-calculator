@@ -128,7 +128,7 @@
         <tr>
           <th class="text-center danger">
             <span>
-              <span>%</span><span ng-bind="vm.getPriceDifferencePercentage(vm.measureMenu1, vm.periodMenu1, vm.priceMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.priceMenu2, vm.costOrVolume2) | number:0"></span>
+              <span>%</span><span ng-bind="vm.getPriceDifferencePercentage(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2) | number:0"></span>
             </span>
             <span>فرق التكلفة</span>
           </th>
@@ -136,7 +136,7 @@
           <th class="text-center success" ng-show="vm.showDetails">التكلفة1</th>
           <th class="text-center danger">
             <span>
-              <span>%</span><span ng-bind="vm.getVolumeDifferencePercentage(vm.measureMenu1, vm.periodMenu1, vm.priceMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.priceMenu2, vm.costOrVolume2) | number:0"></span>
+              <span>%</span><span ng-bind="vm.getVolumeDifferencePercentage(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2) | number:0"></span>
             </span>
             <span>فرق الكمية</span>
           </th>
@@ -148,27 +148,27 @@
       <tbody>
         <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
           <td class="text-center danger" dir="rtl" style="border-right: 0; border-left: 0">
-            <b ng-bind="vm.calculatePriceDifference(vm.measureMenu1, vm.periodMenu1, vm.priceMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.priceMenu2, vm.costOrVolume2, factor) | number:1"></b>
+            <b ng-bind="vm.calculatePriceDifference(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2, factor) | number:1"></b>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center success" dir="rtl" ng-show="vm.showDetails">
-            <span ng-bind="vm.calculatePrice(vm.measureMenu2, vm.periodMenu2, vm.priceMenu2, 'new', vm.costOrVolume2, factor) | number:1"></span>
+            <span ng-bind="vm.calculatePrice(vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2, factor) | number:1"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center success" dir="rtl" ng-show="vm.showDetails">
-            <span ng-bind="vm.calculatePrice(vm.measureMenu1, vm.periodMenu1, vm.priceMenu1, 'new', vm.costOrVolume1, factor) | number:1"></span>
+            <span ng-bind="vm.calculatePrice(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, factor) | number:1"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
           <td class="text-center danger" dir="rtl">
-            <b ng-bind="vm.calculateVolumeDifference(vm.measureMenu1, vm.periodMenu1, vm.priceMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.priceMenu2, vm.costOrVolume2, factor) | number:0"></b>
+            <b ng-bind="vm.calculateVolumeDifference(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2, factor) | number:0"></b>
             <span class="hidden-xs" style="font-size: 0.6em">متر مكعب</span>
           </td>
           <td class="text-center active" dir="rtl" ng-show="vm.showDetails">
-            <span ng-bind="vm.calculateVolume(vm.measureMenu2, vm.periodMenu2, vm.priceMenu2, vm.costOrVolume2, factor) | number:0"></span>
+            <span ng-bind="vm.calculateVolume(vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2, factor) | number:0"></span>
             <span class="hidden-xs" style="font-size: 0.6em">متر مكعب</span>
           </td>
           <td class="text-center active" dir="rtl" ng-show="vm.showDetails">
-            <span ng-bind="vm.calculateVolume(vm.measureMenu1, vm.periodMenu1, vm.priceMenu1, vm.costOrVolume1, factor) | number:0"></span>
+            <span ng-bind="vm.calculateVolume(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, factor) | number:0"></span>
             <span class="hidden-xs" style="font-size: 0.6em">متر مكعب</span>
           </td>
           <th class="text-center active" ng-bind="period" dir="rtl" style="border-right: 0; border-left: 0"></th>
