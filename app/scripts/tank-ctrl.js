@@ -18,7 +18,7 @@ angular.module('fuelCalculator')
     this.vehicleOptionMenu = menuService.getVehicleOptionMenu(settingsService.vehicleOption())
     this.vehiclesMenu = menuService.getVehiclesMenu(settingsService.year(), settingsService.manufacturer(), settingsService.model())
     this.octaneMenu = menuService.getOctaneMenu(settingsService.fuelType())
-    this.periodMenu = menuService.getPeriodMenu('week')
+    this.periodMenu = menuService.getPeriodMenu('month')
     this.priceMenu = menuService.getPriceTypeMenu()
     this.tankMeasureMenu = menuService.getTankMeasureMenu()
 
