@@ -26,23 +26,10 @@
   </div>
   <div class="form-group">
     <div class="input-group" ng-class="{'has-error': tankForm.tankCostOrVolume.$invalid}">
-      <div class="input-group-addon" ng-bind="vm.tankMeasureMenu.getSelectedUnit()"></div>
+      <div class="input-group-addon">ريال</div>
       <input type="number" min="1" max="1000000000" step="1" name="tankCostOrVolume" required
              class="form-control" dir="rtl" ng-model="vm.tankCostOrVolume" ng-change="vm.updateTankCostOrVolume(vm.tankCostOrVolume)">
-      <div class="input-group-btn">
-       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <span class="caret"></span>
-         <span ng-bind="vm.tankMeasureMenu.getSelectedLabel()"></span>
-       </button>
-       <ul class="dropdown-menu dropdown-menu-right">
-         <li class="text-right" ng-class="{active: vm.tankMeasureMenu.isSelected('price')}" ng-click="vm.tankMeasureMenu.select('price')">
-           <a ng-click="$event.preventDefault()" href="#">تكلفة التعبئة</a>
-         </li>
-         <li class="text-right" ng-class="{active: vm.tankMeasureMenu.isSelected('volume')}" ng-click="vm.tankMeasureMenu.select('volume')">
-           <a ng-click="$event.preventDefault()" href="#">حجم التانكي</a>
-         </li>
-       </ul>
-     </div>
+      <div class="input-group-addon">تكلفة التعبئة</div>
     </div>
   </div>
 </form>

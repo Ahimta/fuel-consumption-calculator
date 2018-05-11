@@ -73,40 +73,6 @@ angular.module('fuelCalculator')
     }
   }
 
-  this.getTankMeasureMenu = function (initialValue)
-  {
-    var menuModel = getMenuModel('Tank Measure', initialValue || 'price')
-
-    menuModel.getSelectedLabel = function ()
-    {
-      switch (menuModel.getSelected())
-      {
-        case 'price':  return 'تكلفة التعبئة'
-        case 'volume': return 'حجم التانكي'
-      }
-    }
-
-    menuModel.getSelectedUnit = function ()
-    {
-      switch (menuModel.getSelected())
-      {
-        case 'price':  return 'ريال'
-        case 'volume': return 'لتر'
-      }
-    }
-
-    menuModel.getLiters = function (fuelType, priceOrVolume)
-    {
-      switch (menuModel.getSelected())
-      {
-        case 'price':  return fuelService.getLitersByPrice(fuelType, priceOrVolume)
-        case 'volume': return priceOrVolume
-      }
-    }
-
-    return menuModel
-  }
-
   this.getVehicleOptionMenu = function (initialValue, dontSave)
   {
     var menuModel = getMenuModel('Vehicle Option', initialValue || 'vehicle')
