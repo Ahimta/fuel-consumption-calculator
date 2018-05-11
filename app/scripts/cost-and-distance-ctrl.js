@@ -15,7 +15,7 @@ angular.module('fuelCalculator')
     this.vehiclesMenu = menuService.getVehiclesMenu(settingsService.year(), settingsService.manufacturer(), settingsService.model())
     this.octaneMenu = menuService.getOctaneMenu(settingsService.fuelType())
     this.periodMenu = menuService.getPeriodMenu()
-    this.measureMenu = menuService.getMeasureMenu()
+    this.measureMenu = menuService.getMeasureMenu('distance')
 
     function getDistanceForLiter() {
       switch (vm.vehicleOptionMenu.getSelected()) {
