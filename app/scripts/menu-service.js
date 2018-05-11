@@ -236,7 +236,7 @@ angular.module('fuelCalculator')
 
   this.getPriceTypeMenu = function (initialValue)
   {
-    var menuModel = getMenuModel('PriceType', initialValue || 'old')
+    var menuModel = getMenuModel('PriceType', initialValue || 'new')
 
     menuModel.getSelectedLabel = function () { return priceService.getPriceTypeLabel(menuModel.getSelected()) }
 
