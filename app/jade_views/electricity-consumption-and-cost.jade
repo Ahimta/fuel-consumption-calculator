@@ -11,26 +11,11 @@ article(ng-show='electricityForm.$valid')
       table.table.table-hover.table-condensed.table-bordered
         thead
           tr
-            th.text-center.danger
-              span.hidden-xs
-                span %
-                span(ng-bind='vm.getDifferencePercentage(vm.priceMenu, vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) | number:0')
-                span &nbsp;
-              span الفرق
-            th.text-center.warning التكلفة سابقا
-            th.text-center.success التكلفة حاليا
+            th.text-center.success التكلفة
             th.text-center.active الشرائح
             th.text-center.active المدة
         tbody
           tr(ng-repeat='pair in vm.periodTable', ng-init='period = pair[0]; factor = pair[1]')
-            td.text-center.danger(dir='rtl', style='border-right: 0; border-left: 0')
-              b(ng-bind='vm.calculatePriceDifference(vm.priceMenu, vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0')
-              span.hidden-xs &nbsp;
-              span.hidden-xs(style='font-size: 0.6em') ريال
-            td.text-center.warning(dir='rtl')
-              span(ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'old', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
-              span.hidden-xs &nbsp;
-              span.hidden-xs(style='font-size: 0.6em') ريال
             td.text-center.success(dir='rtl')
               span(ng-bind="vm.calculatePrice(vm.priceMenu, vm.measureMenu.getSelected(), 'new', vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;

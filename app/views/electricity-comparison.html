@@ -4,13 +4,6 @@
     <div ng-class="{'has-error': electricityForm.consumptionOrCost.$invalid}" class="input-group">
       <div ng-bind="vm.measureMenu.getSelectedUnit()" class="input-group-addon"></div>
       <input type="number" min="1" max="1000000000" step="1" name="consumptionOrCost" dir="rtl" required="required" ng-model="vm.consumptionOrCost" class="form-control"/>
-      <div ng-show="vm.measureMenu.isSelected('cost')" class="input-group-btn">
-        <button type="button" data-toggle="dropdown" style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;" class="btn btn-default dropdown-toggle"><span class="caret"></span><span>&nbsp;</span><span ng-bind="vm.priceMenu.getSelectedLabel()"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li ng-class="{active: vm.priceMenu.isSelected('new')}" ng-click="vm.priceMenu.select('new')" class="text-right"><a ng-click="$event.preventDefault()" href="#">حاليا</a></li>
-          <li ng-class="{active: vm.priceMenu.isSelected('old')}" ng-click="vm.priceMenu.select('old')" class="text-right"><a ng-click="$event.preventDefault()" href="#">سابقا</a></li>
-        </ul>
-      </div>
       <div class="input-group-btn">
         <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle"><span class="caret"></span><span>&nbsp;</span><span>1</span><span ng-bind="vm.measureMenu.getSelectedLabel()"></span></button>
         <ul class="dropdown-menu dropdown-menu-right">
@@ -24,13 +17,6 @@
     <div ng-class="{'has-error': electricityForm.consumptionOrCost.$invalid}" class="input-group">
       <div ng-bind="vm.measureMenu2.getSelectedUnit()" class="input-group-addon"></div>
       <input type="number" min="1" max="1000000000" step="1" name="consumptionOrCost" dir="rtl" required="required" ng-model="vm.consumptionOrCost2" class="form-control"/>
-      <div ng-show="vm.measureMenu2.isSelected('cost')" class="input-group-btn">
-        <button type="button" data-toggle="dropdown" style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;" class="btn btn-default dropdown-toggle"><span class="caret"></span><span>&nbsp;</span><span ng-bind="vm.priceMenu2.getSelectedLabel()"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li ng-class="{active: vm.priceMenu2.isSelected('new')}" ng-click="vm.priceMenu2.select('new')" class="text-right"><a ng-click="$event.preventDefault()" href="#">حاليا</a></li>
-          <li ng-class="{active: vm.priceMenu2.isSelected('old')}" ng-click="vm.priceMenu2.select('old')" class="text-right"><a ng-click="$event.preventDefault()" href="#">سابقا</a></li>
-        </ul>
-      </div>
       <div class="input-group-btn">
         <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle"><span class="caret"></span><span>&nbsp;</span><span>2</span><span ng-bind="vm.measureMenu2.getSelectedLabel()"></span></button>
         <ul class="dropdown-menu dropdown-menu-right">

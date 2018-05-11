@@ -4,21 +4,6 @@
       <div class="input-group-addon" ng-bind="vm.measureMenu1.getSelectedUnit()"></div>
       <input type="number" min="1" max="1000000000" step="1" name="costOrVolume1" required
              class="form-control" dir="rtl" ng-model="vm.costOrVolume1">
-      <div class="input-group-btn" ng-show="vm.measureMenu1.isSelected('cost')">
-       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
-         <span class="caret"></span>
-         <span ng-bind="vm.priceMenu1.getSelectedLabel()"></span>
-       </button>
-       <ul class="dropdown-menu dropdown-menu-right">
-         <li class="text-right" ng-class="{active: vm.priceMenu1.isSelected('new')}" ng-click="vm.priceMenu1.select('new')">
-           <a ng-click="$event.preventDefault()" href="#">حاليا</a>
-         </li>
-         <li class="text-right" ng-class="{active: vm.priceMenu1.isSelected('old')}" ng-click="vm.priceMenu1.select('old')">
-           <a ng-click="$event.preventDefault()" href="#">سابقا</a>
-         </li>
-       </ul>
-      </div>
       <div class="input-group-btn">
        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
@@ -59,21 +44,6 @@
       <div class="input-group-addon" ng-bind="vm.measureMenu2.getSelectedUnit()"></div>
       <input type="number" min="1" max="1000000000" step="1" name="costOrVolume2" required
              class="form-control" dir="rtl" ng-model="vm.costOrVolume2">
-      <div class="input-group-btn" ng-show="vm.measureMenu2.isSelected('cost')">
-       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
-         <span class="caret"></span>
-         <span ng-bind="vm.priceMenu2.getSelectedLabel()"></span>
-       </button>
-       <ul class="dropdown-menu dropdown-menu-right">
-         <li class="text-right" ng-class="{active: vm.priceMenu2.isSelected('new')}" ng-click="vm.priceMenu2.select('new')">
-           <a ng-click="$event.preventDefault()" href="#">حاليا</a>
-         </li>
-         <li class="text-right" ng-class="{active: vm.priceMenu2.isSelected('old')}" ng-click="vm.priceMenu2.select('old')">
-           <a ng-click="$event.preventDefault()" href="#">سابقا</a>
-         </li>
-       </ul>
-      </div>
       <div class="input-group-btn">
        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
