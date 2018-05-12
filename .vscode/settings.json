@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": false,
   "editor.formatOnPaste": false,
+  "standard.autoFixOnSave": true,
   "vsicons.presets.angular": false
 }
