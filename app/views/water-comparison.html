@@ -2,93 +2,92 @@
   <div class="form-group">
     <div class="input-group" ng-class="{'has-error': waterForm.costOrVolume1.$invalid}">
       <div class="input-group-addon" ng-bind="vm.measureMenu1.getSelectedUnit()"></div>
-      <input type="number" min="1" max="1000000000" step="1" name="costOrVolume1" required
-             class="form-control" dir="rtl" ng-model="vm.costOrVolume1">
+      <input type="number" min="1" max="1000000000" step="1" name="costOrVolume1" required class="form-control" dir="rtl" ng-model="vm.costOrVolume1">
       <div class="input-group-btn">
-       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
-         <span class="caret"></span>
-         <span>كل</span>
-         <span ng-bind="vm.periodMenu1.getSelectedLabel()"></span>
-       </button>
-       <ul class="dropdown-menu dropdown-menu-right">
-         <li class="text-right" ng-class="{active: vm.periodMenu1.isSelected('month')}" ng-click="vm.periodMenu1.select('month')">
-           <a ng-click="$event.preventDefault()" href="#">كل شهر</a>
-         </li>
-         <li class="text-right" ng-class="{active: vm.periodMenu1.isSelected('three-months')}" ng-click="vm.periodMenu1.select('three-months')">
-           <a ng-click="$event.preventDefault()" href="#">كل 3 شهور</a>
-         </li>
-         <li class="text-right" ng-class="{active: vm.periodMenu1.isSelected('year')}" ng-click="vm.periodMenu1.select('year')">
-           <a ng-click="$event.preventDefault()" href="#">كل سنة</a>
-         </li>
-       </ul>
-     </div>
-     <div class="input-group-btn">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="caret"></span>
-        <span ng-bind="vm.measureMenu1.getSelectedLabel()"></span><span>1</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-right">
-        <li class="text-right" ng-class="{active: vm.measureMenu1.isSelected('volume')}" ng-click="vm.measureMenu1.select('volume')">
-          <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك</a>
-        </li>
-        <li class="text-right" ng-class="{active: vm.measureMenu1.isSelected('cost')}" ng-click="vm.measureMenu1.select('cost')">
-          <a ng-click="$event.preventDefault()" href="#">التكلفة</a>
-        </li>
-      </ul>
-    </div>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
+          <span class="caret"></span>
+          <span>كل</span>
+          <span ng-bind="vm.periodMenu1.getSelectedLabel()"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="text-right" ng-class="{active: vm.periodMenu1.isSelected('month')}" ng-click="vm.periodMenu1.select('month')">
+            <a ng-click="$event.preventDefault()" href="#">كل شهر</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.periodMenu1.isSelected('three-months')}" ng-click="vm.periodMenu1.select('three-months')">
+            <a ng-click="$event.preventDefault()" href="#">كل 3 شهور</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.periodMenu1.isSelected('year')}" ng-click="vm.periodMenu1.select('year')">
+            <a ng-click="$event.preventDefault()" href="#">كل سنة</a>
+          </li>
+        </ul>
+      </div>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span ng-bind="vm.measureMenu1.getSelectedLabel()"></span>
+          <span>1</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="text-right" ng-class="{active: vm.measureMenu1.isSelected('volume')}" ng-click="vm.measureMenu1.select('volume')">
+            <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.measureMenu1.isSelected('cost')}" ng-click="vm.measureMenu1.select('cost')">
+            <a ng-click="$event.preventDefault()" href="#">التكلفة</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="form-group">
     <div class="input-group" ng-class="{'has-error': waterForm.costOrVolume2.$invalid}">
       <div class="input-group-addon" ng-bind="vm.measureMenu2.getSelectedUnit()"></div>
-      <input type="number" min="1" max="1000000000" step="1" name="costOrVolume2" required
-             class="form-control" dir="rtl" ng-model="vm.costOrVolume2">
+      <input type="number" min="1" max="1000000000" step="1" name="costOrVolume2" required class="form-control" dir="rtl" ng-model="vm.costOrVolume2">
       <div class="input-group-btn">
-       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-               style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
-         <span class="caret"></span>
-         <span>كل</span>
-         <span ng-bind="vm.periodMenu2.getSelectedLabel()"></span>
-       </button>
-       <ul class="dropdown-menu dropdown-menu-right">
-         <li class="text-right" ng-class="{active: vm.periodMenu2.isSelected('month')}" ng-click="vm.periodMenu2.select('month')">
-           <a ng-click="$event.preventDefault()" href="#">كل شهر</a>
-         </li>
-         <li class="text-right" ng-class="{active: vm.periodMenu2.isSelected('three-months')}" ng-click="vm.periodMenu2.select('three-months')">
-           <a ng-click="$event.preventDefault()" href="#">كل 3 شهور</a>
-         </li>
-         <li class="text-right" ng-class="{active: vm.periodMenu2.isSelected('year')}" ng-click="vm.periodMenu2.select('year')">
-           <a ng-click="$event.preventDefault()" href="#">كل سنة</a>
-         </li>
-       </ul>
-     </div>
-     <div class="input-group-btn">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="caret"></span>
-        <span ng-bind="vm.measureMenu2.getSelectedLabel()"></span><span>2</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-right">
-        <li class="text-right" ng-class="{active: vm.measureMenu2.isSelected('volume')}" ng-click="vm.measureMenu2.select('volume')">
-          <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك</a>
-        </li>
-        <li class="text-right" ng-class="{active: vm.measureMenu2.isSelected('cost')}" ng-click="vm.measureMenu2.select('cost')">
-          <a ng-click="$event.preventDefault()" href="#">التكلفة</a>
-        </li>
-      </ul>
-    </div>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          style="-webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; border-radius: 0px !important;">
+          <span class="caret"></span>
+          <span>كل</span>
+          <span ng-bind="vm.periodMenu2.getSelectedLabel()"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="text-right" ng-class="{active: vm.periodMenu2.isSelected('month')}" ng-click="vm.periodMenu2.select('month')">
+            <a ng-click="$event.preventDefault()" href="#">كل شهر</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.periodMenu2.isSelected('three-months')}" ng-click="vm.periodMenu2.select('three-months')">
+            <a ng-click="$event.preventDefault()" href="#">كل 3 شهور</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.periodMenu2.isSelected('year')}" ng-click="vm.periodMenu2.select('year')">
+            <a ng-click="$event.preventDefault()" href="#">كل سنة</a>
+          </li>
+        </ul>
+      </div>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span ng-bind="vm.measureMenu2.getSelectedLabel()"></span>
+          <span>2</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="text-right" ng-class="{active: vm.measureMenu2.isSelected('volume')}" ng-click="vm.measureMenu2.select('volume')">
+            <a ng-click="$event.preventDefault()" href="#">كمية الاستهلاك</a>
+          </li>
+          <li class="text-right" ng-class="{active: vm.measureMenu2.isSelected('cost')}" ng-click="vm.measureMenu2.select('cost')">
+            <a ng-click="$event.preventDefault()" href="#">التكلفة</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <span class="help-block" dir="rtl">
-      <a href="https://ebranch.nwc.com.sa/Arabic/Pages/BillCalculator.aspx" target="_blank"
-         onclick="ga('send', 'event', 'Water Cost and Volume', 'click', 'National Water Company')">شركة المياه الوطنية</a>
+      <a href="https://ebranch.nwc.com.sa/Arabic/Pages/BillCalculator.aspx" target="_blank" onclick="ga('send', 'event', 'Water Cost and Volume', 'click', 'National Water Company')">شركة المياه الوطنية</a>
     </span>
   </div>
   <div class="form-group">
     <label class="sr-only" for="numberOfUnits">عدد الوحدات</label>
     <div class="input-group" ng-class="{'has-error': waterForm.numberOfUnits.$invalid}">
       <div class="input-group-addon">وحدة</div>
-      <input type="number" name="numberOfUnits" min="1" max="1000000000" step="1" pattern="\d+" required
-             class="form-control" id="numberOfUnits" dir="rtl" ng-model="vm.numberOfUnits" ng-init="vm.numberOfUnits = 1">
+      <input type="number" name="numberOfUnits" min="1" max="1000000000" step="1" pattern="\d+" required class="form-control" id="numberOfUnits"
+        dir="rtl" ng-model="vm.numberOfUnits" ng-init="vm.numberOfUnits = 1">
       <div class="input-group-addon">عدد الوحدات</div>
     </div>
     <span class="help-block" dir="rtl">
@@ -99,8 +98,7 @@
   </div>
   <div class="form-group" dir="rtl">
     <label for="counterRadius">قطر العداد</label>
-    <select class="form-control" id="counterRadius" ng-model="vm.counterRadius"
-            ng-options="item.value as item.label for item in vm.radiusOptions">
+    <select class="form-control" id="counterRadius" ng-model="vm.counterRadius" ng-options="item.value as item.label for item in vm.radiusOptions">
     </select>
     <span class="help-block" dir="rtl">
       <span>عادة يكون</span>
@@ -128,7 +126,8 @@
         <tr>
           <th class="text-center danger">
             <span>
-              <span>%</span><span ng-bind="vm.getPriceDifferencePercentage(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2) | number:0"></span>
+              <span>%</span>
+              <span ng-bind="vm.getPriceDifferencePercentage(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2) | number:0"></span>
             </span>
             <span>فرق التكلفة</span>
           </th>
@@ -136,7 +135,8 @@
           <th class="text-center success" ng-show="vm.showDetails">التكلفة1</th>
           <th class="text-center danger">
             <span>
-              <span>%</span><span ng-bind="vm.getVolumeDifferencePercentage(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2) | number:0"></span>
+              <span>%</span>
+              <span ng-bind="vm.getVolumeDifferencePercentage(vm.measureMenu1, vm.periodMenu1, vm.costOrVolume1, vm.measureMenu2, vm.periodMenu2, vm.costOrVolume2) | number:0"></span>
             </span>
             <span>فرق الكمية</span>
           </th>
