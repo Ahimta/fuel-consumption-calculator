@@ -53,5 +53,10 @@
   "lint-staged": {
     "{gulpfile.js,README.md,scripts/*.js,app/manifest.json,app/scripts/*.js}": ["prettier --write", "git add"],
     "{gulpfile.js,scripts/*.js,app/scripts/*.js}": ["prettier --write", "standard --fix", "git add"]
+  },
+  "standard": {
+    "globals": [
+      "angular"
+    ]
   }
 }
