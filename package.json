@@ -56,7 +56,8 @@
   },
   "standard": {
     "globals": [
-      "angular"
+      "angular",
+      "Raven"
     ]
   }
 }
