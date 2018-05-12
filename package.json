@@ -7,7 +7,7 @@
     "build": "gulp dist",
     "deploy": "gulp deploy",
     "lint": "npm run prettier && npm run standard",
-    "prettier": "prettier --write gulpfile.js README.md scripts/*.js app/manifest.json app/scripts/*.js",
+    "prettier": "prettier --write gulpfile.js jsconfig.json README.md scripts/*.js app/manifest.json app/scripts/*.js",
     "standard": "standard --fix gulpfile.js scripts/*.js app/scripts/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "gulp watch"
@@ -51,7 +51,7 @@
     "sw-precache": "^4.3.0"
   },
   "lint-staged": {
-    "{gulpfile.js,README.md,scripts/*.js,app/manifest.json,app/scripts/*.js}": ["prettier --write", "git add"],
+    "{gulpfile.js,jsconfig.json,README.md,scripts/*.js,app/manifest.json,app/scripts/*.js}": ["prettier --write", "git add"],
     "{gulpfile.js,scripts/*.js,app/scripts/*.js}": ["prettier --write", "standard --fix", "git add"]
   },
   "standard": {

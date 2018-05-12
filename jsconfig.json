@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2015",
+    "checkJs": true
+  },
+  "include": ["gulpfile.js", "scripts/*.js", "app/scripts.js", "globals.d.ts"]
+}
