@@ -1,7 +1,11 @@
 'use strict'
 
-angular.module('fuelCalculator')
-  .controller('TankCtrl', ['fuelService', 'menuService', 'periodService', 'settingsService', function (fuelService, menuService, periodService, settingsService) {
+angular.module('fuelCalculator').controller('TankCtrl', [
+  'fuelService',
+  'menuService',
+  'periodService',
+  'settingsService',
+  function (fuelService, menuService, periodService, settingsService) {
     var vm = this
 
     this.distanceForLiters = settingsService.averageOrEfficiency()
@@ -15,16 +19,25 @@ angular.module('fuelCalculator')
     this.updateTankCostOrVolume = settingsService.tankCostOrVolume
     this.updateAverageOrEfficiency = settingsService.averageOrEfficiency
 
-    this.vehicleOptionMenu = menuService.getVehicleOptionMenu(settingsService.vehicleOption())
-    this.vehiclesMenu = menuService.getVehiclesMenu(settingsService.year(), settingsService.manufacturer(), settingsService.model())
+    this.vehicleOptionMenu = menuService.getVehicleOptionMenu(
+      settingsService.vehicleOption()
+    )
+    this.vehiclesMenu = menuService.getVehiclesMenu(
+      settingsService.year(),
+      settingsService.manufacturer(),
+      settingsService.model()
+    )
     this.octaneMenu = menuService.getOctaneMenu(settingsService.fuelType())
     this.periodMenu = menuService.getPeriodMenu('month')
 
-    function getDistanceForLiter() {
+    function getDistanceForLiter () {
       switch (vm.vehicleOptionMenu.getSelected()) {
-        case 'average': return 100 / vm.distanceForLiters
-        case 'effeciency': return vm.distanceForLiters
-        case 'vehicle': return vm.vehiclesMenu.getDistanceForLiter()
+        case 'average':
+          return 100 / vm.distanceForLiters
+        case 'effeciency':
+          return vm.distanceForLiters
+        case 'vehicle':
+          return vm.vehiclesMenu.getDistanceForLiter()
       }
     }
 
@@ -32,11 +45,19 @@ angular.module('fuelCalculator')
       var distanceForLiter = getDistanceForLiter()
       var fillTimesPerDay = vm.periodMenu.getValuePerDay(vm.fillTimes) * factor
       var totalVolume = vm.tankCostOrVolume * fillTimesPerDay
-      var volumePerDay = vm.octaneMenu.getSelected() === 'volume'
-        ? totalVolume
-        : fuelService.getLitersByPrice(vm.octaneMenu.getSelected(), totalVolume)
+      var volumePerDay =
+        vm.octaneMenu.getSelected() === 'volume'
+          ? totalVolume
+          : fuelService.getLitersByPrice(
+            vm.octaneMenu.getSelected(),
+            totalVolume
+          )
 
-      return fuelService.calculateDistanceByVolume(distanceForLiter, vm.litersForDistance, volumePerDay)
+      return fuelService.calculateDistanceByVolume(
+        distanceForLiter,
+        vm.litersForDistance,
+        volumePerDay
+      )
     }
 
     this.calculatePrice = function (factor) {
@@ -44,6 +65,12 @@ angular.module('fuelCalculator')
       var distance = vm.calculateDistance(factor)
       var fuelType = settingsService.fuelType()
 
-      return fuelService.calculateByDistance(fuelType, distanceForLiter, vm.litersForDistance, distance)
+      return fuelService.calculateByDistance(
+        fuelType,
+        distanceForLiter,
+        vm.litersForDistance,
+        distance
+      )
     }
-  }])
+  }
+])
