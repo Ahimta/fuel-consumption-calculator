@@ -12,6 +12,6 @@ mixin electricityConsumptionOrCostField(formName, ngModel, measureMenu, optional
           span(ng-bind='#{measureMenu}.getSelectedLabel()')
         ul.dropdown-menu.dropdown-menu-right
           li.text-right(ng-class="{active: #{measureMenu}.isSelected('consumption')}", ng-click="#{measureMenu}.select('consumption')")
-            a(ng-click='$event.preventDefault()', href='#') شرائح الاستهلاك
+            a(ng-click='$event.preventDefault()', href='#') شرائح الاستهلاك في الشهر
           li.text-right(ng-class="{active: #{measureMenu}.isSelected('cost')}", ng-click="#{measureMenu}.select('cost')")
-            a(ng-click='$event.preventDefault()', href='#') التكلفة
+            a(ng-click='$event.preventDefault()', href='#') التكلفة في الشهر

@@ -238,9 +238,9 @@ angular.module('fuelCalculator').service('menuService', [
       menuModel.getSelectedLabel = function () {
         switch (menuModel.getSelected()) {
           case 'consumption':
-            return 'شرائح الاستهلاك'
+            return 'شرائح الاستهلاك في الشهر'
           case 'cost':
-            return 'التكلفة'
+            return 'التكلفة في الشهر'
         }
       }
 

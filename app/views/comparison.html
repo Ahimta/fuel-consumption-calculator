@@ -348,38 +348,38 @@
     <table class="table table-hover table-condensed table-bordered">
       <thead>
         <tr>
-          <th class="text-center danger">
+          <th class="text-center">
             <span class="hidden-xs">
               <span>%</span>
               <span ng-bind="vm.getPercentage() | number:0"></span>
             </span>
             <span>الفرق</span>
           </th>
-          <th class="text-center" ng-class="vm.getSecondClass()">تكلفة الثانية</th>
-          <th class="text-center" ng-class="vm.getFirstClass()">تكلفة الأولى</th>
-          <th class="text-center active">المسافة</th>
-          <th class="text-center active">المدة</th>
+          <th class="text-center">تكلفة الثانية</th>
+          <th class="text-center">تكلفة الأولى</th>
+          <th class="text-center">المسافة</th>
+          <th class="text-center">المدة</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]">
-          <td class="text-center danger" dir="rtl" style="border-right: 0; border-left: 0">
+        <tr ng-repeat="pair in vm.periodTable" ng-init="period = pair[0]; factor = pair[1]; periodCode = pair[2]">
+          <td class="text-center" dir="rtl" style="border-right: 0; border-left: 0" ng-class="{active: (periodCode === vm.periodMenu.getSelected())}">
             <b ng-bind="vm.distance.calculatePriceDifference(factor) | roundPrice:2"></b>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
-          <td class="text-center" ng-class="vm.getSecondClass()" dir="rtl">
+          <td class="text-center" dir="rtl" ng-class="{active: (periodCode === vm.periodMenu.getSelected())}">
             <span ng-bind="vm.distance.calculatePrice(vm.octaneMenu2.getSelected(), vm.getDistanceForLiter2(), factor) | roundPrice:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
-          <td class="text-center" ng-class="vm.getFirstClass()" dir="rtl">
+          <td class="text-center" dir="rtl" ng-class="{active: (periodCode === vm.periodMenu.getSelected())}">
             <span ng-bind="vm.distance.calculatePrice(vm.octaneMenu1.getSelected(), vm.getDistanceForLiter1(), factor) | roundPrice:2"></span>
             <span class="hidden-xs" style="font-size: 0.6em">ريال</span>
           </td>
-          <td class="text-center active" dir="rtl">
+          <td class="text-center" dir="rtl" ng-class="{active: (periodCode === vm.periodMenu.getSelected())}">
             <span ng-bind="vm.distance.calculateDistance(factor) | number:0"></span>
             <span class="hidden-xs" style="font-size: 0.6em">كم</span>
           </td>
-          <th class="text-center active" ng-bind="period"></th>
+          <th class="text-center" ng-bind="period" ng-class="{active: (periodCode === vm.periodMenu.getSelected())}"></th>
         </tr>
       </tbody>
     </table>

@@ -7,10 +7,10 @@ angular.module('fuelCalculator').service('periodService', [
     var TABLE_MONTH = 'شهر'
     var TABLE_YEAR = 'سنة'
     var PERIOD_TABLE = [
-      [TABLE_DAY, 1],
-      [TABLE_WEEK, 7],
-      [TABLE_MONTH, 30],
-      [TABLE_YEAR, 360]
+      [TABLE_DAY, 1, 'day'],
+      [TABLE_WEEK, 7, 'week'],
+      [TABLE_MONTH, 30, 'month'],
+      [TABLE_YEAR, 360, 'year']
     ]
 
     var FACTOR_DAY = 'اليوم'
@@ -64,7 +64,7 @@ angular.module('fuelCalculator').service('periodService', [
       var THREE_MONTHS = '3 شهور'
       var YEAR = 'سنة'
 
-      return [[MONTH, 1], [THREE_MONTHS, 3], [YEAR, 12]]
+      return [[MONTH, 1, 'month'], [THREE_MONTHS, 3, 'three-months'], [YEAR, 12, 'year']]
     }
   }
 ])

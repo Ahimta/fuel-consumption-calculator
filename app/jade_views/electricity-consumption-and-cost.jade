@@ -11,17 +11,17 @@ article(ng-show='electricityForm.$valid')
       table.table.table-hover.table-condensed.table-bordered
         thead
           tr
-            th.text-center.success التكلفة
-            th.text-center.active الشرائح
-            th.text-center.active المدة
+            th.text-center(ng-class="{active: (vm.measureMenu.getSelected() === 'cost')}") التكلفة
+            th.text-center(ng-class="{active: (vm.measureMenu.getSelected() === 'consumption')}") الشرائح
+            th.text-center المدة
         tbody
           tr(ng-repeat='pair in vm.periodTable', ng-init='period = pair[0]; factor = pair[1]')
-            td.text-center.success(dir='rtl')
+            td.text-center(dir='rtl' ng-class="{active: (vm.measureMenu.getSelected() === 'cost')}")
               span(ng-bind="vm.calculatePrice(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ريال
-            td.text-center.active(dir='rtl')
+            td.text-center(dir='rtl' ng-class="{active: (vm.measureMenu.getSelected() === 'consumption')}")
               span(ng-bind="vm.calculateConsumption(vm.measureMenu.getSelected(), vm.category, vm.meter, vm.consumptionOrCost) * factor | number:0")
               span.hidden-xs &nbsp;
               span.hidden-xs(style='font-size: 0.6em') ك.و.س
-            th.text-center.active(ng-bind='period', dir='rtl', style='border-right: 0; border-left: 0')
+            th.text-center(ng-bind='period', dir='rtl', style='border-right: 0; border-left: 0')
