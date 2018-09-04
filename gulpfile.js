@@ -81,7 +81,7 @@ gulp.task('reload', callback => {
 
 gulp.task('watch', ['server:connect'], () => {
   return gulp.watch(
-    ['app/{index.html,jade_views/*.jade,scripts/*.js}'],
+    ['app/{index.html,views/*.html,jade_views/*.jade,scripts/*.js}'],
     ['reload']
   )
 })
